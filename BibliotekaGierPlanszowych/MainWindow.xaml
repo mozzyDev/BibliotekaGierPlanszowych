@@ -23,7 +23,7 @@
                     <Button x:Name="ButtonMin" Width="40" Height="40" Padding="0" Margin="30 15 0 0"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonMin_Click" >
                         <materialDesign:PackIcon Kind="WindowMinimize" Width="35" Height="35"/>
                     </Button>
-                    <Button x:Name="ButtonExit" Width="40" Height="40" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonExit_Click" >
+                    <Button x:Name="ButtonExit" Width="40" Height="40" Padding="0" Margin="0 0 10 0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonExit_Click" >
                         <materialDesign:PackIcon Kind="Power" Width="35" Height="35"/>
                     </Button>
                 </StackPanel>
@@ -35,7 +35,7 @@
             <Grid x:Name="MainGrid" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
         
-        <Grid Width="250" HorizontalAlignment="Left" Background="#FF222222">
+        <Grid Width="250" HorizontalAlignment="Left" Background="#FF343232">
             <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
                 <Grid x:Name="GridCursor" Margin="0 100 0 0" Background="#0069C0" Width="10" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top"/>
             </materialDesign:TransitioningContent>
