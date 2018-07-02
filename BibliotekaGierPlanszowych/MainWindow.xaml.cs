@@ -22,5 +22,15 @@ namespace BibliotekaGierPlanszowych
         {
             InitializeComponent();
         }
+
+        private void ButtonExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void Grid_MouseDown(object sender, RoutedEventArgs e)
+        {
+            DragMove();
+        }
     }
 }
