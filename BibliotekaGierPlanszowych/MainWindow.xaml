@@ -9,7 +9,7 @@
         Title="" Height="600" Width="1024" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid Background="#FFEEEEEE" MouseDown="Grid_MouseDown">
 
-        <StackPanel VerticalAlignment="Top" Background="black" >
+        <StackPanel VerticalAlignment="Top" >
             <Grid Height="10" Background="#0069C0"></Grid>
 
             <Grid Margin="5">
@@ -29,7 +29,7 @@
         </StackPanel>
 
         <Grid Margin="250 55 0 0">
-            <Grid x:Name="GridPrincipal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid x:Name="MainGrid" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
         
         <Grid Width="250" HorizontalAlignment="Left" Background="#FF222222">

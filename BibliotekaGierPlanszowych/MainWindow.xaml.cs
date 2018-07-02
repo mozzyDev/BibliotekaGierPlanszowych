@@ -42,11 +42,11 @@ namespace BibliotekaGierPlanszowych
             {
                 case 0:
                     MainGrid.Children.Clear();
-                    MainGrid.Children.Add(new UserControlInicio());
+                    MainGrid.Children.Add(new UserControl1());
                     break;
                 case 1:
                     MainGrid.Children.Clear();
-                    MainGrid.Children.Add(new UserControlEscolha());
+                    MainGrid.Children.Add(new UserControl1());
                     break;
                 default:
                     break;
