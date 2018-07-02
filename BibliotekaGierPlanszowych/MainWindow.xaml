@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="" Height="600" Width="1024" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
-    <Grid Background="#FFEEEEEE" MouseDown="Grid_MouseDown">
+    <Grid Background="#FFEEEEEE" MouseDown="Grid_MouseDown" >
 
         <StackPanel VerticalAlignment="Top" >
             <Grid Height="10" Background="#0069C0"></Grid>
@@ -34,7 +34,7 @@
         
         <Grid Width="250" HorizontalAlignment="Left" Background="#FF222222">
             <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
-                <Grid x:Name="GridCursor" Margin="0 100 0 0" Background="#FF0069C0" Width="10" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top"/>
+                <Grid x:Name="GridCursor" Margin="0 100 0 0" Background="#0069C0" Width="10" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top"/>
             </materialDesign:TransitioningContent>
             
             <ListView x:Name="ListViewMenu" Margin="0 100"  FontFamily="Champagne &amp; Limousines" SelectionChanged="ListViewMenu_SelectionChanged">

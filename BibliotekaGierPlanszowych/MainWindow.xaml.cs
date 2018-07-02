@@ -21,6 +21,7 @@ namespace BibliotekaGierPlanszowych
         public MainWindow()
         {
             InitializeComponent();
+            MainGrid.Children.Add(new UserControlMain());
         }
 
         private void ButtonExit_Click(object sender, RoutedEventArgs e)

@@ -12,8 +12,7 @@
             <StackPanel Orientation="Horizontal" VerticalAlignment="center" HorizontalAlignment="Center">
                 <TextBlock>
                     <StackPanel>
-                        <TextBlock Text="Wishlist"></TextBlock>
-                        <Image Height="200" Width="300" Source="Assets/Hachi.png" Margin="10"></Image>
+                        <TextBlock Text="Lista życzeń" FontSize="30"></TextBlock>
                     </StackPanel>
                 </TextBlock>
 
