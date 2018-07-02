@@ -12,17 +12,20 @@
         <StackPanel VerticalAlignment="Top" >
             <Grid Height="10" Background="#0069C0"></Grid>
 
-            <Grid Margin="5">
+            <Grid Margin="2">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" >
-                    <materialDesign:PackIcon Kind="Account" Width="35" Height="35"/>
-                </Button>
-                    <Button Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" >
+                    <Button Width="40" Height="40" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" >
+                        <materialDesign:PackIcon Kind="Account" Width="35" Height="35"/>
+                    </Button>
+                    <Button Width="40" Height="40" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" >
                         <materialDesign:PackIcon Kind="Settings" Width="35" Height="35"/>
-                </Button>
-                    <Button x:Name="ButtonExit" Width="50" Height="50" Padding="0" Margin="20 0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonExit_Click" >
+                    </Button>
+                    <Button x:Name="ButtonMin" Width="40" Height="40" Padding="0" Margin="30 15 0 0"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonMin_Click" >
+                        <materialDesign:PackIcon Kind="WindowMinimize" Width="35" Height="35"/>
+                    </Button>
+                    <Button x:Name="ButtonExit" Width="40" Height="40" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonExit_Click" >
                         <materialDesign:PackIcon Kind="Power" Width="35" Height="35"/>
-                </Button>
+                    </Button>
                 </StackPanel>
             </Grid>
             

@@ -29,6 +29,11 @@ namespace BibliotekaGierPlanszowych
             Application.Current.Shutdown();
         }
 
+        private void ButtonMin_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
         private void Grid_MouseDown(object sender, RoutedEventArgs e)
         {
             DragMove();
