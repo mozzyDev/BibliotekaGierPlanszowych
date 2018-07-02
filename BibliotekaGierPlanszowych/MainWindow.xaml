@@ -4,9 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BibliotekaGierPlanszowych"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="" Height="600" Width="1024" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid Background="#FFEEEEEE">
+        <StackPanel>
+            <Grid Height="10" Background="#0069C0">
+                
+            </Grid>
+            <Grid Margin="5">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" >
+                    <materialDesign:PackIcon Kind="BellOutline"/>
+                </Button>
+                <Button Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" >
+                    <materialDesign:PackIcon Kind="Settings"/>
+                </Button>
+                <Button Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" >
+                    <materialDesign:PackIcon Kind="Power"/>
+                </Button>
+                </StackPanel>
+            </Grid>
+            
+        </StackPanel>
     </Grid>
 </Window>
