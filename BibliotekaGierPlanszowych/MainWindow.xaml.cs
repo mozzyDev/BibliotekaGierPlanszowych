@@ -32,5 +32,30 @@ namespace BibliotekaGierPlanszowych
         {
             DragMove();
         }
+
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = ListViewMenu.SelectedIndex;
+            MoveCursorMenu(index);
+
+            switch (index)
+            {
+                case 0:
+                    MainGrid.Children.Clear();
+                    MainGrid.Children.Add(new UserControlInicio());
+                    break;
+                case 1:
+                    MainGrid.Children.Clear();
+                    MainGrid.Children.Add(new UserControlEscolha());
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void MoveCursorMenu(int index)
+        {
+            TrainsitionigContentSlide.OnApplyTemplate();
+            GridCursor.Margin = new Thickness(0, (100 + (60 * index)), 0, 0);
+        }
     }
 }
