@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace BibliotekaGierPlanszowych
 {
     /// <summary>
-    /// Logika interakcji dla klasy UserControl1.xaml
+    /// Logika interakcji dla klasy UserControlLoaned.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class UserControlLoaned : UserControl
     {
-        public UserControl1()
+        public UserControlLoaned()
         {
             InitializeComponent();
         }
