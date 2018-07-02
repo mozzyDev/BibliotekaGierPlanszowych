@@ -15,13 +15,13 @@
             <Grid Margin="5">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" >
-                    <materialDesign:PackIcon Kind="BellOutline"/>
+                    <materialDesign:PackIcon Kind="Account" Width="35" Height="35"/>
                 </Button>
                     <Button Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" >
-                    <materialDesign:PackIcon Kind="Settings"/>
+                        <materialDesign:PackIcon Kind="Settings" Width="35" Height="35"/>
                 </Button>
-                    <Button x:Name="ButtonExit" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonExit_Click" >
-                    <materialDesign:PackIcon Kind="Power"/>
+                    <Button x:Name="ButtonExit" Width="50" Height="50" Padding="0" Margin="20 0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonExit_Click" >
+                        <materialDesign:PackIcon Kind="Power" Width="35" Height="35"/>
                 </Button>
                 </StackPanel>
             </Grid>
@@ -37,32 +37,32 @@
                 </ListViewItem>
                 <ListViewItem Height="60" Foreground="LightGray">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Start" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
+                        <materialDesign:PackIcon Kind="FormatListBulleted" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Lista Gier" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="60" Foreground="LightGray">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Start" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
+                        <materialDesign:PackIcon Kind="Bullseye" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Losuj" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="60" Foreground="LightGray">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Start" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
+                        <materialDesign:PackIcon Kind="Gift" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Pożyczone" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="60" Foreground="LightGray">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Start" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
+                        <materialDesign:PackIcon Kind="Cart" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Lista życzeń" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="60" Foreground="LightGray">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Start" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
+                        <materialDesign:PackIcon Kind="ChartBarStacked" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Statystyki" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
                     </StackPanel>
                 </ListViewItem>
             </ListView>
