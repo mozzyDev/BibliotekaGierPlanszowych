@@ -27,5 +27,45 @@
             </Grid>
             
         </StackPanel>
+        <Grid Width="250" HorizontalAlignment="Left" Background="#FF222222">
+            <ListView Margin="0 100"  FontFamily="Champagne &amp; Limousines">
+                <ListViewItem Height="60" Foreground="LightGray">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Start" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60" Foreground="LightGray">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Start" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60" Foreground="LightGray">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Start" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60" Foreground="LightGray">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Start" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60" Foreground="LightGray">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Start" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="60" Foreground="LightGray">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Start" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
+        </Grid>
     </Grid>
 </Window>
