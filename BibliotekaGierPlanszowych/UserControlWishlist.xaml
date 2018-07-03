@@ -20,7 +20,7 @@
                     <Label Content="Tytuł gry"  HorizontalAlignment="Left" FontSize="32"/>
                     <TextBox Width="250" FontSize="22" HorizontalAlignment="Left" Margin="10 0 0 0"/>
 
-                    <Label Content="Cena?" FontSize="32"  HorizontalAlignment="Left" Margin="0 30 0 0"/>
+                    <Label Content="Cena" FontSize="32"  HorizontalAlignment="Left" Margin="0 30 0 0"/>
                     <StackPanel Orientation="Horizontal">
                         <TextBox Width="100" FontSize="22" HorizontalAlignment="Left" Margin="10 0 0 0"/>
                         <Label Content="zł" FontSize="22"  HorizontalAlignment="Left"/>
