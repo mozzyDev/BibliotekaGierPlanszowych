@@ -18,11 +18,13 @@
                 <StackPanel Grid.Column="0" Orientation="Vertical">
 
                     <Label Content="Tytuł gry"  HorizontalAlignment="Left" FontSize="32"/>
-                    <TextBox Width="200" FontSize="32" HorizontalAlignment="Left"/>
+                    <TextBox Width="250" FontSize="22" HorizontalAlignment="Left" Margin="10 0 0 0"/>
 
                     <Label Content="Cena?" FontSize="32"  HorizontalAlignment="Left" Margin="0 30 0 0"/>
-                    <TextBox Width="200" FontSize="32" HorizontalAlignment="Left"/>
-
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Width="100" FontSize="22" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                        <Label Content="zł" FontSize="22"  HorizontalAlignment="Left"/>
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
                         <Button Width="100" Height="45" Margin="10 5 10 5">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
