@@ -6,17 +6,46 @@
              xmlns:local="clr-namespace:BibliotekaGierPlanszowych"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="700" d:DesignWidth="700">
     <Grid>
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="center" HorizontalAlignment="Center">
-                <TextBlock>
-                     <StackPanel>
-                        <TextBlock Text="Pożyczone" FontSize="30"></TextBlock>
-                    </StackPanel>
-                </TextBlock>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0" Orientation="Vertical">
 
-            </StackPanel>
+                    <Label Content="Komu pożyczasz?"  HorizontalAlignment="Left" FontSize="32"/>
+                    <TextBox Width="200" FontSize="32" HorizontalAlignment="Left"/>
+
+                    <Label Content="Którą grę?" FontSize="32"  HorizontalAlignment="Left" Margin="0 30 0 0"/>
+                    <ComboBox Width="200" FontSize="32" HorizontalAlignment="Left"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
+                        <Button Width="100" Height="45" Margin="10 5 10 5">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <materialDesign:PackIcon  Kind="PlusBox" Margin="10" Height="18" Width="18"/>
+                                <TextBlock Margin="0 7 0 0" FontSize="16">Dodaj</TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Width="100" Height="45" Margin="10 5 10 5">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <materialDesign:PackIcon  Kind="MinusBox" Margin="10" Height="18" Width="18"/>
+                                <TextBlock Margin="0 7 0 0" FontSize="16">Usuń</TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <DataGrid Width="300" Height="400" Margin="30 0 20 50" ></DataGrid>
+                </StackPanel>
+                
+            </Grid>
         </materialDesign:TransitioningContent>
     </Grid>
 </UserControl>
