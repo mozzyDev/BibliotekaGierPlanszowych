@@ -30,7 +30,6 @@
                     <TextBox Width="200" Margin="10 90 0 0"></TextBox>
                 </StackPanel>
 
-
             </Grid>
 
         </materialDesign:TransitioningContent>

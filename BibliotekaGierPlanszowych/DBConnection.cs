@@ -14,12 +14,13 @@ namespace BibliotekaGierPlanszowych
         public SQLiteCommand sqlite_cmd;
         public SQLiteDataReader sqlite_datareader;
 
+        /*
         public DBConnection()
         {
             sqlite_conn.Open();
             sqlite_cmd = sqlite_conn.CreateCommand();
         }
-      
+        **/
 
     }
 }
