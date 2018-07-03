@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Finisar.SQLite;
+
 
 namespace BibliotekaGierPlanszowych
 {
@@ -22,7 +24,11 @@ namespace BibliotekaGierPlanszowych
         {
             InitializeComponent();
             MainGrid.Children.Add(new UserControlMain());
+           
+
         }
+
+
 
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {

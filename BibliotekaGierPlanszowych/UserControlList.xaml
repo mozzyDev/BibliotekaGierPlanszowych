@@ -13,6 +13,7 @@
                 <TextBlock>
                     <StackPanel>
                         <TextBlock Text="Lista gier" FontSize="30"></TextBlock>
+                        <Button Click="Button_Click">DBconnection</Button>
                     </StackPanel>
                 </TextBlock>
 
