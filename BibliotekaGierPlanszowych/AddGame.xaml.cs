@@ -33,5 +33,11 @@ namespace BibliotekaGierPlanszowych
         {
             this.Close();
         }
+
+        private void EditCategory_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Categories categories = new Categories();
+            categories.ShowDialog();
+        }
     }
 }

@@ -46,7 +46,7 @@
                     <TextBox Margin="5 20 5 20" FontSize="22"/>
                     <StackPanel Orientation="Horizontal">
                         <ComboBox Margin="5 20 5 20" FontSize="22" HorizontalAlignment="Left" Width="200"/>
-                        <Button Content="Edytuj kategorie" HorizontalAlignment="Right" FontSize="12" Margin="10 0 0 10"></Button>
+                        <Button x:Name="EditCategory_btn" Content="Edytuj kategorie" HorizontalAlignment="Right" FontSize="12" Margin="10 0 0 10" Click="EditCategory_btn_Click"></Button>
                     </StackPanel>    
                     <ComboBox Margin="5 20 5 20" FontSize="22" Width="50"/>
                     <ComboBox Margin="5 20 5 20" FontSize="22" Width="50"/>

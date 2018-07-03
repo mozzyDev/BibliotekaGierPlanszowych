@@ -67,6 +67,9 @@
     <Compile Include="AddGame.xaml.cs">
       <DependentUpon>AddGame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Categories.xaml.cs">
+      <DependentUpon>Categories.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DBConnection.cs" />
     <Compile Include="UserControlList.xaml.cs">
       <DependentUpon>UserControlList.xaml</DependentUpon>
@@ -87,6 +90,10 @@
       <DependentUpon>UserControlWishlist.xaml</DependentUpon>
     </Compile>
     <Page Include="AddGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Categories.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
