@@ -10,13 +10,7 @@
     <Grid>
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
             <StackPanel Orientation="Horizontal" VerticalAlignment="center" HorizontalAlignment="Center">
-                <TextBlock>
-                    <StackPanel>
                         <TextBlock Text="Lista gier" FontSize="30"></TextBlock>
-                        <Button Click="Button_Click">DBconnection</Button>
-                    </StackPanel>
-                </TextBlock>
-
             </StackPanel>
         </materialDesign:TransitioningContent>
     </Grid>

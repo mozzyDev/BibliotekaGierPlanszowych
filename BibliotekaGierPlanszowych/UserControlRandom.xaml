@@ -9,14 +9,30 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="center" HorizontalAlignment="Center">
-                <TextBlock>
-                     <StackPanel>
-                        <TextBlock Text="Losuj" FontSize="30"></TextBlock>
-                    </StackPanel>
-                </TextBlock>
+            <Grid VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Orientation="Vertical" Grid.Column="0">
+                    <Label Content="Liczba graczy" FontSize="32"/>
+                    <Label Content="Kategoria" FontSize="32" />
+                    <Label Content="Minimalna ocena" FontSize="32"/>
+                    <Button Content="Losuj" Width="150" HorizontalAlignment="Center" Margin="0 60 0 0"></Button>
+                    <Button Content="Wyczyść" Width="150" HorizontalAlignment="Center" Margin="0 5 0 0"></Button>
+                </StackPanel>
 
-            </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="1" Margin="20 0 0 0 ">
+                    <ComboBox Width="50" Margin="10 0 0 0" FontSize="28"></ComboBox>
+                    <ComboBox Width="200" Margin="10 0 0 0" FontSize="28"></ComboBox>
+                    <ComboBox Width="50" Margin="10 0 0 0" FontSize="28"></ComboBox>
+                    <TextBox Width="200" Margin="10 90 0 0"></TextBox>
+                </StackPanel>
+
+
+            </Grid>
+
         </materialDesign:TransitioningContent>
     </Grid>
 </UserControl>
