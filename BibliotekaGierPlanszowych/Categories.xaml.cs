@@ -15,23 +15,13 @@ using System.Windows.Shapes;
 namespace BibliotekaGierPlanszowych
 {
     /// <summary>
-    /// Logika interakcji dla klasy AddGame.xaml
+    /// Logika interakcji dla klasy Categories.xaml
     /// </summary>
-    public partial class AddGame : Window
+    public partial class Categories : Window
     {
-        public AddGame()
+        public Categories()
         {
             InitializeComponent();
-        }
-
-        private void Grid_MouseDown(object sender, RoutedEventArgs e)
-        {
-            DragMove();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }
