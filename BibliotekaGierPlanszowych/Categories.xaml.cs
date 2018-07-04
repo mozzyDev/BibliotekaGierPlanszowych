@@ -14,9 +14,7 @@ using System.Windows.Shapes;
 
 namespace BibliotekaGierPlanszowych
 {
-    /// <summary>
-    /// Logika interakcji dla klasy Categories.xaml
-    /// </summary>
+   
     public partial class Categories : Window
     {
         public Categories()
@@ -32,6 +30,14 @@ namespace BibliotekaGierPlanszowych
         private void Button_Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Button_CategoryAdd_Click(object sender, RoutedEventArgs e)
+        {
+            String AddQuery = "INSERT INTO category (title_category) VALUES ('" + this.titleCategory_txtbox.Text + "')";
+            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
+            db.CategoryAdd(AddQuery);
+            MessageBox.Show("Zapisano kategorię w bazie danych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information );
         }
     }
 }

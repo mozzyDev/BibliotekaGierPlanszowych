@@ -19,11 +19,11 @@
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Label Content="Nazwa kategorii:" FontSize="26"></Label>
-                    <TextBox Margin="10 0 0 0" Width="200" FontSize="22"/>
+                    <TextBox x:Name="titleCategory_txtbox" Margin="10 0 0 0" Width="200" FontSize="22"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Margin="10 10 0 0">
 
-                    <Button Width="100" Height="45" Margin="10 5 10 5">
+                    <Button x:Name="CategoryAdd_btn" Width="100" Height="45" Margin="10 5 10 5" Click="Button_CategoryAdd_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <materialDesign:PackIcon  Kind="PlusBox" Margin="10" Height="18" Width="18"/>
                             <TextBlock Margin="0 7 0 0" FontSize="16">Dodaj</TextBlock>
