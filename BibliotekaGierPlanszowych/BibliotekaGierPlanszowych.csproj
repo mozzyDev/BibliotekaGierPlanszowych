@@ -160,5 +160,8 @@
   <ItemGroup>
     <Resource Include="Assets\meeple.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\createTableCode.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

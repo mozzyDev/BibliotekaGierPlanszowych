@@ -18,8 +18,7 @@ namespace BibliotekaGierPlanszowych
     
     public partial class UserControlList : UserControl
     {
-        DBConnection db = new DBConnection();
-
+        
         public UserControlList()
         {
             InitializeComponent();

@@ -24,10 +24,16 @@ namespace BibliotekaGierPlanszowych
         {
             InitializeComponent();
             MainGrid.Children.Add(new UserControlList());
-           
+            //utworzenie nowej bazy danych przy starcie programu
+            DBConnection db = new DBConnection();
+            db.DatabaseCreate();
+
         }
 
-
+        private void ButtonSettings_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
 
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {

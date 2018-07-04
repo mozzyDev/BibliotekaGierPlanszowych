@@ -1,0 +1,25 @@
+CREATE TABLE board_game (
+	id_board_game integer PRIMARY KEY AUTOINCREMENT,
+	title varchar,
+	min_players integer,
+	max_players integer,
+	rate integer,
+	add_date datetime,
+	id_category integer
+);
+
+CREATE TABLE category (
+	id_category integer PRIMARY KEY AUTOINCREMENT,
+	title_category varchar
+);
+
+CREATE TABLE pozyczone (
+	id_loaned integer PRIMARY KEY AUTOINCREMENT,
+	person varchar,
+	id_board_game integer
+);
+
+CREATE TABLE wishlist (
+	id_wishlist integer PRIMARY KEY AUTOINCREMENT,
+	title_wishist varchar
+);
