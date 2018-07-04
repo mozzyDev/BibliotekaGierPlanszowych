@@ -62,7 +62,7 @@ namespace BibliotekaGierPlanszowych
         }
 
         //uruchamiania przycisku, gdy wpisana jest nazwa kategorii
-        private void titleCategory_txtbox_TextChanged(object sender, TextChangedEventArgs e)
+        private void TitleCategory_txtbox_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox box = sender as TextBox;
 

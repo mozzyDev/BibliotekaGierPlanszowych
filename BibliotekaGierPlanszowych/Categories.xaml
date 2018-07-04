@@ -19,7 +19,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Label Content="Nazwa kategorii:" FontSize="26"></Label>
-                    <TextBox x:Name="titleCategory_txtbox" Margin="10 0 0 0" Width="200" FontSize="22" TextChanged="titleCategory_txtbox_TextChanged"/>
+                    <TextBox x:Name="titleCategory_txtbox" Margin="10 0 0 0" Width="200" FontSize="22" TextChanged="TitleCategory_txtbox_TextChanged"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Margin="10 10 0 0">
 

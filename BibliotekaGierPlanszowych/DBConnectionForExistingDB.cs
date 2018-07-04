@@ -19,7 +19,7 @@ namespace BibliotekaGierPlanszowych
 
        
 
-        //pobieranie danych z bazy danych
+        //pobieranie danych z bazy 
         public List<String> DatabaseDataGetting(String table, String column, int columnNr)
         {
             List<String> list = new List<String>();

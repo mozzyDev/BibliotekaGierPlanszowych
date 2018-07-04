@@ -26,7 +26,7 @@
                     <Label Content="Ocena" Margin="5 0 5 20" FontSize="22"/>
                     <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
                     
-                    <Button Width="100" Height="45" Margin="10 5 10 5" >
+                    <Button x:Name="GameAdd_btn" Width="100" Height="45" Margin="10 5 10 5" Click="GameAdd_btn_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <materialDesign:PackIcon  Kind="PlusBox" Margin="10" Height="18" Width="18"/>
                             <TextBlock Margin="0 7 0 0" FontSize="16">Dodaj</TextBlock>
@@ -43,7 +43,7 @@
                 </StackPanel>
                     
                 <StackPanel Grid.Column="1" Margin="0 0 0 10">
-                    <TextBox Margin="5 20 5 20" FontSize="22"/>
+                    <TextBox x:Name="Title_txtbox" Margin="5 20 5 20" FontSize="22"/>
                     <StackPanel Orientation="Horizontal">
                         <ComboBox x:Name="Category_combobox"  Margin="5 20 5 20" FontSize="22" HorizontalAlignment="Left" Width="200" IsManipulationEnabled="True" IsTextSearchCaseSensitive="True"  >
                             
@@ -52,19 +52,8 @@
                     </StackPanel>    
                     <ComboBox x:Name="MinLiczba_combo" Margin="5 20 5 20" FontSize="22" Width="40" SelectionChanged="MinLiczba_combo_SelectionChanged"/>
                     <ComboBox x:Name="MaxLiczba_combo" IsEnabled="False" Margin="5 20 5 20" FontSize="22" Width="40" />
-                    
-                        <StackPanel Orientation="Horizontal" Margin="10 10 0 0" HorizontalAlignment="Center">
-                            <RadioButton x:Name="radio1" Margin="0 0 10 0"></RadioButton>
-                            <RadioButton x:Name="radio2" Margin="0 0 15 0"></RadioButton>
-                            <RadioButton x:Name="radio3" Margin="0 0 12 0"></RadioButton>
-                            <RadioButton x:Name="radio4" Margin="0 0 12 0"></RadioButton>
-                            <RadioButton x:Name="radio5" Margin="0 0 15 0"></RadioButton>
-                            <RadioButton x:Name="radio6" Margin="0 0 12 0"></RadioButton>
-                            <RadioButton x:Name="radio7" Margin="0 0 10 0"></RadioButton>
-                            <RadioButton x:Name="radio8" Margin="0 0 12 0"></RadioButton>
-                            <RadioButton x:Name="radio9" Margin="0 0 14 0"></RadioButton>
-                            <RadioButton x:Name="radio10" Margin="0 0 12 0"></RadioButton>
-                        </StackPanel>
+
+                    <Slider x:Name="Rate_slider" Margin="10 10 0 0" HorizontalAlignment="Center" Width="300" IsSnapToTickEnabled="True" TickFrequency="1" TickPlacement="BottomRight"></Slider>    
                     <Label HorizontalAlignment="Center" Content="1       2        3       4       5        6       7       8       9       10"></Label>
                     
                 </StackPanel>

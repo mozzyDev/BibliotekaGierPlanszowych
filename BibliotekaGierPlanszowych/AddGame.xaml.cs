@@ -91,16 +91,40 @@ namespace BibliotekaGierPlanszowych
             //dodanie wartości dla liczby graczy
             private void UstalenieWartosciMinMax()
         {
-            for (int i = 0; i < 11; i++)
+            for (int i = 1; i < 10; i++)
             {
                 liczbaGraczy.Add(i);
             }
 
             MinLiczba_combo.ItemsSource = liczbaGraczy;
             MaxLiczba_combo.ItemsSource = liczbaGraczy;
-            
         }
 
+        private void GameAdd_btn_Click(object sender, RoutedEventArgs e)
+        {
+            
+            DateTime today = DateTime.Today;
 
+            if(Title_txtbox.Text.Length > 1 && MaxLiczba_combo.SelectedValue != null)
+            {
+                //MessageBox.Show(today.ToString());
+                //dodawanie gry do bazy
+                String Query = "INSERT OR REPLACE INTO board_game (title, min_players, max_players, rate, id_category, add_date) VALUES ('" 
+                    + this.Title_txtbox.Text + "', " + MinLiczba_combo.SelectedValue.ToString() + ", " + MaxLiczba_combo.SelectedValue.ToString() + ", "
+                    + Rate_slider.Value.ToString() + ", " +
+                    "(SELECT DISTINCT id_category FROM category WHERE title_category = '" + Category_combobox.SelectedValue.ToString() + "'), '" + today.ToString() +"')";
+
+
+                    DBConnectionForExistingDB db = new DBConnectionForExistingDB();
+                    db.DatabaseDataChange(Query);
+                    
+                    MessageBox.Show("Zapisano grę w bazie danych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Nie wypełniono wszystkich pól!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }
