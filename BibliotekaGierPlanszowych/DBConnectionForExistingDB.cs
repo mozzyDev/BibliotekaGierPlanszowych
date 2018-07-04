@@ -17,23 +17,14 @@ namespace BibliotekaGierPlanszowych
         private SQLiteCommand sqlite_cmd;
         private SQLiteDataReader sqlite_datareader;
 
-        //dodawanie danych do bazy danych
-        public void CategoryAdd(String Query)
-        {
-            sqlite_conn.Open();
-            sqlite_cmd = sqlite_conn.CreateCommand();
-            sqlite_cmd.CommandText = Query;
-            sqlite_cmd.ExecuteNonQuery();
-            sqlite_conn.Close();
-            
-        }
+       
 
-        //odświeżanie danych w combobox
-        public List<String> ComboboxRefresh(String table, int columnNr)
+        //pobieranie danych z bazy danych
+        public List<String> DatabaseDataGetting(String table, String column, int columnNr)
         {
             List<String> list = new List<String>();
             sqlite_conn.Open();
-            Query = "SELECT * FROM " + table;
+            Query = "SELECT DISTINCT " + column + " FROM " + table;
             sqlite_cmd = sqlite_conn.CreateCommand();
             sqlite_cmd.CommandText = Query;
             sqlite_cmd.ExecuteNonQuery();
@@ -47,7 +38,18 @@ namespace BibliotekaGierPlanszowych
             list.Sort();
             return list;
         }
-        
+
+        //wykonywanie zapytań na danych w bazie danych
+        public void DatabaseDataChange(String Query)
+        {
+            sqlite_conn.Open();
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = Query;
+            sqlite_cmd.ExecuteNonQuery();
+            sqlite_conn.Close();
+
+        }
+
 
     }
 }

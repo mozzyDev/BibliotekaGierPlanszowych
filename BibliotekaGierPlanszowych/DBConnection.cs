@@ -21,7 +21,7 @@ namespace BibliotekaGierPlanszowych
         private SQLiteCommand sqlite_cmd;
         
 
-        //Utworzenie bazy danych
+        //Utworzenie bazy danych, tabel i podstawowych rekordów do tabeli category
         public void DatabaseCreate()
         {
             sqlite_conn.Open();
@@ -30,6 +30,7 @@ namespace BibliotekaGierPlanszowych
             sqlite_cmd.ExecuteNonQuery();
             sqlite_conn.Close();
         }
+
 
     }
 }

@@ -19,18 +19,19 @@
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Label Content="Nazwa kategorii:" FontSize="26"></Label>
-                    <TextBox x:Name="titleCategory_txtbox" Margin="10 0 0 0" Width="200" FontSize="22"/>
+                    <TextBox x:Name="titleCategory_txtbox" Margin="10 0 0 0" Width="200" FontSize="22" TextChanged="titleCategory_txtbox_TextChanged"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Margin="10 10 0 0">
 
-                    <Button x:Name="CategoryAdd_btn" Width="100" Height="45" Margin="10 5 10 5" Click="Button_CategoryAdd_Click">
+                    <Button x:Name="CategoryAdd_btn" IsEnabled="False" 
+                            Width="100" Height="45" Margin="10 5 10 5" Click="Button_CategoryAdd_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <materialDesign:PackIcon  Kind="PlusBox" Margin="10" Height="18" Width="18"/>
                             <TextBlock Margin="0 7 0 0" FontSize="16">Dodaj</TextBlock>
                         </StackPanel>
                     </Button>
 
-                    <Button Width="110" Height="45" Margin="10 5 10 5">
+                    <Button x:Name="CategoryDelete_btn" IsEnabled="False" Width="110" Height="45" Margin="10 5 10 5" Click="ButtonDeleteCategory_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <materialDesign:PackIcon  Kind="Delete" Margin="10" Height="18" Width="18"/>
                             <TextBlock Margin="0 7 0 0" FontSize="16">Usuń</TextBlock>
@@ -47,7 +48,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="2">
-                    <ListBox HorizontalAlignment="Center" Margin="50 30 50 10" Width="300" Height="300"/>
+                    <ListBox x:Name="CategoryListBox" HorizontalAlignment="Center" FontSize="24" Margin="50 30 50 10" Width="300" Height="300" SelectionChanged="CategoryListBox_SelectionChanged"/>
                 </StackPanel>
                 
             </Grid>
