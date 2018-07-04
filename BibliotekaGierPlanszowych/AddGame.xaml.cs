@@ -75,7 +75,7 @@ namespace BibliotekaGierPlanszowych
             }
 
             //sprawdzanie czy min nie jest większe niż max
-            if (MaxLiczba_combo.IsEnabled)
+            if (MaxLiczba_combo.IsEnabled && MaxLiczba_combo.SelectedValue!= null)
             {
                 if((int)MaxLiczba_combo.SelectedValue < (int)MinLiczba_combo.SelectedValue)
                 {

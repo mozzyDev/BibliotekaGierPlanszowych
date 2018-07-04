@@ -19,8 +19,8 @@
                     <Label Content="Liczba graczy" FontSize="32"/>
                     <Label Content="Kategoria" FontSize="32" />
                     <Label Content="Minimalna ocena" FontSize="32"/>
-                    <Button Content="Losuj" Width="150" HorizontalAlignment="Center" Margin="0 60 0 0"></Button>
-                    <Button Content="Wyczyść" Width="150" HorizontalAlignment="Center" Margin="0 5 0 0"></Button>
+                    <Button Content="Losuj" Width="150" HorizontalAlignment="Center" Margin="0 60 0 0" IsDefault="True"></Button>
+                    <Button Content="Wyczyść" Width="150" HorizontalAlignment="Center" Margin="0 5 0 0" IsCancel="True"></Button>
                 </StackPanel>
 
                 <StackPanel   Orientation="Vertical" Grid.Column="1" Margin="20 0 0 0 ">
