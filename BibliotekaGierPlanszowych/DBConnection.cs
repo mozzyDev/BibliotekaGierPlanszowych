@@ -9,18 +9,24 @@ namespace BibliotekaGierPlanszowych
 {
     class DBConnection
     {
+        public const String SqlCommandCreateDatabase =
+            "a";
 
         public SQLiteConnection sqlite_conn = new SQLiteConnection("Data Source=database.db;Version=3;New=True;Compress=True;");
         public SQLiteCommand sqlite_cmd;
         public SQLiteDataReader sqlite_datareader;
 
-        /*
-        public DBConnection()
+
+        //Utworzenie bazy danych
+        public void DatabaseCreate()
         {
             sqlite_conn.Open();
             sqlite_cmd = sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = SqlCommandCreateDatabase;
+            sqlite_cmd.ExecuteNonQuery();
+            sqlite_conn.Close();
         }
-        **/
+
 
     }
 }

@@ -25,7 +25,6 @@ namespace BibliotekaGierPlanszowych
             InitializeComponent();
             MainGrid.Children.Add(new UserControlList());
            
-
         }
 
 
