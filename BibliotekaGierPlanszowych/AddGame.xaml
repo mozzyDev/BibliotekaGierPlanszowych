@@ -50,8 +50,8 @@
                         </ComboBox>
                         <Button x:Name="EditCategory_btn" Content="Edytuj kategorie" HorizontalAlignment="Right" FontSize="12" Margin="10 0 0 10" Click="EditCategory_btn_Click"></Button>
                     </StackPanel>    
-                    <ComboBox Margin="5 20 5 20" FontSize="22" Width="50"/>
-                    <ComboBox Margin="5 20 5 20" FontSize="22" Width="50"/>
+                    <ComboBox x:Name="MinLiczba_combo" Margin="5 20 5 20" FontSize="22" Width="40" SelectionChanged="MinLiczba_combo_SelectionChanged"/>
+                    <ComboBox x:Name="MaxLiczba_combo" IsEnabled="False" Margin="5 20 5 20" FontSize="22" Width="40" />
                     
                         <StackPanel Orientation="Horizontal" Margin="10 10 0 0" HorizontalAlignment="Center">
                             <RadioButton x:Name="radio1" Margin="0 0 10 0"></RadioButton>

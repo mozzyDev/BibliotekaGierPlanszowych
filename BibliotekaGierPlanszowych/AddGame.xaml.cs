@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace BibliotekaGierPlanszowych
 {
@@ -19,10 +20,13 @@ namespace BibliotekaGierPlanszowych
     /// </summary>
     public partial class AddGame : Window
     {
+        List<int> liczbaGraczy = new List<int>();
+
         public AddGame()
         {
             InitializeComponent();
             CategoryComboboxRefresh();
+            UstalenieWartosciMinMax();
             
         }
 
@@ -54,6 +58,49 @@ namespace BibliotekaGierPlanszowych
 
         }
 
-       
+        private void MinLiczba_combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //dynamiczna zmiana max liczby graczy
+            if (MinLiczba_combo.SelectedValue != null)
+            {
+                liczbaGraczy.Clear();
+                int i = (int)MinLiczba_combo.SelectedValue;
+                for (int j = i; j < 11; j++)
+                {
+                    
+                    liczbaGraczy.Add(j);
+                }
+                MaxLiczba_combo.ItemsSource = liczbaGraczy;
+                
+            }
+
+            //sprawdzanie czy min nie jest większe niż max
+            if (MaxLiczba_combo.IsEnabled)
+            {
+                if((int)MaxLiczba_combo.SelectedValue < (int)MinLiczba_combo.SelectedValue)
+                {
+                    MessageBox.Show("Maksymalna liczba graczy musi być większa niż minimalna", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MaxLiczba_combo.SelectedValue = MinLiczba_combo.SelectedValue;
+                }
+            }
+
+            MaxLiczba_combo.IsEnabled = true;
+           
+        }
+
+            //dodanie wartości dla liczby graczy
+            private void UstalenieWartosciMinMax()
+        {
+            for (int i = 0; i < 11; i++)
+            {
+                liczbaGraczy.Add(i);
+            }
+
+            MinLiczba_combo.ItemsSource = liczbaGraczy;
+            MaxLiczba_combo.ItemsSource = liczbaGraczy;
+            
+        }
+
+
     }
 }
