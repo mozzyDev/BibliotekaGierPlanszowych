@@ -23,6 +23,36 @@ namespace BibliotekaGierPlanszowych
         public UserControlLoaned()
         {
             InitializeComponent();
+            GameComboBoxRefresh();
+
         }
+
+        //odswieżanie danych w combobox
+        private void GameComboBoxRefresh()
+        {
+            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
+            GameComboBox.ItemsSource = db.DatabaseDataGetting("board_game", "title", 0);
+            GameComboBox.SelectedItem = db.DatabaseDataGetting("board_game", "title", 0)[0];
+        }
+
+        private void AddLoaned_btn_Click(object sender, RoutedEventArgs e)
+        {   
+            //dodawanie danych do bazy
+            String Query = "INSERT OR REPLACE INTO pozyczone (person, id_board_game) VALUES ('"
+                + this.Loaned_txtbox.Text + "', (SELECT DISTINCT id_board_game FROM board_game WHERE title = '" + GameComboBox.SelectedValue.ToString() + "'))";
+            
+            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
+            db.DatabaseDataChange(Query);
+            Loaned_txtbox.Clear();
+
+        }
+
+        //uruchamia przycisk po wpisaniu w textbox
+        private void Loaned_txtbox_changed(object sender, RoutedEventArgs e)
+        {
+                TextBox box = sender as TextBox;
+                this.AddLoaned_btn.IsEnabled = box.Text.Length > 1;
+        }
+
     }
 }

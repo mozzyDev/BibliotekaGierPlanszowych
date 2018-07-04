@@ -17,7 +17,7 @@
                     <Button x:Name="settings_btn" Width="40" Height="40" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonSettings_Click">
                         <materialDesign:PackIcon Kind="Settings" Width="35" Height="35"/>
                     </Button>
-                    <Button Width="40" Height="40" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" >
+                    <Button Width="40" Height="40" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonAbout_Click">
                         <materialDesign:PackIcon Kind="InformationOutline" Width="35" Height="35"/>
                     </Button>
                     <Button x:Name="ButtonMin" Width="40" Height="40" Padding="0" Margin="30 15 0 0"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonMin_Click" >

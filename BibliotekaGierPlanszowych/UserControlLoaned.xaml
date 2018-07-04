@@ -18,13 +18,13 @@
                 <StackPanel Grid.Column="0" Orientation="Vertical">
 
                     <Label Content="Komu pożyczasz?"  HorizontalAlignment="Left" FontSize="32"/>
-                    <TextBox Width="250" FontSize="22" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                    <TextBox x:Name="Loaned_txtbox" Width="250" FontSize="22" HorizontalAlignment="Left" Margin="10 0 0 0" TextChanged="Loaned_txtbox_changed"/>
 
                     <Label Content="Którą grę?" FontSize="32"  HorizontalAlignment="Left" Margin="0 30 0 0"/>
-                    <ComboBox Width="250"  Cursor="Hand" FontSize="22" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                    <ComboBox x:Name="GameComboBox" Width="250"  Cursor="Hand" FontSize="22" HorizontalAlignment="Left" Margin="10 0 0 0"/>
 
                     <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
-                        <Button Width="100" Height="45" Margin="10 5 10 5" IsDefault="True">
+                        <Button x:Name="AddLoaned_btn" IsEnabled="False" Width="100" Height="45" Margin="10 5 10 5" IsDefault="True" Click="AddLoaned_btn_Click">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <materialDesign:PackIcon  Kind="PlusBox" Margin="10" Height="18" Width="18"/>
                                 <TextBlock Margin="0 7 0 0" FontSize="16">Dodaj</TextBlock>

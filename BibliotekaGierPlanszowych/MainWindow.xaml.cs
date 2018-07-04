@@ -47,6 +47,11 @@ namespace BibliotekaGierPlanszowych
             }
         }
 
+        private void ButtonAbout_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Biblioteka Gier Planszowych\nTomasz Mozgwa\n2018", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
         private void ButtonMin_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;

@@ -126,5 +126,8 @@ namespace BibliotekaGierPlanszowych
                 MessageBox.Show("Nie wypełniono wszystkich pól!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+       
+
     }
 }
