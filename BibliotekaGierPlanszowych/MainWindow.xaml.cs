@@ -41,7 +41,10 @@ namespace BibliotekaGierPlanszowych
 
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            if(MessageBox.Show("Czy na pewno chcesz opuścić program?", "Wyjście", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         private void ButtonMin_Click(object sender, RoutedEventArgs e)

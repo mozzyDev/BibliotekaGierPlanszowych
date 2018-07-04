@@ -79,7 +79,7 @@ namespace BibliotekaGierPlanszowych
             {
                 if((int)MaxLiczba_combo.SelectedValue < (int)MinLiczba_combo.SelectedValue)
                 {
-                    MessageBox.Show("Maksymalna liczba graczy nie może być mniejsza niż minimalna", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Maksymalna liczba graczy nie może być mniejsza niż minimalna", "Błąd", MessageBoxButton.OK, MessageBoxImage.Information);
                     MaxLiczba_combo.SelectedValue = MinLiczba_combo.SelectedValue;
                 }
             }
