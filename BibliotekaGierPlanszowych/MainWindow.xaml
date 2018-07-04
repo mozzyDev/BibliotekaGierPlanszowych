@@ -15,10 +15,10 @@
             <Grid Margin="2">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Width="40" Height="40" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" >
-                        <materialDesign:PackIcon Kind="Account" Width="35" Height="35"/>
+                        <materialDesign:PackIcon Kind="Settings" Width="35" Height="35"/>
                     </Button>
                     <Button Width="40" Height="40" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" >
-                        <materialDesign:PackIcon Kind="Settings" Width="35" Height="35"/>
+                        <materialDesign:PackIcon Kind="InformationOutline" Width="35" Height="35"/>
                     </Button>
                     <Button x:Name="ButtonMin" Width="40" Height="40" Padding="0" Margin="30 15 0 0"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonMin_Click" >
                         <materialDesign:PackIcon Kind="WindowMinimize" Width="35" Height="35"/>
@@ -41,12 +41,6 @@
             </materialDesign:TransitioningContent>
             
             <ListView x:Name="ListViewMenu" Margin="0 100"  FontFamily="Champagne &amp; Limousines" SelectionChanged="ListViewMenu_SelectionChanged">
-                <ListViewItem Height="60" Foreground="LightGray">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Start" FontSize="26" Margin="20 0" VerticalAlignment="Center"></TextBlock>
-                    </StackPanel>
-                </ListViewItem>
                 <ListViewItem Height="60" Foreground="LightGray">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="FormatListBulleted" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>

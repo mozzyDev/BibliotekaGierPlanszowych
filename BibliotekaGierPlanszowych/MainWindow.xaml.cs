@@ -23,7 +23,7 @@ namespace BibliotekaGierPlanszowych
         public MainWindow()
         {
             InitializeComponent();
-            MainGrid.Children.Add(new UserControlMain());
+            MainGrid.Children.Add(new UserControlList());
            
 
         }
@@ -54,25 +54,21 @@ namespace BibliotekaGierPlanszowych
             {
                 case 0:
                     MainGrid.Children.Clear();
-                    MainGrid.Children.Add(new UserControlMain());
+                    MainGrid.Children.Add(new UserControlList());
                     break;
                 case 1:
                     MainGrid.Children.Clear();
-                    MainGrid.Children.Add(new UserControlList());
+                    MainGrid.Children.Add(new UserControlRandom());
                     break;
                 case 2:
                     MainGrid.Children.Clear();
-                    MainGrid.Children.Add(new UserControlRandom());
+                    MainGrid.Children.Add(new UserControlLoaned());
                     break;
                 case 3:
                     MainGrid.Children.Clear();
-                    MainGrid.Children.Add(new UserControlLoaned());
-                    break;
-                case 4:
-                    MainGrid.Children.Clear();
                     MainGrid.Children.Add(new UserControlWishlist());
                     break;
-                case 5:
+                case 4:
                     MainGrid.Children.Clear();
                     MainGrid.Children.Add(new UserControlStats());
                     break;

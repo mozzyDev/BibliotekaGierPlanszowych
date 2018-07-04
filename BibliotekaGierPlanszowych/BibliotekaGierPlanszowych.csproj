@@ -77,9 +77,6 @@
     <Compile Include="UserControlLoaned.xaml.cs">
       <DependentUpon>UserControlLoaned.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControlMain.xaml.cs">
-      <DependentUpon>UserControlMain.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControlRandom.xaml.cs">
       <DependentUpon>UserControlRandom.xaml</DependentUpon>
     </Compile>
@@ -114,10 +111,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlLoaned.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControlMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,6 +156,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Hachi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\meeple.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
