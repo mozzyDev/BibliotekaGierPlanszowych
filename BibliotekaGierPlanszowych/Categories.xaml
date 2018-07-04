@@ -48,7 +48,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="2">
-                    <ListBox x:Name="CategoryListBox" HorizontalAlignment="Center" FontSize="24" Margin="50 30 50 10" Width="300" Height="300" SelectionChanged="CategoryListBox_SelectionChanged"/>
+                    <ListBox  Cursor="Hand" x:Name="CategoryListBox" HorizontalAlignment="Center" FontSize="24" Margin="50 30 50 10" Width="300" Height="300" SelectionChanged="CategoryListBox_SelectionChanged"/>
                 </StackPanel>
                 
             </Grid>

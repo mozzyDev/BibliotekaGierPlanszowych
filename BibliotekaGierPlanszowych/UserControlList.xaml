@@ -46,7 +46,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Margin="0 50 0 0 " >
-                    <DataGrid Height="450" Panel.ZIndex="-3" Width="550">
+                    <DataGrid  Cursor="Hand" Height="450" Panel.ZIndex="-3" Width="550">
                     </DataGrid>
                 </StackPanel>
                 
