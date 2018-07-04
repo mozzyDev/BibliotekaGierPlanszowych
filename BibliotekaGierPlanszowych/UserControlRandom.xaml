@@ -26,7 +26,7 @@
                 <StackPanel   Orientation="Vertical" Grid.Column="1" Margin="20 0 0 0 ">
                     <ComboBox Cursor="Hand" Width="50" Margin="10 0 0 0" FontSize="28"></ComboBox>
                     <ComboBox Cursor="Hand" Width="200" Margin="10 0 0 0" FontSize="28"></ComboBox>
-                    <ComboBox Cursor="Hand"Width="50" Margin="10 0 0 0" FontSize="28"></ComboBox>
+                    <ComboBox Cursor="Hand" Width="50" Margin="10 0 0 0" FontSize="28"></ComboBox>
                     <TextBox Width="200" Margin="10 90 0 0"></TextBox>
                 </StackPanel>
 
