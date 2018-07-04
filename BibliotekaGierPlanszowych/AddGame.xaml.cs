@@ -22,6 +22,8 @@ namespace BibliotekaGierPlanszowych
         public AddGame()
         {
             InitializeComponent();
+            CategoryComboboxRefresh();
+            
         }
 
         private void Grid_MouseDown(object sender, RoutedEventArgs e)
@@ -38,6 +40,20 @@ namespace BibliotekaGierPlanszowych
         {
             Categories categories = new Categories();
             categories.ShowDialog();
+            CategoryComboboxRefresh();
+
+
+
         }
+
+        public void CategoryComboboxRefresh()
+        {
+            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
+            Category_combobox.ItemsSource = db.ComboboxRefresh("category", 1);
+            Category_combobox.SelectedItem = db.ComboboxRefresh("category", 1)[0];
+
+        }
+
+       
     }
 }

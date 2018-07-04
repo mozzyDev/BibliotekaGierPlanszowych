@@ -34,9 +34,10 @@ namespace BibliotekaGierPlanszowych
 
         private void Button_CategoryAdd_Click(object sender, RoutedEventArgs e)
         {
-            String AddQuery = "INSERT INTO category (title_category) VALUES ('" + this.titleCategory_txtbox.Text + "')";
+            String Query = "INSERT INTO category (title_category) VALUES ('" + this.titleCategory_txtbox.Text + "')";
             DBConnectionForExistingDB db = new DBConnectionForExistingDB();
-            db.CategoryAdd(AddQuery);
+            db.CategoryAdd(Query);
+            titleCategory_txtbox.Text = null;
             MessageBox.Show("Zapisano kategorię w bazie danych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information );
         }
     }

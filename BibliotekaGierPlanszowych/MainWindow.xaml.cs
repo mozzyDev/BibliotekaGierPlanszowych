@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,10 @@ namespace BibliotekaGierPlanszowych
             MainGrid.Children.Add(new UserControlList());
             //utworzenie nowej bazy danych przy starcie programu
             DBConnection db = new DBConnection();
-            db.DatabaseCreate();
+            if (!File.Exists("database.db"))
+            {
+                db.DatabaseCreate();
+            }
 
         }
 

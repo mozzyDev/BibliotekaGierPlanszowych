@@ -12,14 +12,14 @@ namespace BibliotekaGierPlanszowych
     {
         
         String NewDatabase { get; set; }
-        private static String DatabaseConnectionValue = "Data Source = database.db; Version = 3; New = True; Compress = True";
+        public static String DatabaseConnectionValue = "Data Source = database.db; Version = 3; New = True; Compress = True";
 
         //plik txt z kodem SQL, tworzącym bazę danych
-        private string SqlCommandCreateDatabase = File.ReadAllText(@"createTableCode.txt");
+        public string SqlCommandCreateDatabase = File.ReadAllText(@"createTableCode.txt");
 
         private SQLiteConnection sqlite_conn = new SQLiteConnection(DatabaseConnectionValue);
-        public SQLiteCommand sqlite_cmd;
-        public SQLiteDataReader sqlite_datareader;
+        private SQLiteCommand sqlite_cmd;
+        
 
         //Utworzenie bazy danych
         public void DatabaseCreate()
@@ -30,8 +30,6 @@ namespace BibliotekaGierPlanszowych
             sqlite_cmd.ExecuteNonQuery();
             sqlite_conn.Close();
         }
-
-        
 
     }
 }

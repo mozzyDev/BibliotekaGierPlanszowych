@@ -47,7 +47,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="2">
-                    <DataGrid HorizontalAlignment="Center" Margin="50 30 50 10" Width="300" Height="300"/>
+                    <ListBox HorizontalAlignment="Center" Margin="50 30 50 10" Width="300" Height="300"/>
                 </StackPanel>
                 
             </Grid>
