@@ -69,11 +69,10 @@ namespace BibliotekaGierPlanszowych
         //usuwanie wartosci z DataGrid
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            string Query = "DELETE FROM wishlist WHERE title_wishlist = " + pobranyTytul;
+            string Query = "DELETE FROM wishlist WHERE title_wishlist = '" + pobranyTytul +"'";
 
             DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             db.DatabasQueryExecute(Query);
-            
             GridRefresh();
         }
 

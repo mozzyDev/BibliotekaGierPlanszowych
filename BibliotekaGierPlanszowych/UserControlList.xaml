@@ -45,14 +45,14 @@
                     </Button>
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" Margin="0 50 0 0 " >
-                    <DataGrid x:Name="List_DataGrid" AutoGenerateColumns="True" Cursor="Hand" Height="450" Panel.ZIndex="-3" Width="550" SelectionChanged="List_DataGrid_SelectionChanged_1">
-                    </DataGrid>
+                <StackPanel Grid.Row="1" Margin="0 10 0 0 " >
+                        <DataGrid x:Name="List_DataGrid" Background="#FFEEEEEE"  FontSize="22" AutoGenerateColumns="True" Cursor="Hand" Height="340" Panel.ZIndex="-3" SelectionChanged="List_DataGrid_SelectionChanged_1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                            <DataGrid.Effect>
+                                <DropShadowEffect BlurRadius="10"/>
+                            </DataGrid.Effect>
+                        </DataGrid>
                 </StackPanel>
-                
             </Grid>
-            
-            
         </materialDesign:TransitioningContent>
     </Grid>
 </UserControl>

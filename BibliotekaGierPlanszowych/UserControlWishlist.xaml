@@ -44,7 +44,11 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <DataGrid x:Name="Wishlist_DataGrid" AutoGenerateColumns="True" Width="300" Height="400"  Cursor="Hand" Margin="30 0 20 50" SelectionChanged="Wishlist_DataGrid_SelectionChanged_1" ></DataGrid>
+                    <DataGrid x:Name="Wishlist_DataGrid"  Background="#FFEEEEEE" FontSize="22" AutoGenerateColumns="True" Width="300" Height="400"  Cursor="Hand" Margin="30 0 20 50" SelectionChanged="Wishlist_DataGrid_SelectionChanged_1" >
+                        <DataGrid.Effect>
+                            <DropShadowEffect BlurRadius="10"/>
+                        </DataGrid.Effect>
+                    </DataGrid>
                 </StackPanel>
 
             </Grid>
