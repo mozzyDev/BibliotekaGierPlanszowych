@@ -16,8 +16,8 @@ namespace BibliotekaGierPlanszowych
     public partial class UserControlLoaned : UserControl
     {
         //do pobrania nazwy gry z DataGrid
-        DataColumn gameTitle = new DataColumn("gameTitle", typeof(string));
-        string pobranyTytul = "";
+        private DataColumn gameTitle = new DataColumn("gameTitle", typeof(string));
+        private string pobranyTytul = "";
 
         public UserControlLoaned()
         {
@@ -78,22 +78,20 @@ namespace BibliotekaGierPlanszowych
             
         }
 
-
+        //usuwanie wartosci z DataGrid
+        //tytuł jest przekazywany za pomocą Loaned_dataGrid_SelectionChanged()
+        //następnie usuwany z bazy za pomocą kodu SQL
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             string Query = "DELETE FROM pozyczone WHERE pozyczone.id_loaned IN ("
                 + "SELECT pozyczone.id_loaned FROM pozyczone, board_game WHERE board_game.title = '" 
                 + pobranyTytul +"' AND pozyczone.id_board_game = board_game.id_board_game)";
 
-
             DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             db.DatabasQueryExecute(Query);
             GameComboBoxRefresh();
             GridRefresh();
         }
-
-
-
 
     }
 }
