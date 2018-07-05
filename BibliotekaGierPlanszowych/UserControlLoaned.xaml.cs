@@ -30,8 +30,9 @@ namespace BibliotekaGierPlanszowych
         //odswieżanie danych w combobox
         private void GameComboBoxRefresh()
         {
+            String Query = "SELECT title FROM board_game EXCEPT SELECT title FROM board_Game WHERE id_category IN(SELECT id_board_game FROM pozyczone)";
             DBConnectionForExistingDB db = new DBConnectionForExistingDB();
-            GameComboBox.ItemsSource = db.LoanedDatabaseDataGetting();
+            GameComboBox.ItemsSource = db.DatabasQueryExecute(Query);
            
         }
 

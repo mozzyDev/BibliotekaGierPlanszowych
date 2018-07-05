@@ -19,15 +19,15 @@
                     <Label Content="Liczba graczy" FontSize="32"/>
                     <Label Content="Kategoria" FontSize="32" />
                     <Label Content="Minimalna ocena" FontSize="32"/>
-                    <Button Content="Losuj" Width="150" HorizontalAlignment="Center" Margin="0 60 0 0" IsDefault="True"></Button>
-                    <Button Content="Wyczyść" Width="150" HorizontalAlignment="Center" Margin="0 5 0 0" IsCancel="True"></Button>
+                    <Button x:Name="Rnd_Button" Content="Losuj" Width="150" HorizontalAlignment="Center" Margin="0 60 0 0" IsDefault="True" Click="Rnd_Button_Click"></Button>
+                    <Button Content="Wyczyść" Width="150" HorizontalAlignment="Center" Margin="0 5 0 0" IsCancel="True" Click="Button_Click"></Button>
                 </StackPanel>
 
                 <StackPanel   Orientation="Vertical" Grid.Column="1" Margin="20 0 0 0 ">
-                    <ComboBox Cursor="Hand" Width="50" Margin="10 0 0 0" FontSize="28"></ComboBox>
-                    <ComboBox Cursor="Hand" Width="200" Margin="10 0 0 0" FontSize="28"></ComboBox>
-                    <ComboBox Cursor="Hand" Width="50" Margin="10 0 0 0" FontSize="28"></ComboBox>
-                    <TextBox Width="200" Margin="10 90 0 0"></TextBox>
+                    <ComboBox  x:Name="RndPlayers_combo" SelectedIndex="0" Cursor="Hand" Width="40" Margin="10 0 0 0" FontSize="28"></ComboBox>
+                    <ComboBox  x:Name="RndCategory_combo" SelectedIndex="0" Cursor="Hand" Width="200" Margin="10 0 0 0" FontSize="28"></ComboBox>
+                    <ComboBox  x:Name="RndRate_combo" SelectedIndex="0" Cursor="Hand" Width="40" Margin="10 0 0 0" FontSize="28"></ComboBox>
+                    <TextBox x:Name="Rnd_txtbox" Width="200" Margin="10 90 0 0" FontSize="26" FontWeight="DemiBold" TextAlignment="Center"></TextBox>
                 </StackPanel>
 
             </Grid>

@@ -40,11 +40,10 @@ namespace BibliotekaGierPlanszowych
         }
 
         //pobieranie dla combobox pożyczone
-        public List<String> LoanedDatabaseDataGetting()
+        public List<String> DatabasQueryExecute(String Query)
         {
             List<String> list = new List<String>();
             sqlite_conn.Open();
-            Query = "SELECT title FROM board_game EXCEPT SELECT title FROM board_Game WHERE id_category IN(SELECT id_board_game FROM pozyczone)";
             sqlite_cmd = sqlite_conn.CreateCommand();
             sqlite_cmd.CommandText = Query;
             sqlite_cmd.ExecuteNonQuery();
