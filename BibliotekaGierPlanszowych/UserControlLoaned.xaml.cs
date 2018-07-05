@@ -1,6 +1,7 @@
 ﻿using Finisar.SQLite;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +15,10 @@ namespace BibliotekaGierPlanszowych
     /// </summary>
     public partial class UserControlLoaned : UserControl
     {
+        //do pobrania nazwy gry z DataGrid
+        DataColumn gameTitle = new DataColumn("gameTitle", typeof(string));
+        string pobranyTytul = "";
+
         public UserControlLoaned()
         {
             InitializeComponent();
@@ -58,8 +63,37 @@ namespace BibliotekaGierPlanszowych
             DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             db.DataGridRefresh(Query, "pozyczone", loaned_dataGrid);
         }
-        
 
-        
+        //pobieranie danych z GridView
+        private void Loaned_dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            DataGrid dg = (DataGrid)sender;
+            DataRowView selectedItem = dg.SelectedItem as DataRowView;
+            if(selectedItem != null)
+            {
+                pobranyTytul = selectedItem[1].ToString();
+                LoanedDelete_btn.IsEnabled = true;
+            }
+            
+        }
+
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            string Query = "DELETE FROM pozyczone WHERE pozyczone.id_loaned IN ("
+                + "SELECT pozyczone.id_loaned FROM pozyczone, board_game WHERE board_game.title = '" 
+                + pobranyTytul +"' AND pozyczone.id_board_game = board_game.id_board_game)";
+
+
+            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
+            db.DatabasQueryExecute(Query);
+            GameComboBoxRefresh();
+            GridRefresh();
+        }
+
+
+
+
     }
 }

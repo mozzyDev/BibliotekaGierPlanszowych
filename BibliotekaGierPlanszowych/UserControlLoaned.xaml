@@ -31,7 +31,7 @@
                             </StackPanel>
                         </Button>
 
-                        <Button Width="100" Height="45" Margin="10 5 10 5">
+                        <Button x:Name="LoanedDelete_btn" IsEnabled="False" Width="100" Height="45" Margin="10 5 10 5" Click="DeleteButton_Click">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <materialDesign:PackIcon  Kind="MinusBox" Margin="10" Height="18" Width="18"/>
                                 <TextBlock Margin="0 7 0 0" FontSize="16">Usuń</TextBlock>
@@ -42,7 +42,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <DataGrid x:Name="loaned_dataGrid" AutoGenerateColumns="True" Width="300" Height="400" Margin="30 0 20 50" ></DataGrid>
+                    <DataGrid x:Name="loaned_dataGrid" AutoGenerateColumns="True" Width="300" Height="400" Margin="30 0 20 50" SelectionChanged="Loaned_dataGrid_SelectionChanged" ></DataGrid>
                 </StackPanel>
                 
             </Grid>
