@@ -54,7 +54,7 @@ namespace BibliotekaGierPlanszowych
         {
             DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             Category_combobox.ItemsSource = db.DatabaseDataGetting("category", "title_category", 0);
-            Category_combobox.SelectedItem = db.DatabaseDataGetting("category", "title_category", 0)[0];
+            
 
         }
 

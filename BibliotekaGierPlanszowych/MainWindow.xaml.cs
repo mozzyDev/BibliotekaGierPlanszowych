@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Finisar.SQLite;
+using System.Text.RegularExpressions;
 
 
 namespace BibliotekaGierPlanszowych

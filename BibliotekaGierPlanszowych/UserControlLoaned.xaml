@@ -21,7 +21,7 @@
                     <TextBox x:Name="Loaned_txtbox" Width="250" FontSize="22" HorizontalAlignment="Left" Margin="10 0 0 0" TextChanged="Loaned_txtbox_changed"/>
 
                     <Label Content="Którą grę?" FontSize="32"  HorizontalAlignment="Left" Margin="0 30 0 0"/>
-                    <ComboBox x:Name="GameComboBox" Width="250"  Cursor="Hand" FontSize="22" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                    <ComboBox x:Name="GameComboBox" SelectedIndex="0" Width="250"  Cursor="Hand" FontSize="22" HorizontalAlignment="Left" Margin="10 0 0 0"/>
 
                     <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
                         <Button x:Name="AddLoaned_btn" IsEnabled="False" Width="100" Height="45" Margin="10 5 10 5" IsDefault="True" Click="AddLoaned_btn_Click">

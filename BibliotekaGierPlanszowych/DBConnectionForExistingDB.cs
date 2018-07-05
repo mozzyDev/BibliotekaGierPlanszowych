@@ -39,6 +39,27 @@ namespace BibliotekaGierPlanszowych
             return list;
         }
 
+        //pobieranie dla combobox pożyczone
+        public List<String> LoanedDatabaseDataGetting()
+        {
+            List<String> list = new List<String>();
+            sqlite_conn.Open();
+            Query = "SELECT title FROM board_game EXCEPT SELECT title FROM board_Game WHERE id_category IN(SELECT id_board_game FROM pozyczone)";
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = Query;
+            sqlite_cmd.ExecuteNonQuery();
+            sqlite_datareader = sqlite_cmd.ExecuteReader();
+            while (sqlite_datareader.Read())
+            {
+                string item = sqlite_datareader.GetString(0);
+                list.Add(item);
+            }
+            sqlite_conn.Close();
+            list.Sort();
+            return list;
+        }
+       
+
         //wykonywanie zapytań na danych w bazie danych
         public void DatabaseDataChange(String Query)
         {

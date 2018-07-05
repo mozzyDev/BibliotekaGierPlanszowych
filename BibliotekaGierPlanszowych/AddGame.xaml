@@ -45,7 +45,7 @@
                 <StackPanel Grid.Column="1" Margin="0 0 0 10">
                     <TextBox x:Name="Title_txtbox" Margin="5 20 5 20" FontSize="22"/>
                     <StackPanel Orientation="Horizontal">
-                        <ComboBox x:Name="Category_combobox"  Cursor="Hand" Margin="5 20 5 20" FontSize="22" HorizontalAlignment="Left" Width="200" IsManipulationEnabled="True" IsTextSearchCaseSensitive="True"  >
+                        <ComboBox x:Name="Category_combobox" SelectedIndex="0" Cursor="Hand" Margin="5 20 5 20" FontSize="22" HorizontalAlignment="Left" Width="200" IsManipulationEnabled="True" IsTextSearchCaseSensitive="True"  >
                             
                         </ComboBox>
                         <Button x:Name="EditCategory_btn" Content="Edytuj kategorie" HorizontalAlignment="Right" FontSize="12" Margin="10 0 0 10" Click="EditCategory_btn_Click"></Button>

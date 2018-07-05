@@ -31,8 +31,8 @@ namespace BibliotekaGierPlanszowych
         private void GameComboBoxRefresh()
         {
             DBConnectionForExistingDB db = new DBConnectionForExistingDB();
-            GameComboBox.ItemsSource = db.DatabaseDataGetting("board_game", "title", 0);
-            GameComboBox.SelectedItem = db.DatabaseDataGetting("board_game", "title", 0)[0];
+            GameComboBox.ItemsSource = db.LoanedDatabaseDataGetting();
+           
         }
 
         private void AddLoaned_btn_Click(object sender, RoutedEventArgs e)
@@ -44,6 +44,7 @@ namespace BibliotekaGierPlanszowych
             DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             db.DatabaseDataChange(Query);
             Loaned_txtbox.Clear();
+            GameComboBoxRefresh();
 
         }
 
