@@ -29,7 +29,7 @@
                     <Button x:Name="GameAdd_btn" Width="100" Height="45" Margin="10 5 10 5" Click="GameAdd_btn_Click" IsDefault="True">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <materialDesign:PackIcon  Kind="PlusBox" Margin="10" Height="18" Width="18"/>
-                            <TextBlock Margin="0 7 0 0" FontSize="16">Dodaj</TextBlock>
+                            <TextBlock Margin="0 9 0 0" FontSize="14">Zapisz</TextBlock>
                         </StackPanel>
                     </Button>
 

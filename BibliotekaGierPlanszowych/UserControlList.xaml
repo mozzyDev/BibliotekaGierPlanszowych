@@ -35,7 +35,7 @@
 
                     </Button>
 
-                    <Button Width="100" Height="50" Margin="10 5 30 5">
+                    <Button x:Name="ListEdit_btn" IsEnabled="False" Width="100" Height="50" Margin="10 5 30 5" Click="ListEdit_btn_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                             <materialDesign:PackIcon  Kind="TableEdit" Margin="10" Height="20" Width="20"/>

@@ -21,7 +21,8 @@ namespace BibliotekaGierPlanszowych
 
        
 
-        //pobieranie danych z bazy 
+        //pobieranie danych z bazy, dla wielu danych
+        //zwraca listę wyników string
         public List<String> DatabaseDataGetting(String table, String column, int columnNr)
         {
             List<String> list = new List<String>();
@@ -41,7 +42,7 @@ namespace BibliotekaGierPlanszowych
             return list;
         }
 
-        //pobieranie dla combobox pożyczone
+        //pobieranie dla combobox - pożyczone
         public List<String> DatabasQueryExecute(String Query)
         {
             List<String> list = new List<String>();
@@ -69,6 +70,26 @@ namespace BibliotekaGierPlanszowych
             sqlite_cmd.CommandText = Query;
             sqlite_cmd.ExecuteNonQuery();
             sqlite_conn.Close();
+
+        }
+
+
+        //wykonywanie zapytań na danych w bazie danych dla jednego zwracanego elementu
+        public String DatabaseDataGetOne(String Query)
+        {
+            String item = "";
+            sqlite_conn.Open();
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = Query;
+            sqlite_cmd.ExecuteNonQuery();
+            sqlite_datareader = sqlite_cmd.ExecuteReader();
+            while (sqlite_datareader.Read())
+            {
+                item = sqlite_datareader.GetString(0);
+            }
+            
+            sqlite_conn.Close();
+            return item;
 
         }
 

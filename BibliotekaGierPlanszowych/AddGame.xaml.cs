@@ -21,7 +21,7 @@ namespace BibliotekaGierPlanszowych
     public partial class AddGame : Window
     {
         List<int> liczbaGraczy = new List<int>();
-
+        
         public AddGame()
         {
             InitializeComponent();
@@ -122,25 +122,23 @@ namespace BibliotekaGierPlanszowych
                         niepoprawnyTytul = true;
                     }
                 }
-                //jesli nowy tytul znajduje sie w bazie 
+                //jesli nowy tytul znajduje sie w bazie - usuwamy poprzedni rekord
                 if (niepoprawnyTytul)
                 {
-                    MessageBox.Show("Gra jest już w bazie danych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+                    db.DatabasQueryExecute("DELETE FROM board_game WHERE title = '" + this.Title_txtbox.Text + "'");
                 }
-                //jeśli nie znajduje sie w bazie - dodaje
-                else
-                {
-                    //dodawanie gry do bazy
-                    String Query = "INSERT OR REPLACE INTO board_game (title, min_players, max_players, rate, id_category, add_date) VALUES ('"
-                        + this.Title_txtbox.Text + "', " + MinLiczba_combo.SelectedValue.ToString() + ", " + MaxLiczba_combo.SelectedValue.ToString() + ", "
-                        + Rate_slider.Value.ToString() + ", " +
-                        "(SELECT DISTINCT id_category FROM category WHERE title_category = '" + Category_combobox.SelectedValue.ToString() + "'), '" + today.ToString() + "')";
+                //dodaje nowy rekord
+                
+                String Query = "INSERT OR REPLACE INTO board_game (title, min_players, max_players, rate, id_category, add_date) VALUES ('"
+                    + this.Title_txtbox.Text + "', " + MinLiczba_combo.SelectedValue.ToString() + ", " + MaxLiczba_combo.SelectedValue.ToString() + ", "
+                    + Rate_slider.Value.ToString() + ", " +
+                    "(SELECT DISTINCT id_category FROM category WHERE title_category = '" + Category_combobox.SelectedValue.ToString() + "'), '" + today.ToString() + "')";
 
-                    db.DatabaseDataChange(Query);
+                db.DatabaseDataChange(Query);
 
-                    MessageBox.Show("Zapisano grę w bazie danych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
-                    this.Close();
-                }
+                MessageBox.Show("Zapisano grę w bazie danych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+                
             }
             else
             {
@@ -148,6 +146,6 @@ namespace BibliotekaGierPlanszowych
             }
 
             }
-
+        
         }
 }

@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace BibliotekaGierPlanszowych
 {
@@ -68,7 +60,41 @@ namespace BibliotekaGierPlanszowych
             {
                 pobranyTytul = selectedItem[0].ToString();
                 ListDelete_btn.IsEnabled = true;
+                ListEdit_btn.IsEnabled = true;
             }
         }
+
+        private void ListEdit_btn_Click(object sender, RoutedEventArgs e)
+        {
+            
+            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
+            AddGame addGame = new AddGame();
+            List<string> QueryList = new List<string>();
+            QueryList.Add(pobranyTytul);
+            QueryList.Add(db.DatabaseDataGetOne("SELECT category.title_category FROM board_game, category WHERE category.id_category = board_game.id_category AND board_game.title = '"
+                + pobranyTytul + "'"));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT min_players FROM board_game WHERE title = '" + pobranyTytul + "'"));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT max_players FROM board_game WHERE title = '" + pobranyTytul + "'"));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT rate FROM board_game WHERE title = '" + pobranyTytul + "'"));
+
+            try
+            {
+                addGame.Title_txtbox.Text = QueryList[0];
+                addGame.Category_combobox.SelectedValue = QueryList[1];
+                addGame.MinLiczba_combo.SelectedValue = Convert.ToInt32(QueryList[2]);
+                addGame.MaxLiczba_combo.SelectedValue = Convert.ToInt32(QueryList[3]);
+                addGame.Rate_slider.Value = Convert.ToInt32(QueryList[4]);
+            }
+            catch(ArgumentException ex)
+            {
+                MessageBox.Show("Błędne dane", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
+            addGame.ShowDialog();
+            GridRefresh();
+        }
+
+        
     }
 }
