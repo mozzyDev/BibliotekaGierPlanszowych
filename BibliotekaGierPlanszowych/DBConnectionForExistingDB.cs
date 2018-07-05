@@ -64,7 +64,7 @@ namespace BibliotekaGierPlanszowych
         //wykonywanie zapytań na danych w bazie danych
         public void DatabaseDataChange(String Query)
         {
-
+            sqlite_conn.Open();
             sqlite_cmd = sqlite_conn.CreateCommand();
             sqlite_cmd.CommandText = Query;
             sqlite_cmd.ExecuteNonQuery();

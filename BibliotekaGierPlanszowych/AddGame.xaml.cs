@@ -107,7 +107,6 @@ namespace BibliotekaGierPlanszowych
 
             if(Title_txtbox.Text.Length > 1 && MaxLiczba_combo.SelectedValue != null)
             {
-                //MessageBox.Show(today.ToString());
                 //dodawanie gry do bazy
                 String Query = "INSERT OR REPLACE INTO board_game (title, min_players, max_players, rate, id_category, add_date) VALUES ('" 
                     + this.Title_txtbox.Text + "', " + MinLiczba_combo.SelectedValue.ToString() + ", " + MaxLiczba_combo.SelectedValue.ToString() + ", "

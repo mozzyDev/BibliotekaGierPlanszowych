@@ -25,7 +25,7 @@ namespace BibliotekaGierPlanszowych
         //odswieżanie danych w combobox
         private void GameComboBoxRefresh()
         {
-            String Query = "SELECT title FROM board_game EXCEPT SELECT title FROM board_Game WHERE id_category IN(SELECT id_board_game FROM pozyczone)";
+            String Query = "SELECT title FROM board_game EXCEPT SELECT title FROM board_Game WHERE id_board_game IN(SELECT id_board_game FROM pozyczone)";
             DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             GameComboBox.ItemsSource = db.DatabasQueryExecute(Query);
         }
@@ -40,6 +40,7 @@ namespace BibliotekaGierPlanszowych
             db.DatabaseDataChange(Query);
             Loaned_txtbox.Clear();
             GameComboBoxRefresh();
+            GridRefresh();
 
         }
 
@@ -53,7 +54,7 @@ namespace BibliotekaGierPlanszowych
         //uzupełnianie danych w GridData
         private void GridRefresh()
         {
-            string Query = "SELECT * FROM pozyczone";
+            string Query = "SELECT pozyczone.person AS 'Osoba', board_game.title AS 'Tytuł' FROM pozyczone, board_game WHERE pozyczone.id_board_game = board_game.id_board_game";
             DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             db.DataGridRefresh(Query, "pozyczone", loaned_dataGrid);
         }
