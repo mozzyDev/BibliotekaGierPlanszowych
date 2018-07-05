@@ -27,7 +27,7 @@
                     <ComboBox  x:Name="RndPlayers_combo" SelectedIndex="0" Cursor="Hand" Width="40" Margin="10 0 0 0" FontSize="28"></ComboBox>
                     <ComboBox  x:Name="RndCategory_combo" SelectedIndex="0" Cursor="Hand" Width="200" Margin="10 0 0 0" FontSize="28"></ComboBox>
                     <ComboBox  x:Name="RndRate_combo" SelectedIndex="0" Cursor="Hand" Width="40" Margin="10 0 0 0" FontSize="28"></ComboBox>
-                    <TextBox x:Name="Rnd_txtbox" Width="200" Margin="10 90 0 0" FontSize="26" FontWeight="DemiBold" TextAlignment="Center"></TextBox>
+                    <TextBox x:Name="Rnd_txtbox" Foreground="Black" Margin="10 50 0 0" Height="70" FontSize="36" FontWeight="DemiBold" TextAlignment="Center" IsEnabled="False"></TextBox>
                 </StackPanel>
 
             </Grid>
