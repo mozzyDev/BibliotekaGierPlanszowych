@@ -1,17 +1,11 @@
-﻿using System;
+﻿using Finisar.SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace BibliotekaGierPlanszowych
 {
@@ -24,6 +18,7 @@ namespace BibliotekaGierPlanszowych
         {
             InitializeComponent();
             GameComboBoxRefresh();
+            GridRefresh();
 
         }
 
@@ -33,7 +28,6 @@ namespace BibliotekaGierPlanszowych
             String Query = "SELECT title FROM board_game EXCEPT SELECT title FROM board_Game WHERE id_category IN(SELECT id_board_game FROM pozyczone)";
             DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             GameComboBox.ItemsSource = db.DatabasQueryExecute(Query);
-           
         }
 
         private void AddLoaned_btn_Click(object sender, RoutedEventArgs e)
@@ -56,5 +50,15 @@ namespace BibliotekaGierPlanszowych
                 this.AddLoaned_btn.IsEnabled = box.Text.Length > 1;
         }
 
+        //uzupełnianie danych w GridData
+        private void GridRefresh()
+        {
+            string Query = "SELECT * FROM pozyczone";
+            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
+            db.DataGridRefresh(Query, "pozyczone", loaned_dataGrid);
+        }
+        
+
+        
     }
 }

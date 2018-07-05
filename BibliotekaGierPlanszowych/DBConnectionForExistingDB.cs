@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Finisar.SQLite;
 using System.Collections;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Windows.Controls;
 
 namespace BibliotekaGierPlanszowych
 {
@@ -62,13 +64,30 @@ namespace BibliotekaGierPlanszowych
         //wykonywanie zapytań na danych w bazie danych
         public void DatabaseDataChange(String Query)
         {
-            sqlite_conn.Open();
+
             sqlite_cmd = sqlite_conn.CreateCommand();
             sqlite_cmd.CommandText = Query;
             sqlite_cmd.ExecuteNonQuery();
             sqlite_conn.Close();
 
         }
+
+        //uzupełnianie danych w DataGrid
+        public void DataGridRefresh(String Query, String TableName, DataGrid NameOfDataGrid)
+        {
+
+            sqlite_conn.Open();
+            SQLiteCommand DataGridCommand = new SQLiteCommand(Query, sqlite_conn);
+            DataGridCommand.ExecuteNonQuery();
+            SQLiteDataAdapter adp = new SQLiteDataAdapter(DataGridCommand);
+
+            DataTable dt = new DataTable(TableName);
+            adp.Fill(dt);
+            NameOfDataGrid.ItemsSource = dt.DefaultView;
+            adp.Update(dt);
+            sqlite_conn.Close();
+        }
+
 
 
     }
