@@ -26,7 +26,7 @@
                        
                     </Button>
 
-                    <Button Width="100" Height="50" Margin="10 5 30 5">
+                    <Button x:Name="ListDelete_btn" IsEnabled="False" Width="100" Height="50" Margin="10 5 30 5" Click="DeleteButton_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                             <materialDesign:PackIcon  Kind="Delete" Margin="10" Height="20" Width="20"/>
@@ -46,7 +46,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Margin="0 50 0 0 " >
-                    <DataGrid  Cursor="Hand" Height="450" Panel.ZIndex="-3" Width="550">
+                    <DataGrid x:Name="List_DataGrid" AutoGenerateColumns="True" Cursor="Hand" Height="450" Panel.ZIndex="-3" Width="550" SelectionChanged="List_DataGrid_SelectionChanged_1">
                     </DataGrid>
                 </StackPanel>
                 

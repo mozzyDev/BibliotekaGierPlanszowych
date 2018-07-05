@@ -102,30 +102,52 @@ namespace BibliotekaGierPlanszowych
 
         private void GameAdd_btn_Click(object sender, RoutedEventArgs e)
         {
-            
+            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
+            List<String> listaTytulow = new List<string>();
+            String zapytanieTytuly = "SELECT title FROM board_game";
             DateTime today = DateTime.Today;
 
-            if(Title_txtbox.Text.Length > 1 && MaxLiczba_combo.SelectedValue != null)
+            if (Title_txtbox.Text.Length > 1 && MaxLiczba_combo.SelectedValue != null)
             {
-                //dodawanie gry do bazy
-                String Query = "INSERT OR REPLACE INTO board_game (title, min_players, max_players, rate, id_category, add_date) VALUES ('" 
-                    + this.Title_txtbox.Text + "', " + MinLiczba_combo.SelectedValue.ToString() + ", " + MaxLiczba_combo.SelectedValue.ToString() + ", "
-                    + Rate_slider.Value.ToString() + ", " +
-                    "(SELECT DISTINCT id_category FROM category WHERE title_category = '" + Category_combobox.SelectedValue.ToString() + "'), '" + today.ToString() +"')";
+                //sprawdzanie czy w bazie nie ma już gry o tej nazwie
+                //pobranie listy wszyskich tytułów
+                listaTytulow = db.DatabasQueryExecute(zapytanieTytuly);
+                bool niepoprawnyTytul = false;
 
+                //sprawdzenie czy nowy tytul znajduje sie juz w bazie
+                foreach (String item in listaTytulow)
+                {
+                    if (item.Equals(Title_txtbox.Text))
+                    {
+                        niepoprawnyTytul = true;
+                    }
+                }
+                //jesli nowy tytul znajduje sie w bazie 
+                if (niepoprawnyTytul)
+                {
+                    MessageBox.Show("Gra jest już w bazie danych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                //jeśli nie znajduje sie w bazie - dodaje
+                else
+                {
+                    //dodawanie gry do bazy
+                    String Query = "INSERT OR REPLACE INTO board_game (title, min_players, max_players, rate, id_category, add_date) VALUES ('"
+                        + this.Title_txtbox.Text + "', " + MinLiczba_combo.SelectedValue.ToString() + ", " + MaxLiczba_combo.SelectedValue.ToString() + ", "
+                        + Rate_slider.Value.ToString() + ", " +
+                        "(SELECT DISTINCT id_category FROM category WHERE title_category = '" + Category_combobox.SelectedValue.ToString() + "'), '" + today.ToString() + "')";
 
-                    DBConnectionForExistingDB db = new DBConnectionForExistingDB();
                     db.DatabaseDataChange(Query);
-                    
+
                     MessageBox.Show("Zapisano grę w bazie danych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
+                    this.Close();
+                }
             }
             else
             {
                 MessageBox.Show("Nie wypełniono wszystkich pól!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
 
-       
-    }
+            }
+
+        }
 }
