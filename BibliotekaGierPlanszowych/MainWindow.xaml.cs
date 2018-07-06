@@ -25,13 +25,13 @@ namespace BibliotekaGierPlanszowych
         public MainWindow()
         {
             InitializeComponent();
-            MainGrid.Children.Add(new UserControlList());
             //utworzenie nowej bazy danych przy starcie programu
             DBConnection db = new DBConnection();
             if (!File.Exists("database.db"))
             {
                 db.DatabaseCreate();
             }
+            MainGrid.Children.Add(new UserControlList());
 
         }
 

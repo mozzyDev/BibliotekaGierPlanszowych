@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace BibliotekaGierPlanszowych
 {
-    /// <summary>
-    /// Logika interakcji dla klasy UserControlRandom.xaml
-    /// </summary>
     public partial class UserControlRandom : UserControl
     {
         private List<int> liczbaGraczy = new List<int>();

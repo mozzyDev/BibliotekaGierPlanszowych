@@ -28,6 +28,7 @@ namespace BibliotekaGierPlanszowych
 
         }
 
+        //odświeżenie danych w GridData
         private void GridRefresh()
         {
             string Query = "SELECT DISTINCT board_game.title AS 'Tytuł', category.title_category AS 'Kategoria', board_game.min_players AS 'Min Graczy'," +
@@ -41,12 +42,24 @@ namespace BibliotekaGierPlanszowych
         //następnie usuwany z bazy za pomocą kodu SQL
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            string Query = "DELETE FROM board_game WHERE title = '" + pobranyTytul +"'";
+            if (MessageBox.Show("Czy na pewno chcesz usunąć grę?", "Usuwanie", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
+            {
+                DBConnectionForExistingDB db = new DBConnectionForExistingDB();
+             
+                //pobranie id gry
+                string id = db.DatabaseDataGetOne("SELECT id_board_game FROM board_game WHERE title = '" + pobranyTytul + "'");
 
-            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
-            db.DatabasQueryExecute(Query);
+                //usunięcie z listy gier
+                string Query = "DELETE FROM board_game WHERE title = '" + pobranyTytul + "'";
+                db.DatabasQueryExecute(Query);
+                
+                //usunięcie z pożyczonych
+                Query = "DELETE FROM pozyczone WHERE id_board_game = " +id ;
+                db.DatabasQueryExecute(Query);
+
+                GridRefresh();
+            }
             
-            GridRefresh();
         }
 
 
@@ -64,6 +77,7 @@ namespace BibliotekaGierPlanszowych
             }
         }
 
+        //edycja - otwarcie panelu AddGame i wypełnienie go danymi zaznaczonej gry
         private void ListEdit_btn_Click(object sender, RoutedEventArgs e)
         {
             
