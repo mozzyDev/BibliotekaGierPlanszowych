@@ -1,23 +1,29 @@
 ﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
 
 namespace BibliotekaGierPlanszowych
 {
-    
+
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
+
             InitializeComponent();
             //utworzenie nowej bazy danych przy starcie programu
+
             DBConnection db = new DBConnection();
             if (!File.Exists("database.db"))
             {
                 db.DatabaseCreate();
             }
-            MainGrid.Children.Add(new UserControlList());
 
+            MainGrid.Children.Add(new UserControlList());
+            
+            
         }
 
         private void ButtonSettings_Click(object sender, RoutedEventArgs e)

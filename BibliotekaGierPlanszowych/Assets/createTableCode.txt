@@ -1,0 +1,32 @@
+CREATE TABLE [board_game] (
+	id_board_game integer PRIMARY KEY, 
+	title varchar,
+	min_players integer,
+	max_players integer,
+	rate integer,
+	add_date datetime,
+	id_category integer
+);
+
+CREATE TABLE [category] (
+	id_category integer PRIMARY KEY, 
+	title_category varchar
+);
+
+CREATE TABLE [pozyczone] (
+	id_loaned integer PRIMARY KEY, 
+	person varchar,
+	id_board_game integer
+);
+
+CREATE TABLE [wishlist] (
+	id_wishlist integer PRIMARY KEY, 
+	title_wishlist varchar,
+	price_wishlist integer
+);
+INSERT INTO category (title_category) VALUES ('Strategiczna');
+INSERT INTO category (title_category) VALUES ('Przygodowa');
+INSERT INTO category (title_category) VALUES ('Logiczna');
+INSERT INTO category (title_category) VALUES ('Ekonomiczna');
+INSERT INTO category (title_category) VALUES ('Karciana');
+INSERT INTO category (title_category) VALUES ('Imprezowa');

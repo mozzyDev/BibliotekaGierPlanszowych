@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,11 +10,11 @@ using System.Windows.Data;
 namespace BibliotekaGierPlanszowych
 {
     
-    public partial class UserControlList : UserControl
+    public partial class UserControlList : UserControl, IDisposable
     {
         private DataColumn gameTitle = new DataColumn("gameTitle", typeof(string));
         private string pobranyTytul = "";
-
+        
         public UserControlList()
         {
             InitializeComponent();
@@ -109,6 +110,9 @@ namespace BibliotekaGierPlanszowych
             GridRefresh();
         }
 
-        
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

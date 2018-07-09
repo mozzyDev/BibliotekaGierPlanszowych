@@ -11,7 +11,7 @@ using System.Windows.Controls;
 
 namespace BibliotekaGierPlanszowych
 {
-    class DBConnectionForExistingDB : DBConnection
+    class DBConnectionForExistingDB : DBConnection, IDisposable
     {
         private new static String DatabaseConnectionValue = "Data Source = database.db; Version = 3;Compress = True";
         private String Query { get; set; }

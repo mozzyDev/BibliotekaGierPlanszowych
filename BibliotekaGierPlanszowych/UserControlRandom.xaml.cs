@@ -50,7 +50,7 @@ namespace BibliotekaGierPlanszowych
             
 
             String Query = "SELECT title FROM board_game " +
-                "WHERE min_players >= " + minPlayers + " AND rate >= " + rate + " AND id_category = (SELECT id_category FROM category " +
+                "WHERE min_players <= " + minPlayers + "AND max_players >= " + minPlayers +" AND rate >= " + rate + " AND id_category = (SELECT id_category FROM category " +
                 "WHERE title_category = '" + category +"') ORDER BY RANDOM() LIMIT 1";
             DBConnectionForExistingDB db = new DBConnectionForExistingDB();
 

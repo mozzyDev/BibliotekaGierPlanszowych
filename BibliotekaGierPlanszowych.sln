@@ -7,10 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotekaGierPlanszowych",
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All|Any CPU = All|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16B0C8BC-112E-4EB4-9B44-D749045DB14C}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{16B0C8BC-112E-4EB4-9B44-D749045DB14C}.All|Any CPU.Build.0 = Release|Any CPU
 		{16B0C8BC-112E-4EB4-9B44-D749045DB14C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{16B0C8BC-112E-4EB4-9B44-D749045DB14C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16B0C8BC-112E-4EB4-9B44-D749045DB14C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -20,6 +23,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E942402F-5E99-4A96-814A-69A0DBCCD02D}
+		SolutionGuid = {765D7FB8-9B0D-438F-93F2-4EFC83890FF6}
 	EndGlobalSection
 EndGlobal

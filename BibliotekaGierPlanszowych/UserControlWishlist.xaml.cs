@@ -7,7 +7,7 @@ using System.Data;
 
 namespace BibliotekaGierPlanszowych
 {
-    public partial class UserControlWishlist : UserControl
+    public partial class UserControlWishlist : UserControl, IDisposable
     {
         private DataColumn gameTitle = new DataColumn("gameTitle", typeof(string));
         private string pobranyTytul = "";
@@ -73,6 +73,11 @@ namespace BibliotekaGierPlanszowych
                 pobranyTytul = selectedItem[0].ToString();
                 WishDelete_btn.IsEnabled = true;
             }
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

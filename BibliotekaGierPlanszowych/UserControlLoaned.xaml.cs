@@ -13,7 +13,7 @@ namespace BibliotekaGierPlanszowych
     /// <summary>
     /// Logika interakcji dla klasy UserControlLoaned.xaml
     /// </summary>
-    public partial class UserControlLoaned : UserControl
+    public partial class UserControlLoaned : UserControl,  IDisposable
     {
         //do pobrania nazwy gry z DataGrid
         private DataColumn gameTitle = new DataColumn("gameTitle", typeof(string));
@@ -93,5 +93,9 @@ namespace BibliotekaGierPlanszowych
             GridRefresh();
         }
 
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
