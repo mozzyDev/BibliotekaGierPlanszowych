@@ -5,7 +5,7 @@ using System.IO;
 
 namespace BibliotekaGierPlanszowych 
 {
-    class DBConnectionCreateDB : DBConnection
+    public class DBConnectionCreateDB : DBConnection
     {
         //plik .txt z kodem SQL - utworzenie nowej bazy danych
         private string SqlCommandCreateDatabase = File.ReadAllText(@"createTableCode.txt");

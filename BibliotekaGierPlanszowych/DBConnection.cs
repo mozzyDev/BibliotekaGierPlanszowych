@@ -8,7 +8,7 @@ using System.Windows.Controls;
 namespace BibliotekaGierPlanszowych
 {
     //Klasa odpowiedzialna za tworzenie i wykonywanie operacji na bazie danych
-    class DBConnection : IDisposable
+   public class DBConnection : IDisposable
     {
         
         private static String DatabaseConnectionValue = "Data Source = database.db; Version = 3;Compress = True";

@@ -8,6 +8,7 @@ namespace BibliotekaGierPlanszowych
    
     public partial class AddGame : Window
     {
+        private DBConnection db = new DBConnection();
         List<int> liczbaGraczy = new List<int>();
         
         public AddGame()
@@ -40,7 +41,6 @@ namespace BibliotekaGierPlanszowych
         {
             try
             {
-                DBConnection db = new DBConnection();
                 Category_combobox.ItemsSource = db.DatabaseDataGetting("category", "title_category", 0);
             }
             catch(ArgumentException exa)
@@ -109,7 +109,6 @@ namespace BibliotekaGierPlanszowych
         //dodawanie nowej gry
         private void GameAdd_btn_Click(object sender, RoutedEventArgs e)
         {
-            DBConnection db = new DBConnection();
             List<String> listaTytulow = new List<string>();
             String zapytanieTytuly = "SELECT title FROM board_game";
             DateTime today = DateTime.Today;

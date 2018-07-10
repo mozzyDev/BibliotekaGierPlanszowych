@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotekaGierPlanszowych", "BibliotekaGierPlanszowych\BibliotekaGierPlanszowych.csproj", "{16B0C8BC-112E-4EB4-9B44-D749045DB14C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{0B40A5C8-09AC-4AD8-9BCB-5CD51695C904}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		All|Any CPU = All|Any CPU
@@ -18,6 +20,12 @@ Global
 		{16B0C8BC-112E-4EB4-9B44-D749045DB14C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16B0C8BC-112E-4EB4-9B44-D749045DB14C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16B0C8BC-112E-4EB4-9B44-D749045DB14C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B40A5C8-09AC-4AD8-9BCB-5CD51695C904}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{0B40A5C8-09AC-4AD8-9BCB-5CD51695C904}.All|Any CPU.Build.0 = Release|Any CPU
+		{0B40A5C8-09AC-4AD8-9BCB-5CD51695C904}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B40A5C8-09AC-4AD8-9BCB-5CD51695C904}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B40A5C8-09AC-4AD8-9BCB-5CD51695C904}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B40A5C8-09AC-4AD8-9BCB-5CD51695C904}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
