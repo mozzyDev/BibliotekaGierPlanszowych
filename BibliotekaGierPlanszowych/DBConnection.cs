@@ -4,7 +4,6 @@ using Finisar.SQLite;
 using System.Data;
 using System.Windows.Controls;
 
-
 namespace BibliotekaGierPlanszowych
 {
     //Klasa odpowiedzialna za tworzenie i wykonywanie operacji na bazie danych
@@ -16,7 +15,6 @@ namespace BibliotekaGierPlanszowych
         protected String Query { get; set; }
         protected SQLiteCommand sqlite_cmd;
         protected SQLiteDataReader sqlite_datareader;
-
        
         //pobieranie danych z bazy, dla wielu danych
         //zwraca listę wyników string
