@@ -1,23 +1,16 @@
-﻿using Finisar.SQLite;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-
 
 namespace BibliotekaGierPlanszowych
 {
-    /// <summary>
-    /// Logika interakcji dla klasy UserControlLoaned.xaml
-    /// </summary>
     public partial class UserControlLoaned : UserControl,  IDisposable
     {
         //do pobrania nazwy gry z DataGrid
         private DataColumn gameTitle = new DataColumn("gameTitle", typeof(string));
-        private string pobranyTytul = "";
+        string PobranyTytul { get; set; }
+        private DBConnection db = new DBConnection();
 
         public UserControlLoaned()
         {
@@ -31,17 +24,15 @@ namespace BibliotekaGierPlanszowych
         private void GameComboBoxRefresh()
         {
             String Query = "SELECT DISTINCT title FROM board_game EXCEPT SELECT title FROM board_Game WHERE id_board_game IN(SELECT id_board_game FROM pozyczone)";
-            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             GameComboBox.ItemsSource = db.DatabasQueryExecute(Query);
         }
 
+        //dodawanie danych do bazy
         private void AddLoaned_btn_Click(object sender, RoutedEventArgs e)
         {   
-            //dodawanie danych do bazy
             String Query = "INSERT OR REPLACE INTO pozyczone (person, id_board_game) VALUES ('"
                 + this.Loaned_txtbox.Text + "', (SELECT DISTINCT id_board_game FROM board_game WHERE title = '" + GameComboBox.SelectedValue.ToString() + "'))";
             
-            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             db.DatabaseDataChange(Query);
             Loaned_txtbox.Clear();
             GameComboBoxRefresh();
@@ -52,30 +43,43 @@ namespace BibliotekaGierPlanszowych
         //uruchamia przycisk po wpisaniu w textbox
         private void Loaned_txtbox_changed(object sender, RoutedEventArgs e)
         {
-                TextBox box = sender as TextBox;
-                this.AddLoaned_btn.IsEnabled = box.Text.Length > 1;
+            TextBox box = sender as TextBox;
+            this.AddLoaned_btn.IsEnabled = box.Text.Length > 1;
         }
 
         //uzupełnianie danych w GridData
         private void GridRefresh()
         {
             string Query = "SELECT pozyczone.person AS 'Osoba', board_game.title AS 'Tytuł' FROM pozyczone, board_game WHERE pozyczone.id_board_game = board_game.id_board_game";
-            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
-            db.DataGridRefresh(Query, "pozyczone", loaned_dataGrid);
-        }
+            try
+            {
+                db.DataGridRefresh(Query, "pozyczone", loaned_dataGrid);
+            }
+            catch(ArgumentException exa)
+            {
+                Console.WriteLine(exa.Message);
+                MessageBox.Show(exa.Message);
+            }
+}
 
         //pobieranie danych z GridView
         private void Loaned_dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            DataGrid dg = (DataGrid)sender;
-            DataRowView selectedItem = dg.SelectedItem as DataRowView;
-            if(selectedItem != null)
+            try
             {
-                pobranyTytul = selectedItem[1].ToString();
-                LoanedDelete_btn.IsEnabled = true;
+                DataGrid dg = (DataGrid)sender;
+                DataRowView selectedItem = dg.SelectedItem as DataRowView;
+                if (selectedItem != null)
+                {
+                    PobranyTytul = selectedItem[1].ToString();
+                    LoanedDelete_btn.IsEnabled = true;
+                }
             }
-            
+            catch(FormatException exf)
+            {
+                Console.WriteLine(exf.Message);
+                MessageBox.Show(exf.Message);
+            }
         }
 
         //usuwanie wartosci z DataGrid
@@ -85,9 +89,8 @@ namespace BibliotekaGierPlanszowych
         {
             string Query = "DELETE FROM pozyczone WHERE pozyczone.id_loaned IN ("
                 + "SELECT pozyczone.id_loaned FROM pozyczone, board_game WHERE board_game.title = '" 
-                + pobranyTytul +"' AND pozyczone.id_board_game = board_game.id_board_game)";
+                + PobranyTytul +"' AND pozyczone.id_board_game = board_game.id_board_game)";
 
-            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             db.DatabasQueryExecute(Query);
             GameComboBoxRefresh();
             GridRefresh();
@@ -95,7 +98,8 @@ namespace BibliotekaGierPlanszowych
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            db.Dispose();
         }
+
     }
 }

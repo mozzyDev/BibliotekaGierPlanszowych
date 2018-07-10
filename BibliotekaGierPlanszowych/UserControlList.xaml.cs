@@ -9,11 +9,11 @@ using System.Windows.Data;
 
 namespace BibliotekaGierPlanszowych
 {
-    
     public partial class UserControlList : UserControl, IDisposable
     {
         private DataColumn gameTitle = new DataColumn("gameTitle", typeof(string));
-        private string pobranyTytul = "";
+        string PobranyTytul { get; set; }
+        private DBConnection db = new DBConnection();
         
         public UserControlList()
         {
@@ -26,7 +26,6 @@ namespace BibliotekaGierPlanszowych
             AddGame addGame = new AddGame();
             addGame.ShowDialog();
             GridRefresh();
-
         }
 
         //odświeżenie danych w GridData
@@ -34,8 +33,15 @@ namespace BibliotekaGierPlanszowych
         {
             string Query = "SELECT DISTINCT board_game.title AS 'Tytuł', category.title_category AS 'Kategoria', board_game.min_players AS 'Min Graczy'," +
             "board_game.max_players AS 'Max Graczy' FROM board_game, category WHERE category.id_category = board_game.id_category";
-            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
-            db.DataGridRefresh(Query, "board_game", List_DataGrid);
+            try
+            {
+                db.DataGridRefresh(Query, "board_game", List_DataGrid);
+            }
+            catch(ArgumentException exa)
+            {
+                Console.WriteLine(exa.Message);
+                MessageBox.Show(exa.Message);
+            }
         }
 
         //usuwanie wartosci z DataGrid
@@ -45,13 +51,11 @@ namespace BibliotekaGierPlanszowych
         {
             if (MessageBox.Show("Czy na pewno chcesz usunąć grę?", "Usuwanie", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
             {
-                DBConnectionForExistingDB db = new DBConnectionForExistingDB();
-             
                 //pobranie id gry
-                string id = db.DatabaseDataGetOne("SELECT id_board_game FROM board_game WHERE title = '" + pobranyTytul + "'");
+                string id = db.DatabaseDataGetOne("SELECT id_board_game FROM board_game WHERE title = '" + PobranyTytul + "'");
 
                 //usunięcie z listy gier
-                string Query = "DELETE FROM board_game WHERE title = '" + pobranyTytul + "'";
+                string Query = "DELETE FROM board_game WHERE title = '" + PobranyTytul + "'";
                 db.DatabasQueryExecute(Query);
                 
                 //usunięcie z pożyczonych
@@ -72,7 +76,7 @@ namespace BibliotekaGierPlanszowych
             DataRowView selectedItem = dg.SelectedItem as DataRowView;
             if (selectedItem != null)
             {
-                pobranyTytul = selectedItem[0].ToString();
+                PobranyTytul = selectedItem[0].ToString();
                 ListDelete_btn.IsEnabled = true;
                 ListEdit_btn.IsEnabled = true;
             }
@@ -82,15 +86,15 @@ namespace BibliotekaGierPlanszowych
         private void ListEdit_btn_Click(object sender, RoutedEventArgs e)
         {
             
-            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
+            DBConnection db = new DBConnection();
             AddGame addGame = new AddGame();
             List<string> QueryList = new List<string>();
-            QueryList.Add(pobranyTytul);
+            QueryList.Add(PobranyTytul);
             QueryList.Add(db.DatabaseDataGetOne("SELECT category.title_category FROM board_game, category WHERE category.id_category = board_game.id_category AND board_game.title = '"
-                + pobranyTytul + "'"));
-            QueryList.Add(db.DatabaseDataGetOne("SELECT min_players FROM board_game WHERE title = '" + pobranyTytul + "'"));
-            QueryList.Add(db.DatabaseDataGetOne("SELECT max_players FROM board_game WHERE title = '" + pobranyTytul + "'"));
-            QueryList.Add(db.DatabaseDataGetOne("SELECT rate FROM board_game WHERE title = '" + pobranyTytul + "'"));
+                + PobranyTytul + "'"));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT min_players FROM board_game WHERE title = '" + PobranyTytul + "'"));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT max_players FROM board_game WHERE title = '" + PobranyTytul + "'"));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT rate FROM board_game WHERE title = '" + PobranyTytul + "'"));
 
             try
             {

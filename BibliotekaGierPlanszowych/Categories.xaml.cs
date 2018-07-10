@@ -1,22 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BibliotekaGierPlanszowych
 {
    
     public partial class Categories : Window
     {
+        private DBConnection db = new DBConnection();
         public Categories()
         {
             InitializeComponent();
@@ -37,7 +28,6 @@ namespace BibliotekaGierPlanszowych
         private void ButtonDeleteCategory_Click(object sender, RoutedEventArgs e)
         {
             String Query = "DELETE FROM category WHERE title_category = '" + this.CategoryListBox.SelectedValue.ToString() + "'";
-            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             db.DatabaseDataChange(Query);
             MessageBox.Show("Usunięto kategorię z bazy danych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
             CategoryListRefresh();
@@ -47,7 +37,6 @@ namespace BibliotekaGierPlanszowych
         private void Button_CategoryAdd_Click(object sender, RoutedEventArgs e)
         {
             String Query = "INSERT OR REPLACE INTO category (title_category) VALUES ('" + this.titleCategory_txtbox.Text + "')";
-            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             db.DatabaseDataChange(Query);
             titleCategory_txtbox.Text = null;
             MessageBox.Show("Zapisano kategorię w bazie danych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information );
@@ -57,8 +46,15 @@ namespace BibliotekaGierPlanszowych
         //odświeżenie listBoxa
         public void CategoryListRefresh()
         {
-            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
-            CategoryListBox.ItemsSource = db.DatabaseDataGetting("category", "title_category", 0);
+            try
+            {
+                CategoryListBox.ItemsSource = db.DatabaseDataGetting("category", "title_category", 0);
+            }
+            catch(ArgumentException exa)
+            {
+                Console.WriteLine(exa.Message);
+                MessageBox.Show(exa.Message);
+            }
         }
 
         //uruchamiania przycisku, gdy wpisana jest nazwa kategorii

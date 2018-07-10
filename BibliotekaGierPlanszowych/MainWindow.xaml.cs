@@ -1,37 +1,32 @@
 ﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Markup;
+
 
 namespace BibliotekaGierPlanszowych
 {
 
     public partial class MainWindow : Window
     {
-        
+        private DBConnectionCreateDB dbCreation = new DBConnectionCreateDB();
+
         public MainWindow()
         {
 
             InitializeComponent();
-            //utworzenie nowej bazy danych przy starcie programu
 
-            DBConnection db = new DBConnection();
+            //utworzenie nowej bazy danych przy starcie programu
             if (!File.Exists("database.db"))
             {
-                db.DatabaseCreate();
+                dbCreation.DatabaseCreate();
             }
 
             MainGrid.Children.Add(new UserControlList());
             
-            
         }
 
-        private void ButtonSettings_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
-        private void ButtonExit_Click(object sender, RoutedEventArgs e)
+        //wyjście z programu
+       private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
             if(MessageBox.Show("Czy na pewno chcesz opuścić program?", "Wyjście", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
             {
@@ -39,21 +34,25 @@ namespace BibliotekaGierPlanszowych
             }
         }
 
+        //o programie
         private void ButtonAbout_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Biblioteka Gier Planszowych\nTomasz Mozgwa\n2018", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        //minimalizacja
         private void ButtonMin_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
 
+        //przesuwanie okna aplikacji za pomoca kliknięcia w dowolnym miejscu okna
         private void Grid_MouseDown(object sender, RoutedEventArgs e)
         {
             DragMove();
         }
 
+        //wybór paneli z menu bocznego
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int index = ListViewMenu.SelectedIndex;
@@ -85,6 +84,8 @@ namespace BibliotekaGierPlanszowych
                     break;
             }
         }
+
+        //zmiana menu po kliknięciu w jedno z pól
         private void MoveCursorMenu(int index)
         {
             TrainsitionigContentSlide.OnApplyTemplate();

@@ -119,7 +119,7 @@
       <DependentUpon>Categories.xaml</DependentUpon>
     </Compile>
     <Compile Include="DBConnection.cs" />
-    <Compile Include="DBConnectionForExistingDB.cs" />
+    <Compile Include="DBConnectionCreateDB.cs" />
     <Compile Include="UserControlList.xaml.cs">
       <DependentUpon>UserControlList.xaml</DependentUpon>
     </Compile>

@@ -10,7 +10,8 @@ namespace BibliotekaGierPlanszowych
     public partial class UserControlWishlist : UserControl, IDisposable
     {
         private DataColumn gameTitle = new DataColumn("gameTitle", typeof(string));
-        private string pobranyTytul = "";
+        private String PobranyTytul { get; set; }
+        private DBConnection db = new DBConnection();
 
         public UserControlWishlist()
         {
@@ -23,15 +24,14 @@ namespace BibliotekaGierPlanszowych
         {
             TextBox box = sender as TextBox;
             this.WishAdd_btn.IsEnabled = box.Text.Length > 1;
-        }
 
+        }
+        //dodawanie danych do bazy
         private void WishAdd_btn_Click(object sender, RoutedEventArgs e)
         {
-            //dodawanie danych do bazy
             String Query = "INSERT OR REPLACE INTO wishlist (title_wishlist, price_wishlist) VALUES ('"+ this.WishTitle_txtbox.Text +"', '"
                 + this.WishPrice_txtbox.Text +"')";
 
-            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             db.DatabaseDataChange(Query);
             WishTitle_txtbox.Clear();
             WishPrice_txtbox.Clear();
@@ -41,24 +41,30 @@ namespace BibliotekaGierPlanszowych
         //walidacja - tylko cyfry
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+            try
+            {
+                Regex regex = new Regex("[^0-9]+");
+                e.Handled = regex.IsMatch(e.Text);
+            }
+            catch(ArgumentException exa)
+            {
+                Console.WriteLine(exa.Message);
+                MessageBox.Show(exa.Message);
+            }
         }
 
         //uzupełnianie danych w GridData
         private void GridRefresh()
         {
             string Query = "SELECT wishlist.title_wishlist AS 'Gra', wishlist.price_wishlist || 'zł' AS 'Cena' FROM wishlist";
-            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             db.DataGridRefresh(Query, "wishlist", Wishlist_DataGrid);
         }
 
         //usuwanie wartosci z DataGrid
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            string Query = "DELETE FROM wishlist WHERE title_wishlist = '" + pobranyTytul +"'";
+            string Query = "DELETE FROM wishlist WHERE title_wishlist = '" + PobranyTytul +"'";
 
-            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
             db.DatabasQueryExecute(Query);
             GridRefresh();
         }
@@ -70,14 +76,14 @@ namespace BibliotekaGierPlanszowych
             DataRowView selectedItem = dg.SelectedItem as DataRowView;
             if (selectedItem != null)
             {
-                pobranyTytul = selectedItem[0].ToString();
+                PobranyTytul = selectedItem[0].ToString();
                 WishDelete_btn.IsEnabled = true;
             }
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            db.Dispose();
         }
     }
 }

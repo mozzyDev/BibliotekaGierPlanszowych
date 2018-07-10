@@ -1,23 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Collections.ObjectModel;
 
 namespace BibliotekaGierPlanszowych
 {
-    /// <summary>
-    /// Logika interakcji dla klasy AddGame.xaml
-    /// </summary>
+   
     public partial class AddGame : Window
     {
         List<int> liczbaGraczy = new List<int>();
@@ -27,9 +15,9 @@ namespace BibliotekaGierPlanszowych
             InitializeComponent();
             CategoryComboboxRefresh();
             UstalenieWartosciMinMax();
-            
         }
 
+        //przesuwanie menu
         private void Grid_MouseDown(object sender, RoutedEventArgs e)
         {
             DragMove();
@@ -45,19 +33,29 @@ namespace BibliotekaGierPlanszowych
             Categories categories = new Categories();
             categories.ShowDialog();
             CategoryComboboxRefresh();
-
-
-
         }
 
+        //odświeżanie combobox z kategoriami
         public void CategoryComboboxRefresh()
         {
-            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
-            Category_combobox.ItemsSource = db.DatabaseDataGetting("category", "title_category", 0);
-            
-
+            try
+            {
+                DBConnection db = new DBConnection();
+                Category_combobox.ItemsSource = db.DatabaseDataGetting("category", "title_category", 0);
+            }
+            catch(ArgumentException exa)
+            {
+                Console.WriteLine(exa.Message);
+                MessageBox.Show(exa.Message);
+            }
+            catch (NullReferenceException exn)
+            {
+                Console.WriteLine(exn.Message);
+                MessageBox.Show(exn.Message);
+            }
         }
 
+        //odświeżanie combobox z liczbą graczy do wyboru
         private void MinLiczba_combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //dynamiczna zmiana max liczby graczy
@@ -75,13 +73,21 @@ namespace BibliotekaGierPlanszowych
             }
 
             //sprawdzanie czy min nie jest większe niż max
-            if (MaxLiczba_combo.IsEnabled && MaxLiczba_combo.SelectedValue!= null)
+            try
             {
-                if((int)MaxLiczba_combo.SelectedValue < (int)MinLiczba_combo.SelectedValue)
+                if (MaxLiczba_combo.IsEnabled && MaxLiczba_combo.SelectedValue != null)
                 {
-                    MessageBox.Show("Maksymalna liczba graczy nie może być mniejsza niż minimalna", "Błąd", MessageBoxButton.OK, MessageBoxImage.Information);
-                    MaxLiczba_combo.SelectedValue = MinLiczba_combo.SelectedValue;
+                    if ((int)MaxLiczba_combo.SelectedValue < (int)MinLiczba_combo.SelectedValue)
+                    {
+                        MessageBox.Show("Maksymalna liczba graczy nie może być mniejsza niż minimalna", "Błąd", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MaxLiczba_combo.SelectedValue = MinLiczba_combo.SelectedValue;
+                    }
                 }
+            }
+            catch(FormatException exf)
+            {
+                Console.WriteLine(exf.Message);
+                MessageBox.Show(exf.Message);
             }
 
             MaxLiczba_combo.IsEnabled = true;
@@ -89,7 +95,7 @@ namespace BibliotekaGierPlanszowych
         }
 
             //dodanie wartości dla liczby graczy
-            private void UstalenieWartosciMinMax()
+        private void UstalenieWartosciMinMax()
         {
             for (int i = 1; i < 10; i++)
             {
@@ -100,9 +106,10 @@ namespace BibliotekaGierPlanszowych
             MaxLiczba_combo.ItemsSource = liczbaGraczy;
         }
 
+        //dodawanie nowej gry
         private void GameAdd_btn_Click(object sender, RoutedEventArgs e)
         {
-            DBConnectionForExistingDB db = new DBConnectionForExistingDB();
+            DBConnection db = new DBConnection();
             List<String> listaTytulow = new List<string>();
             String zapytanieTytuly = "SELECT title FROM board_game";
             DateTime today = DateTime.Today;
