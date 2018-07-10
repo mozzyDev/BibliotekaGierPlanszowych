@@ -9,7 +9,7 @@ using System.Windows.Data;
 
 namespace BibliotekaGierPlanszowych
 {
-    public partial class UserControlList : UserControl, IDisposable
+    public partial class UserControlList : UserControl
     {
         private DataColumn gameTitle = new DataColumn("gameTitle", typeof(string));
         string PobranyTytul { get; set; }
@@ -21,7 +21,7 @@ namespace BibliotekaGierPlanszowych
             GridRefresh();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             AddGame addGame = new AddGame();
             addGame.ShowDialog();
@@ -114,9 +114,6 @@ namespace BibliotekaGierPlanszowych
             GridRefresh();
         }
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

@@ -5,7 +5,7 @@ using System.Windows.Controls;
 
 namespace BibliotekaGierPlanszowych
 {
-    public partial class UserControlLoaned : UserControl,  IDisposable
+    public partial class UserControlLoaned : UserControl
     {
         //do pobrania nazwy gry z DataGrid
         private DataColumn gameTitle = new DataColumn("gameTitle", typeof(string));
@@ -96,10 +96,6 @@ namespace BibliotekaGierPlanszowych
             GridRefresh();
         }
 
-        public void Dispose()
-        {
-            db.Dispose();
-        }
 
     }
 }
