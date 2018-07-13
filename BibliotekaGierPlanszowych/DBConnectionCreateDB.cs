@@ -15,7 +15,6 @@ namespace BibliotekaGierPlanszowych
         //utworzenie bazy danych, jeśli nie istnieje
         public void DatabaseCreate()
         {
-            
             sqlite_conn.Open();
             try
             {
