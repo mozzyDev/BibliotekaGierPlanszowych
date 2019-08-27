@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BibliotekaGierPlanszowych;
 using System.Collections.Generic;
 
+
 namespace UnitTestProject1
 {
     [TestClass]
