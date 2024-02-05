@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="Categories" Height="550" Width="600" WindowStyle="None">
     <Grid Background="#FFEEEEEE" MouseDown="Grid_MouseDown">
-        <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
+        <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide">
 
             <Grid>
                 <Grid.RowDefinitions>
