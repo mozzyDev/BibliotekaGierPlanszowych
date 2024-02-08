@@ -24,6 +24,15 @@ CREATE TABLE [wishlist] (
 	title_wishlist varchar,
 	price_wishlist integer
 );
+
+CREATE TABLE [users] (
+	id_users integer PRIMARY KEY, 
+	login varchar,
+	password varchar,
+	lastUsed integer
+);
+
+
 INSERT INTO category (title_category) VALUES ('Strategiczna');
 INSERT INTO category (title_category) VALUES ('Przygodowa');
 INSERT INTO category (title_category) VALUES ('Logiczna');

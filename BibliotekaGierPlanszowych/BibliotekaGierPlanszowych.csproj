@@ -132,11 +132,17 @@
     </Compile>
     <Compile Include="DBConnection.cs" />
     <Compile Include="DBConnectionCreateDB.cs" />
+    <Compile Include="SignUpWindow.xaml.cs">
+      <DependentUpon>SignUpWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlList.xaml.cs">
       <DependentUpon>UserControlList.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControlLoaned.xaml.cs">
       <DependentUpon>UserControlLoaned.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlLogin.xaml.cs">
+      <DependentUpon>UserControlLogin.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControlRandom.xaml.cs">
       <DependentUpon>UserControlRandom.xaml</DependentUpon>
@@ -167,11 +173,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SignUpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControlList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlLoaned.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
