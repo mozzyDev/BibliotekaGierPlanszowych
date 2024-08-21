@@ -141,9 +141,6 @@
     <Compile Include="UserControlLoaned.xaml.cs">
       <DependentUpon>UserControlLoaned.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControlLogin.xaml.cs">
-      <DependentUpon>UserControlLogin.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControlRandom.xaml.cs">
       <DependentUpon>UserControlRandom.xaml</DependentUpon>
     </Compile>
@@ -182,10 +179,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlLoaned.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControlLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

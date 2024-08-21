@@ -7,9 +7,8 @@ using System.Windows.Controls;
 namespace BibliotekaGierPlanszowych
 {
     //Klasa odpowiedzialna za tworzenie i wykonywanie operacji na bazie danych
-   public class DBConnection : IDisposable
+    public class DBConnection : IDisposable
     {
-        
         private static String DatabaseConnectionValue = "Data Source = database.db; Version = 3;Compress = True";
         private SQLiteConnection sqlite_conn = new SQLiteConnection(DatabaseConnectionValue);
         protected String Query { get; set; }

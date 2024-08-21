@@ -16,6 +16,22 @@ namespace BibliotekaGierPlanszowych
         public SignUpWindow()
         {
             InitializeComponent();
+
+            //Pobieranie ostatniego wybranego loginu
+            List<String> lastUser = new List<string>();
+            String lastUserQuery = "SELECT login FROM users where lastUsed = 1 LIMIT 1";
+            lastUser = db.DatabasQueryExecute(lastUserQuery);
+
+            if (lastUser.Count > 0)
+            {
+                TextBox_Login.Text = lastUser[0];
+            }
+            else
+            {
+                TextBox_Login.Text = "";
+            }
+            TextBox_Pass.Password = "";
+            TextBox_RepPass.Password = "";
         }
 
         private DBConnection db = new DBConnection();
