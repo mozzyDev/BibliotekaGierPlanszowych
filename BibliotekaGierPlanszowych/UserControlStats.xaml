@@ -124,7 +124,7 @@
                         <Grid.Effect>
                             <DropShadowEffect RenderingBias="Quality" BlurRadius="10"/>
                         </Grid.Effect>
-                        <materialDesign:PackIcon Kind="Counter" HorizontalAlignment="Center" VerticalAlignment="Center" Width="35" Height="55" Foreground="White"/>
+                        <materialDesign:PackIcon Kind="Counter" HorizontalAlignment="Center" VerticalAlignment="Center" Width="35" Height="55"  Background="#05b790" Foreground="#ffffff"/>
                     </Grid>
                     <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" Margin="40 25 0 0"  VerticalAlignment="Top">
                         <Label Content="Ostatnio dodana" FontSize="23" />

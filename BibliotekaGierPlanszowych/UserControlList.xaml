@@ -17,7 +17,7 @@
 
                 <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 2 0 0">
 
-                    <Button Width="100" Height="50" Margin="10 5 30 5" Click="ButtonAdd_Click" IsDefault="True">
+                    <Button  Background="#05b790" Foreground="#ffffff"  Width="100" Height="50" Margin="10 5 30 5" Click="ButtonAdd_Click" IsDefault="True">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             
                             <materialDesign:PackIcon  Kind="PlusBox" Margin="10" Height="20" Width="20"/>
@@ -26,7 +26,7 @@
                        
                     </Button>
 
-                    <Button x:Name="ListDelete_btn" IsEnabled="False" Width="100" Height="50" Margin="10 5 30 5" Click="DeleteButton_Click">
+                    <Button  Background="#05b790" Foreground="#ffffff"  x:Name="ListDelete_btn" IsEnabled="False" Width="100" Height="50" Margin="10 5 30 5" Click="DeleteButton_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                             <materialDesign:PackIcon  Kind="Delete" Margin="10" Height="20" Width="20"/>
@@ -35,7 +35,7 @@
 
                     </Button>
 
-                    <Button x:Name="ListEdit_btn" IsEnabled="False" Width="100" Height="50" Margin="10 5 30 5" Click="ListEdit_btn_Click">
+                    <Button  Background="#05b790" Foreground="#ffffff" x:Name="ListEdit_btn" IsEnabled="False" Width="100" Height="50" Margin="10 5 30 5" Click="ListEdit_btn_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                             <materialDesign:PackIcon  Kind="TableEdit" Margin="10" Height="20" Width="20"/>

@@ -80,6 +80,8 @@ namespace BibliotekaGierPlanszowych
             bool logIn = true;
             bool wrongPass = true;
             bool noLogin = true;
+            string updateQuery = "UPDATE users set lastUsed = 1 where login = "+"'"+TextBox_Login.Text+"'";
+            string updateAllQuery = "UPDATE users set lastUsed = 0";
 
             foreach (String item in loginList)
             {
@@ -102,6 +104,21 @@ namespace BibliotekaGierPlanszowych
 
             if (logIn)
             {
+                //oznaczamy ostatnio zalogowanego użytkownika
+                try
+                {
+                    if (!String.IsNullOrEmpty(TextBox_Login.Text))
+                    {
+                        db.DatabaseDataChange(updateAllQuery);
+                        db.DatabaseDataChange(updateQuery);
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+                //otwieramy okno główne
                 MainWindow main = new MainWindow();
                 main.Show();
                 this.Close();

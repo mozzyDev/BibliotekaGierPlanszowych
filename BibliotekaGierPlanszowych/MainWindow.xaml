@@ -10,15 +10,15 @@
     <Grid Background="#FFEEEEEE" MouseDown="Grid_MouseDown" >
 
         <StackPanel VerticalAlignment="Top" >
-            <Grid Height="10" Background="#0069C0"></Grid>
+            <Grid Height="10"  Background="#05b790"></Grid>
 
             <Grid Margin="2">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                    
                     <Button Width="40" Height="40" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonAbout_Click">
-                        <materialDesign:PackIcon Kind="InformationOutline" Width="35" Height="35"/>
+                        <materialDesign:PackIcon Kind="Logout" Width="35" Height="35"/>
                     </Button>
-                    <Button x:Name="ButtonMin" Width="40" Height="40" Padding="0" Margin="30 15 0 0"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonMin_Click" >
+                    <Button x:Name="ButtonMin" Width="40" Height="40" Padding="0" Margin="0 15 0 0"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonMin_Click" >
                         <materialDesign:PackIcon Kind="WindowMinimize" Width="35" Height="35"/>
                     </Button>
                     <Button x:Name="ButtonExit" Width="40" Height="40" Padding="0" Margin="0 0 10 0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonExit_Click" >
@@ -35,7 +35,7 @@
         
         <Grid Width="250" HorizontalAlignment="Left" Background="#FF343232">
             <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
-                <Grid x:Name="GridCursor" Margin="0 100 0 0" Background="#0069C0" Width="10" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top"/>
+                <Grid x:Name="GridCursor" Margin="0 100 0 0"  Background="#05b790" Width="10" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top"/>
             </materialDesign:TransitioningContent>
 
             <ListView x:Name="ListViewMenu"  Cursor="Hand" Margin="0 100"  FontFamily="Champagne &amp; Limousines" SelectionChanged="ListViewMenu_SelectionChanged">
