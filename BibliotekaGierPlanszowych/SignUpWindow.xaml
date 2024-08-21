@@ -15,6 +15,9 @@
         FontSize="18"
         FontFamily="{DynamicResource MaterialDesignFont}"
         >
+    <Window.Resources>
+        <local:BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+    </Window.Resources>
     <Grid Margin="20">
         <Grid.Effect>
             <DropShadowEffect BlurRadius="30"
@@ -24,18 +27,18 @@
         </Grid.Effect>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1.22*"/>            
+            <ColumnDefinition Width="1.22*"/>
         </Grid.ColumnDefinitions>
         <Border Background="#07bf96"
                 CornerRadius="10 0 0 10"
                 ClipToBounds="True">
-                
+
             <Border.Clip>
-            <RectangleGeometry Rect="0,0,400,605"
+                <RectangleGeometry Rect="0,0,400,605"
                                        RadiusX="10"
                                        RadiusY="10">
 
-            </RectangleGeometry>
+                </RectangleGeometry>
             </Border.Clip>
             <Grid>
                 <!--Ellipses-->
@@ -160,30 +163,36 @@
                                      materialDesign:HintAssist.FloatingOffset="0,-18"
                                      BorderBrush="#c5c8cc"
                                      BorderThickness="0 0 0 1.5"
-                                     Margin=" 0 10"/>
+                                     Margin=" 0 10"
+                                     Visibility="{Binding IsChecked, ElementName=CheckBox_Register, Converter={StaticResource BoolToVisConverter}}"/>
 
-                    <CheckBox x:Name="CheckBox_RememberUser" Margin="0 40 0 20"
+                    <CheckBox x:Name="CheckBox_Register" Margin="5 60 0 30"
                                       FontSize="13">
                         <TextBlock>
-                                    <Run Foreground="#b6b6b6"/>Zapamiętaj użytkownika
+                                    <Run Foreground="#b6b6b6"/>Rejestracja
                         </TextBlock>
                     </CheckBox>
+                    
+                    
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="Button_Register" Content="Rejestracja"
                                         Background="#05b790"
                                         Foreground="#ffffff"
                                         FontSize="12"
-                                        Width="90"
+                                        Width="100"
                                         Height="35" Click="Button_Register_Click"
-
+                                        Visibility="{Binding IsChecked, ElementName=CheckBox_Register, Converter={StaticResource BoolToVisConverter}}"
                                         />
-                        <Button x:Name="___Button_Login" Content="Logowanie"
+                        <Button x:Name="Button_Login" Content="Logowanie"
                                         FontSize="12"
-                                        Width="95"
+                                        Width="100"
                                         Height="35"
                                         Margin="5 0 0 0 "
-                                        Style="{StaticResource MaterialDesignFlatButton}" Click="Button_Login_Click"
-                                        />
+                                        Background="#05b790"
+                                        Foreground="#ffffff"
+                                        Click="Button_Login_Click"
+ 
+                                />
                     </StackPanel>
                 </StackPanel>
             </Grid>

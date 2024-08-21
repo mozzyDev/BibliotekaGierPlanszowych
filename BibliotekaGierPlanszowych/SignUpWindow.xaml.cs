@@ -3,6 +3,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System;
 using System.Collections.Generic;
+using System.Windows.Data;
+using System.Globalization;
 
 namespace BibliotekaGierPlanszowych
 {
@@ -114,6 +116,29 @@ namespace BibliotekaGierPlanszowych
         private void ButtonMin_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+    }
+    public class BooleanToVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is bool boolValue)
+            {
+                bool invert = parameter != null && bool.Parse(parameter.ToString());
+                return (boolValue ^ invert) ? Visibility.Visible : Visibility.Collapsed;
+            }
+            return Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is Visibility visibility)
+            {
+                bool invert = parameter != null && bool.Parse(parameter.ToString());
+                return visibility == Visibility.Visible ^ invert;
+            }
+            return false;
         }
     }
 }
