@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BibliotekaGierPlanszowych"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="" Height="600" Width="1024" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        Title="" Height="600" Width="1024" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid Background="#FFEEEEEE" MouseDown="Grid_MouseDown" >
 
         <StackPanel VerticalAlignment="Top" >
