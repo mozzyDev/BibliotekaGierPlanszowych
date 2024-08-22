@@ -28,6 +28,13 @@ namespace BibliotekaGierPlanszowych
             GridRefresh();
         }
 
+        private void ButtonAddBGG_Click(object sender, RoutedEventArgs e)
+        {
+            AddGameBGG addGameBGG = new AddGameBGG();
+            addGameBGG.ShowDialog();
+            GridRefresh();
+        }
+
         //odświeżenie danych w GridData
         private void GridRefresh()
         {
