@@ -35,6 +35,14 @@
 
                     </Button>
 
+                    <Button  Background="#05b790" Foreground="#ffffff" x:Name="ListEdit_btn" IsEnabled="False" Width="120" Height="50" Margin="10 5 30 5" Click="ListEdit_btn_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                            <materialDesign:PackIcon  Kind="TableEdit" Margin="10" Height="20" Width="20"/>
+                            <TextBlock Margin="0 10 0 0">Pokaż grę</TextBlock>
+                        </StackPanel>
+
+                    </Button>
                     <Button  Background="#05b790" Foreground="#ffffff"  x:Name="ListDelete_btn" IsEnabled="False" Width="100" Height="50" Margin="10 5 30 5" Click="DeleteButton_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
@@ -44,14 +52,6 @@
 
                     </Button>
 
-                    <Button  Background="#05b790" Foreground="#ffffff" x:Name="ListEdit_btn" IsEnabled="False" Width="100" Height="50" Margin="10 5 30 5" Click="ListEdit_btn_Click">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-
-                            <materialDesign:PackIcon  Kind="TableEdit" Margin="10" Height="20" Width="20"/>
-                            <TextBlock Margin="0 10 0 0">Edytuj</TextBlock>
-                        </StackPanel>
-
-                    </Button>
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Margin="0 10 0 0 " >

@@ -8,17 +8,21 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
        
         mc:Ignorable="d"
-        Title="AddGame" Height="500" Width="700" WindowStyle="None">
+        Title="AddGame" Height="500" Width="1000" WindowStyle="None">
     <Grid Background="#FFEEEEEE" MouseDown="Grid_MouseDown">
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide">
 
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
                 <StackPanel Grid.Column="0">
+                    <Image x:Name="GameImage" Stretch="Uniform" Width="150" Height="150" Margin=" 10 10 0 0" />                    
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
                     <Label Content="Tytuł" Margin="5 20 5 20" FontSize="22"/>
                     <Label Content="Kategoria" Margin="5 25 5 20" FontSize="22"/>
                     <Label Content="Minimalna liczba graczy" Margin="5 20 5 20" FontSize="22"/>
@@ -42,7 +46,7 @@
                 </StackPanel>
                 </StackPanel>
                     
-                <StackPanel Grid.Column="1" Margin="0 0 0 10">
+                <StackPanel Grid.Column="2" Margin="0 0 0 10">
                     <TextBox x:Name="Title_txtbox" Margin="5 20 5 20" FontSize="22"/>
                     <StackPanel Orientation="Horizontal">
                         <ComboBox x:Name="Category_combobox" SelectedIndex="0" Cursor="Hand" Margin="5 20 5 20" FontSize="22" HorizontalAlignment="Left" Width="200" IsManipulationEnabled="True" IsTextSearchCaseSensitive="True"  >

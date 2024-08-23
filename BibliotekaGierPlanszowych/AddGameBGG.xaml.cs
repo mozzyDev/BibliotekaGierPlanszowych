@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +20,14 @@ namespace BibliotekaGierPlanszowych
     /// </summary>
     public partial class AddGameBGG : Window
     {
+        private DataColumn Bgg_gameTitle = new DataColumn("BggTitle", typeof(string));
+ 
         public AddGameBGG()
         {
             InitializeComponent();
+            AddBgg_btn.IsEnabled = false;
         }
+
         private void Grid_MouseDown(object sender, RoutedEventArgs e)
         {
             DragMove();
@@ -36,23 +41,63 @@ namespace BibliotekaGierPlanszowych
         private void Button_Search_Click(object sender, RoutedEventArgs e)
         {
             string gameName = Title_txtbox.Text;
-
             // Wywołaj metodę wyszukiwania
             APIBGG bgg = new APIBGG();
 
-            List<string> gameReturn = bgg.SearchBoardGame(gameName);
-            if(gameReturn.Count > 0)
+            List<BoardGame> bggGameList = bgg.SearchBoardGame(gameName);
+            if (bggGameList.Count > 0)
             {
-                StringBuilder sb = new StringBuilder();
-                foreach (var item in gameReturn)
-                {
-                    sb.Append(item+"/n");
-                }
-                MessageBox.Show("Znaleziono: " + sb.ToString(), "Informacja");
+                List_BggGameList.ItemsSource = null;
+                List_BggGameList.ItemsSource = bggGameList;
+                DataGridColumn column = List_BggGameList.Columns[0];
+                column.Width = new DataGridLength(240);
+                DataGridColumn column2 = List_BggGameList.Columns[1];
+                column2.Width = new DataGridLength(120);
+                DataGridColumn column3 = List_BggGameList.Columns[2];
+                column3.Visibility = Visibility.Collapsed;
+                AddBgg_btn.IsEnabled = true;
             }
-                
             else
                 MessageBox.Show("Nic nie znaleziono", "Informacja");
         }
+
+        //pobieranie danych z GridView
+
+        private void ButtonAddBGG_Click(object sender, RoutedEventArgs e)
+        {
+            int gameId = 0; ;
+            if (List_BggGameList.SelectedItem != null)
+            {
+                BoardGame gameToGet = (BoardGame)List_BggGameList.SelectedItem;
+                gameId = gameToGet.Id;
+            }
+            if (gameId != 0)
+            {
+                APIBGG bgg = new APIBGG();
+
+                List<BoardGameBgg> bggGameList = bgg.AddBoardGame(gameId);
+
+                if (bggGameList.Count > 0)
+                {
+                    DBConnection db = new DBConnection();
+                    DateTime today = DateTime.Today;
+                    foreach (var item in bggGameList)
+                    {
+                        String QueryGameBgg = "INSERT OR REPLACE INTO board_game (title, min_players, max_players, rate, add_date, id_category, "
+                            + "yearpublished, playingtime, minplaytime, maxplaytime, age, image_url) VALUES ('"
+                            + item.Name.Value + "', " + item.MinPlayers + ", " + item.MaxPlayers + ", 0 , '" + today.ToString() + "', 7 , "  //7 to brak kategorii
+                            + item.YearPublished + ", " + item.PlayingTime + ", " + item.MinPlayTime + ", " + item.MaxPlayTime + ", " + item.Age + ", '" + item.image_url + "')";
+                        db.DatabaseDataChange(QueryGameBgg);
+
+                        MessageBox.Show("Zapisano grę w bazie danych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nie zaznaczono żadnego rekordu");
+            }
+        }
     }
+
 }

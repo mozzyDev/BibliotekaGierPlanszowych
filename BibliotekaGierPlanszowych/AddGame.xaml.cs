@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace BibliotekaGierPlanszowych
 {
@@ -16,6 +17,17 @@ namespace BibliotekaGierPlanszowych
             InitializeComponent();
             CategoryComboboxRefresh();
             UstalenieWartosciMinMax();
+            string imageUrl = GetImageUrl(1);
+
+            if (!String.IsNullOrEmpty(imageUrl))
+            {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(imageUrl, UriKind.Absolute);
+                bitmap.EndInit();
+
+                GameImage.Source = bitmap;
+            }
         }
 
         //przesuwanie menu
@@ -53,6 +65,26 @@ namespace BibliotekaGierPlanszowych
                 Console.WriteLine(exn.Message);
                 MessageBox.Show(exn.Message);
             }
+        }
+
+        public string GetImageUrl(int gameId)
+        {
+            string imageUrl = "";
+            try
+            {
+                imageUrl = db.DatabaseDataGetOne("select image_url from board_game where id_board_game = " + gameId.ToString());
+            }
+            catch (ArgumentException exa)
+            {
+                Console.WriteLine(exa.Message);
+                MessageBox.Show(exa.Message);
+            }
+            catch (NullReferenceException exn)
+            {
+                Console.WriteLine(exn.Message);
+                MessageBox.Show(exn.Message);
+            }
+            return imageUrl;
         }
 
         //odświeżanie combobox z liczbą graczy do wyboru
@@ -131,7 +163,7 @@ namespace BibliotekaGierPlanszowych
                 //jesli nowy tytul znajduje sie w bazie - usuwamy poprzedni rekord
                 if (niepoprawnyTytul)
                 {
-                    db.DatabasQueryExecute("DELETE FROM board_game WHERE title = '" + this.Title_txtbox.Text + "'");
+                    //db.DatabasQueryExecute("DELETE FROM board_game WHERE title = '" + this.Title_txtbox.Text + "'");
                 }
                 //dodaje nowy rekord
                 

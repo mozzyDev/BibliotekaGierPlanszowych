@@ -5,7 +5,12 @@ CREATE TABLE [board_game] (
 	max_players integer,
 	rate integer,
 	add_date datetime,
-	id_category integer
+	id_category integer,
+	yearpublished integer,
+	playingtime integer,
+	minplaytime integer,
+	maxplaytime integer,
+	age integer
 );
 
 CREATE TABLE [category] (
@@ -39,3 +44,4 @@ INSERT INTO category (title_category) VALUES ('Logiczna');
 INSERT INTO category (title_category) VALUES ('Ekonomiczna');
 INSERT INTO category (title_category) VALUES ('Karciana');
 INSERT INTO category (title_category) VALUES ('Imprezowa');
+INSERT INTO category (title_category) VALUES ('Brak');

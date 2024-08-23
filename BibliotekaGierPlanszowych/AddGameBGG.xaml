@@ -14,32 +14,47 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="350"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0">
-                    <Label Content="Tytuł:" Margin="5,10,189,0" FontSize="22" Width="100"/>
+                    <Label Content="Tytuł:" Margin="-140 0 0 0" FontSize="22" Width="100"/>
                     <TextBox Name="Title_txtbox" FontSize="22" Margin="0 0 0 0" Width="230"/>
                     <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
 
-                        <Button x:Name="GameSearch_btn" Background="#05b790" Foreground="#ffffff" Width="100" Height="45" Margin="10 5 10 5" Click="Button_Search_Click" IsDefault="True">
+                        <Button x:Name="GameSearch_btn" Background="#05b790" Foreground="#ffffff" Width="100" Height="45" Margin="5 5 5 5" Click="Button_Search_Click" IsDefault="True">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <materialDesign:PackIcon  Kind="PlusBox" Margin="10" Height="18" Width="18"/>
-                                <TextBlock Margin="0 9 0 0" FontSize="14">Szukaj</TextBlock>
+                                <materialDesign:PackIcon  Kind="Magnify" Margin="10" Height="16" Width="16"/>
+                                <TextBlock Margin="0 9 0 0" FontSize="15">Szukaj</TextBlock>
                             </StackPanel>
                         </Button>
-
-                        <Button Background="#05b790" Foreground="#ffffff" Width="110" Height="45" Margin="10 5 10 5" Click="ButtonCancel_Click" IsCancel="True">
+                        <Button x:Name="AddBgg_btn" Background="#05b790" Foreground="#ffffff" Width="110" Height="45" Margin="2 5 5 5" Click="ButtonAddBGG_Click" IsCancel="True">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <materialDesign:PackIcon  Kind="PlusBox" Margin="10" Height="18" Width="18"/>
+                                <TextBlock Margin="0 7 0 0" FontSize="16">Dodaj</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button Background="#05b790" Foreground="#ffffff" Width="110" Height="45" Margin="2 5 5 5" Click="ButtonCancel_Click" IsCancel="True">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <materialDesign:PackIcon  Kind="Cancel" Margin="10" Height="18" Width="18"/>
                                 <TextBlock Margin="0 7 0 0" FontSize="16">Anuluj</TextBlock>
                             </StackPanel>
                         </Button>
                     </StackPanel>
-                </StackPanel>              
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <DataGrid x:Name="List_BggGameList" Background="#FFEEEEEE"  FontSize="12"  Cursor="Hand" Height="500" Width="430" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+
+
+                        <DataGrid.Effect>
+                            <DropShadowEffect BlurRadius="10"/>
+                        </DataGrid.Effect>
+                    </DataGrid>
+                </StackPanel>
 
             </Grid>
+
 
         </materialDesign:TransitioningContent>
     </Grid>
