@@ -81,15 +81,22 @@ namespace BibliotekaGierPlanszowych
                 {
                     DBConnection db = new DBConnection();
                     DateTime today = DateTime.Today;
+                    string gameName = "";
                     foreach (var item in bggGameList)
                     {
+
+                        foreach (var item2 in item.Name)
+                        {
+                            if (item2.IsPrimary) gameName = item2.Value;
+                        }
+
                         String QueryGameBgg = "INSERT OR REPLACE INTO board_game (title, min_players, max_players, rate, add_date, id_category, "
                             + "yearpublished, playingtime, minplaytime, maxplaytime, age, image_url) VALUES ('"
-                            + item.Name.Value + "', " + item.MinPlayers + ", " + item.MaxPlayers + ", 0 , '" + today.ToString() + "', 7 , "  //7 to brak kategorii
+                            + gameName + "', " + item.MinPlayers + ", " + item.MaxPlayers + ", 0 , '" + today.ToString() + "', 7 , "  //7 to brak kategorii
                             + item.YearPublished + ", " + item.PlayingTime + ", " + item.MinPlayTime + ", " + item.MaxPlayTime + ", " + item.Age + ", '" + item.image_url + "')";
                         db.DatabaseDataChange(QueryGameBgg);
 
-                        MessageBox.Show("Zapisano grę w bazie danych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+
                     }
                 }
             }

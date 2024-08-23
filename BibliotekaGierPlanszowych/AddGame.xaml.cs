@@ -6,18 +6,27 @@ using System.Windows.Media.Imaging;
 
 namespace BibliotekaGierPlanszowych
 {
-   
+
     public partial class AddGame : Window
     {
         private DBConnection db = new DBConnection();
         List<int> liczbaGraczy = new List<int>();
-        
+        int tryb = 0; //0 - dodawanie nowej gry, 1- edycja gry
+        int getGameId = 0;
         public AddGame()
         {
             InitializeComponent();
             CategoryComboboxRefresh();
             UstalenieWartosciMinMax();
-            string imageUrl = GetImageUrl(1);
+        }
+
+        public AddGame(string imageUrl, int gameId) //w trybie edycji pobieram zdjecie
+        {
+            tryb = 1;
+            getGameId = gameId;
+            InitializeComponent();
+            CategoryComboboxRefresh();
+            UstalenieWartosciMinMax();
 
             if (!String.IsNullOrEmpty(imageUrl))
             {
@@ -29,6 +38,7 @@ namespace BibliotekaGierPlanszowych
                 GameImage.Source = bitmap;
             }
         }
+
 
         //przesuwanie menu
         private void Grid_MouseDown(object sender, RoutedEventArgs e)
@@ -55,7 +65,7 @@ namespace BibliotekaGierPlanszowych
             {
                 Category_combobox.ItemsSource = db.DatabaseDataGetting("category", "title_category", 0);
             }
-            catch(ArgumentException exa)
+            catch (ArgumentException exa)
             {
                 Console.WriteLine(exa.Message);
                 MessageBox.Show(exa.Message);
@@ -97,11 +107,11 @@ namespace BibliotekaGierPlanszowych
                 int i = (int)MinLiczba_combo.SelectedValue;
                 for (int j = i; j < 11; j++)
                 {
-                    
+
                     liczbaGraczy.Add(j);
                 }
                 MaxLiczba_combo.ItemsSource = liczbaGraczy;
-                
+
             }
 
             //sprawdzanie czy min nie jest większe niż max
@@ -116,17 +126,17 @@ namespace BibliotekaGierPlanszowych
                     }
                 }
             }
-            catch(FormatException exf)
+            catch (FormatException exf)
             {
                 Console.WriteLine(exf.Message);
                 MessageBox.Show(exf.Message);
             }
 
             MaxLiczba_combo.IsEnabled = true;
-           
+
         }
 
-            //dodanie wartości dla liczby graczy
+        //dodanie wartości dla liczby graczy
         private void UstalenieWartosciMinMax()
         {
             for (int i = 1; i < 10; i++)
@@ -141,49 +151,71 @@ namespace BibliotekaGierPlanszowych
         //dodawanie nowej gry
         private void GameAdd_btn_Click(object sender, RoutedEventArgs e)
         {
-            List<String> listaTytulow = new List<string>();
-            String zapytanieTytuly = "SELECT title FROM board_game";
-            DateTime today = DateTime.Today;
-
-            if (Title_txtbox.Text.Length > 1 && MaxLiczba_combo.SelectedValue != null)
+            if (tryb == 0)
             {
-                //sprawdzanie czy w bazie nie ma już gry o tej nazwie
-                //pobranie listy wszyskich tytułów
-                listaTytulow = db.DatabasQueryExecute(zapytanieTytuly);
-                bool niepoprawnyTytul = false;
+                List<String> listaTytulow = new List<string>();
+                String zapytanieTytuly = "SELECT title FROM board_game";
+                DateTime today = DateTime.Today;
 
-                //sprawdzenie czy nowy tytul znajduje sie juz w bazie
-                foreach (String item in listaTytulow)
+                if (Title_txtbox.Text.Length > 1 && MaxLiczba_combo.SelectedValue != null)
                 {
-                    if (item.Equals(Title_txtbox.Text))
+                    //sprawdzanie czy w bazie nie ma już gry o tej nazwie
+                    //pobranie listy wszyskich tytułów
+                    listaTytulow = db.DatabasQueryExecute(zapytanieTytuly);
+                    bool niepoprawnyTytul = false;
+
+                    //sprawdzenie czy nowy tytul znajduje sie juz w bazie
+                    foreach (String item in listaTytulow)
                     {
-                        niepoprawnyTytul = true;
+                        if (item.Equals(Title_txtbox.Text))
+                        {
+                            niepoprawnyTytul = true;
+                        }
                     }
+                    //jesli nowy tytul znajduje sie w bazie - usuwamy poprzedni rekord
+                    if (niepoprawnyTytul)
+                    {
+                        db.DatabasQueryExecute("DELETE FROM board_game WHERE title = '" + this.Title_txtbox.Text + "'");
+                    }
+                    //dodaje nowy rekord
+
+                    String Query = "INSERT OR REPLACE INTO board_game (title, min_players, max_players, rate, id_category, add_date) VALUES ('"
+                        + this.Title_txtbox.Text + "', " + MinLiczba_combo.SelectedValue.ToString() + ", " + MaxLiczba_combo.SelectedValue.ToString() + ", "
+                        + Rate_slider.Value.ToString() + ", " +
+                        "(SELECT DISTINCT id_category FROM category WHERE title_category = '" + Category_combobox.SelectedValue.ToString() + "'), '" + today.ToString() + "')";
+
+                    db.DatabaseDataChange(Query);
+
+                    this.Close();
+
                 }
-                //jesli nowy tytul znajduje sie w bazie - usuwamy poprzedni rekord
-                if (niepoprawnyTytul)
+                else
                 {
-                    //db.DatabasQueryExecute("DELETE FROM board_game WHERE title = '" + this.Title_txtbox.Text + "'");
+                    MessageBox.Show("Nie wypełniono wszystkich pól!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                //dodaje nowy rekord
-                
-                String Query = "INSERT OR REPLACE INTO board_game (title, min_players, max_players, rate, id_category, add_date) VALUES ('"
-                    + this.Title_txtbox.Text + "', " + MinLiczba_combo.SelectedValue.ToString() + ", " + MaxLiczba_combo.SelectedValue.ToString() + ", "
-                    + Rate_slider.Value.ToString() + ", " +
-                    "(SELECT DISTINCT id_category FROM category WHERE title_category = '" + Category_combobox.SelectedValue.ToString() + "'), '" + today.ToString() + "')";
 
-                db.DatabaseDataChange(Query);
-
-                MessageBox.Show("Zapisano grę w bazie danych", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
-                
             }
             else
             {
-                MessageBox.Show("Nie wypełniono wszystkich pól!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                String Query = "UPDATE board_game SET "
+                        + " title = '" + this.Title_txtbox.Text +"'"
+                        + ", min_players = " + MinLiczba_combo.SelectedValue.ToString()
+                        + ", max_players = " + MaxLiczba_combo.SelectedValue.ToString()
+                        + ", rate = " + Rate_slider.Value.ToString()
+                        + ", id_category = (SELECT DISTINCT id_category FROM category WHERE title_category = '" + Category_combobox.SelectedValue.ToString() + "')"
+                        + " where id_board_game = " + getGameId.ToString();
+                try
+                {
+                    db.DatabaseDataChange(Query);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                this.Close();
             }
 
-            }
-        
         }
+    }
 }

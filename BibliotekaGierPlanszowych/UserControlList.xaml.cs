@@ -94,7 +94,7 @@ namespace BibliotekaGierPlanszowych
         {
             
             DBConnection db = new DBConnection();
-            AddGame addGame = new AddGame();
+            
             List<string> QueryList = new List<string>();
             QueryList.Add(PobranyTytul);
             QueryList.Add(db.DatabaseDataGetOne("SELECT category.title_category FROM board_game, category WHERE category.id_category = board_game.id_category AND board_game.title = '"
@@ -102,6 +102,10 @@ namespace BibliotekaGierPlanszowych
             QueryList.Add(db.DatabaseDataGetOne("SELECT min_players FROM board_game WHERE title = '" + PobranyTytul + "'"));
             QueryList.Add(db.DatabaseDataGetOne("SELECT max_players FROM board_game WHERE title = '" + PobranyTytul + "'"));
             QueryList.Add(db.DatabaseDataGetOne("SELECT rate FROM board_game WHERE title = '" + PobranyTytul + "'"));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT image_url FROM board_game WHERE title = '" + PobranyTytul + "'"));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT id_board_game FROM board_game WHERE title = '" + PobranyTytul + "'"));
+
+            AddGame addGame = new AddGame(QueryList[5].ToString(), Convert.ToInt32(QueryList[6])); //tryb edycji z url zdjecia i ref gry
 
             try
             {
@@ -110,6 +114,7 @@ namespace BibliotekaGierPlanszowych
                 addGame.MinLiczba_combo.SelectedValue = Convert.ToInt32(QueryList[2]);
                 addGame.MaxLiczba_combo.SelectedValue = Convert.ToInt32(QueryList[3]);
                 addGame.Rate_slider.Value = Convert.ToInt32(QueryList[4]);
+                
             }
             catch(ArgumentException ex)
             {

@@ -170,9 +170,9 @@ namespace BibliotekaGierPlanszowych
         public string image_url{ get; set; }
 
         [XmlElement("name")]
-        public Name Name { get; set; }
+        public List<Name> Name { get; set; }
     }
-
+   
     public class Name
     {
         [XmlAttribute("primary")]
