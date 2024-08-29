@@ -8,7 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
        
         mc:Ignorable="d"
-        Title="AddGame" Height="500" Width="1000" WindowStyle="None">
+        Title="AddGame" Height="700" Width="1000" WindowStyle="None">
     <Grid Background="#FFEEEEEE" MouseDown="Grid_MouseDown">
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide">
 
@@ -19,44 +19,63 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
-                    <Image x:Name="GameImage" Stretch="Uniform" Width="150" Height="150" Margin=" 10 10 0 0" />                    
+                    <Image x:Name="GameImage" Stretch="Uniform" Width="150" Height="150" Margin=" 10 10 0 0" />
+                    <Label Margin="10 30 0 0" FontSize="18">Data Dodania:</Label>
+                    <Label Name="AddingDate" Margin="10 0 0 0" FontSize="18"></Label>
+                    <Label Margin="10 30 0 0" FontSize="18">Ostatnio grana:</Label>
+                    <Label Name="PlayedDate" Margin="10 0 0 0" FontSize="18"></Label>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <Label Content="Tytuł" Margin="5 20 5 20" FontSize="22"/>
-                    <Label Content="Kategoria" Margin="5 25 5 20" FontSize="22"/>
-                    <Label Content="Minimalna liczba graczy" Margin="5 20 5 20" FontSize="22"/>
-                    <Label Content="Maksymalna liczba graczy" Margin="5 25 5 20" FontSize="22"/>
+                    <Label Content="Tytuł" Margin="5 10 5 20" FontSize="22"/>
+                    <Label Content="Kategoria" Margin="5 10 5 20" FontSize="22"/>
+                    <Label Content="Minimalna liczba graczy" Margin="5 10 5 20" FontSize="22"/>
+                    <Label Content="Maksymalna liczba graczy" Margin="5 10 5 20" FontSize="22"/>
+                    <Label Content="Czas gry" Margin="5 10 5 20" FontSize="22"/>
+                    <Label Content="Rok publikacji" Margin="5 10 5 20" FontSize="22"/>
+                    <Label Content="Min. wiek" Margin="5 10 5 20" FontSize="22"/>
                     <Label Content="Ocena" Margin="5 0 5 20" FontSize="22"/>
                     <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
 
                         <Button x:Name="GameAdd_btn" Background="#05b790" Foreground="#ffffff" Width="100" Height="45" Margin="10 5 10 5" Click="GameAdd_btn_Click" IsDefault="True">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <materialDesign:PackIcon  Kind="PlusBox" Margin="10" Height="18" Width="18"/>
-                            <TextBlock Margin="0 9 0 0" FontSize="14">Zapisz</TextBlock>
-                        </StackPanel>
-                    </Button>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <materialDesign:PackIcon  Kind="PlusBox" Margin="10" Height="18" Width="18"/>
+                                <TextBlock Margin="0 9 0 0" FontSize="14">Zapisz</TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="LastPlayed" Background="#05b790" Foreground="#ffffff" Width="100" Height="45" Margin="10 5 10 5" Click="LastPlayed_btn_Click" IsDefault="True">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <materialDesign:PackIcon  Kind="Play" Margin="10" Height="18" Width="18"/>
+                                <TextBlock Margin="0 9 0 0" FontSize="14">Zagraj</TextBlock>
+                            </StackPanel>
+                        </Button>
 
                         <Button Background="#05b790" Foreground="#ffffff" Width="110" Height="45" Margin="10 5 10 5" Click="Button_Click" IsCancel="True">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <materialDesign:PackIcon  Kind="Cancel" Margin="10" Height="18" Width="18"/>
-                            <TextBlock Margin="0 7 0 0" FontSize="16">Anuluj</TextBlock>
-                        </StackPanel>
-                    </Button>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <materialDesign:PackIcon  Kind="Cancel" Margin="10" Height="18" Width="18"/>
+                                <TextBlock Margin="0 7 0 0" FontSize="16">Anuluj</TextBlock>
+                            </StackPanel>
+                        </Button>
                 </StackPanel>
                 </StackPanel>
                     
                 <StackPanel Grid.Column="2" Margin="0 0 0 10">
-                    <TextBox x:Name="Title_txtbox" Margin="5 20 5 20" FontSize="22"/>
+                    <TextBox x:Name="Title_txtbox" Margin="5 10 5 20" FontSize="22"/>
                     <StackPanel Orientation="Horizontal">
-                        <ComboBox x:Name="Category_combobox" SelectedIndex="0" Cursor="Hand" Margin="5 20 5 20" FontSize="22" HorizontalAlignment="Left" Width="200" IsManipulationEnabled="True" IsTextSearchCaseSensitive="True"  >
+                        <ComboBox x:Name="Category_combobox" SelectedIndex="0" Cursor="Hand" Margin="5 10 5 20" FontSize="22" HorizontalAlignment="Left" Width="200" IsManipulationEnabled="True" IsTextSearchCaseSensitive="True"  >
                             
                         </ComboBox>
                         <Button Background="#05b790" Foreground="#ffffff" x:Name="EditCategory_btn" Content="Edytuj kategorie" HorizontalAlignment="Right" FontSize="12" Margin="10 0 0 10" Click="EditCategory_btn_Click"></Button>
                     </StackPanel>
-                    <ComboBox x:Name="MinLiczba_combo"  Cursor="Hand" Margin="5 20 5 20" FontSize="22" Width="40" SelectionChanged="MinLiczba_combo_SelectionChanged"/>
-                    <ComboBox x:Name="MaxLiczba_combo"  Cursor="Hand" IsEnabled="False" Margin="5 20 5 20" FontSize="22" Width="40" />
-
+                    <ComboBox x:Name="MinLiczba_combo"  Cursor="Hand" Margin="5 10 5 20" FontSize="22" Width="40" SelectionChanged="MinLiczba_combo_SelectionChanged"/>
+                    <ComboBox x:Name="MaxLiczba_combo"  Cursor="Hand" IsEnabled="False" Margin="5 10 5 20" FontSize="22" Width="40" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  >
+                        <TextBox x:Name="Time_txtbox"  FontSize="22" HorizontalAlignment="Center" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
+                        <Label FontSize="22" Margin="0 20 0 0">min.</Label>
+                    </StackPanel>
+                    <TextBox x:Name="Year_txtbox" Margin="5 10 5 20" FontSize="22"  HorizontalAlignment="Center" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
+                    <TextBox x:Name="Age_txtbox" Margin="5 10 5 20" FontSize="22" HorizontalAlignment="Center" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
                     <Slider  Foreground="#05b790" x:Name="Rate_slider" Margin="5 10 0 0" HorizontalAlignment="Left" Width="300" IsSnapToTickEnabled="True" TickFrequency="1" TickPlacement="BottomRight" Minimum="1" Cursor="Hand"></Slider>    
                     <Label FontSize="15" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="1 0 0 0" Content="1      2      3      4      5      6      7     8      9     10"></Label>
                     

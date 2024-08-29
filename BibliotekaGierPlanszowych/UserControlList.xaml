@@ -16,16 +16,6 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 2 0 0">
-
-                    <Button  Background="#05b790" Foreground="#ffffff"  Width="100" Height="50" Margin="10 5 30 5" Click="ButtonAdd_Click" IsDefault="True">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            
-                            <materialDesign:PackIcon  Kind="PlusBox" Margin="10" Height="20" Width="20"/>
-                            <TextBlock Margin="0 10 0 0">Dodaj</TextBlock>
-                        </StackPanel>
-                       
-                    </Button>
-
                     <Button  Background="#05b790" Foreground="#ffffff"  Width="140" Height="50" Margin="10 5 30 5" Click="ButtonAddBGG_Click" IsDefault="False">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
@@ -34,6 +24,14 @@
                         </StackPanel>
 
                     </Button>
+                    <Button  Background="#05b790" Foreground="#ffffff"  Width="100" Height="50" Margin="10 5 30 5" Click="ButtonAdd_Click" IsDefault="True">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            
+                            <materialDesign:PackIcon  Kind="PlusBox" Margin="10" Height="20" Width="20"/>
+                            <TextBlock Margin="0 10 0 0">Dodaj</TextBlock>
+                        </StackPanel>
+                       
+                    </Button>                    
 
                     <Button  Background="#05b790" Foreground="#ffffff" x:Name="ListEdit_btn" IsEnabled="False" Width="120" Height="50" Margin="10 5 30 5" Click="ListEdit_btn_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -55,11 +53,11 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Margin="0 10 0 0 " >
-                        <DataGrid x:Name="List_DataGrid" Background="#FFEEEEEE"  FontSize="22" AutoGenerateColumns="True" Cursor="Hand" Height="520" Width="800" Panel.ZIndex="-3" SelectionChanged="List_DataGrid_SelectionChanged_1" HorizontalAlignment="Stretch"  >
+                        <DataGrid x:Name="List_DataGrid" Background="#FFEEEEEE"  FontSize="20" Cursor="Hand" Height="520" Width="960" Panel.ZIndex="-3" SelectionChanged="List_DataGrid_SelectionChanged_1" HorizontalAlignment="Stretch"  >
                             <DataGrid.Effect>
                                 <DropShadowEffect BlurRadius="10"/>
-                            </DataGrid.Effect>
-                        </DataGrid>
+                            </DataGrid.Effect>                            
+                    </DataGrid>
                 </StackPanel>
             </Grid>
         </materialDesign:TransitioningContent>

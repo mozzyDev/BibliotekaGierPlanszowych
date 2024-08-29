@@ -38,11 +38,22 @@ namespace BibliotekaGierPlanszowych
         //odświeżenie danych w GridData
         private void GridRefresh()
         {
-            string Query = "SELECT DISTINCT board_game.title AS 'Tytuł', category.title_category AS 'Kategoria', board_game.min_players AS 'Min Graczy'," +
-            "board_game.max_players AS 'Max Graczy' FROM board_game, category WHERE category.id_category = board_game.id_category";
+            string query = @"
+            SELECT SUBSTR(b.title, 1, 28)  AS 'Tytuł',
+                SUBSTR(c.title_category, 1, 18) AS 'Kategoria',
+                b.min_players AS 'Min_Graczy',
+                b.max_players AS 'Max_Graczy',
+                b.playingtime||' min.' AS 'CzasGry',
+                b.add_date as DataDodania,
+                b.lastPlayed as OstatnioGrana
+            FROM board_game b
+                JOIN category c ON c.id_category = b.id_category
+            ORDER BY b.title;
+            ";
             try
             {
-                db.DataGridRefresh(Query, "board_game", List_DataGrid);
+                db.DataGridRefresh(query, "board_game", List_DataGrid);
+
             }
             catch(ArgumentException exa)
             {
@@ -104,6 +115,11 @@ namespace BibliotekaGierPlanszowych
             QueryList.Add(db.DatabaseDataGetOne("SELECT rate FROM board_game WHERE title = '" + PobranyTytul + "'"));
             QueryList.Add(db.DatabaseDataGetOne("SELECT image_url FROM board_game WHERE title = '" + PobranyTytul + "'"));
             QueryList.Add(db.DatabaseDataGetOne("SELECT id_board_game FROM board_game WHERE title = '" + PobranyTytul + "'"));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT playingtime FROM board_game WHERE title = '" + PobranyTytul + "'"));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT yearpublished FROM board_game WHERE title = '" + PobranyTytul + "'"));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT age FROM board_game WHERE title = '" + PobranyTytul + "'"));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT SUBSTR(add_date, 1, 10) FROM board_game WHERE title = '" + PobranyTytul + "'"));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT SUBSTR(lastPlayed, 1, 10) FROM board_game WHERE title = '" + PobranyTytul + "'"));
 
             AddGame addGame = new AddGame(QueryList[5].ToString(), Convert.ToInt32(QueryList[6])); //tryb edycji z url zdjecia i ref gry
 
@@ -114,7 +130,13 @@ namespace BibliotekaGierPlanszowych
                 addGame.MinLiczba_combo.SelectedValue = Convert.ToInt32(QueryList[2]);
                 addGame.MaxLiczba_combo.SelectedValue = Convert.ToInt32(QueryList[3]);
                 addGame.Rate_slider.Value = Convert.ToInt32(QueryList[4]);
-                
+
+                addGame.Time_txtbox.Text = QueryList[7];
+                addGame.Year_txtbox.Text = QueryList[8];
+                addGame.Age_txtbox.Text = QueryList[9];
+                addGame.AddingDate.Content = QueryList[10];
+                addGame.PlayedDate.Content = QueryList[11];
+
             }
             catch(ArgumentException ex)
             {

@@ -86,7 +86,7 @@ namespace BibliotekaGierPlanszowych
                 sqlite_cmd.CommandText = Query;
                 sqlite_cmd.ExecuteNonQuery();
             }
-            catch (SQLiteException exs)
+            catch (Exception exs)
             {
                 Console.WriteLine(exs.Message);
             }

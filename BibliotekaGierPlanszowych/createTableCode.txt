@@ -4,13 +4,15 @@ CREATE TABLE [board_game] (
 	min_players integer,
 	max_players integer,
 	rate integer,
-	add_date datetime,
+	add_date string,
 	id_category integer,
 	yearpublished integer,
 	playingtime integer,
 	minplaytime integer,
 	maxplaytime integer,
-	age integer
+	age integer,
+	lastPlayed string,
+	image_url string
 );
 
 CREATE TABLE [category] (

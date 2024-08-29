@@ -92,10 +92,9 @@ namespace BibliotekaGierPlanszowych
 
                         String QueryGameBgg = "INSERT OR REPLACE INTO board_game (title, min_players, max_players, rate, add_date, id_category, "
                             + "yearpublished, playingtime, minplaytime, maxplaytime, age, image_url) VALUES ('"
-                            + gameName + "', " + item.MinPlayers + ", " + item.MaxPlayers + ", 0 , '" + today.ToString() + "', 7 , "  //7 to brak kategorii
+                            + gameName + "', " + item.MinPlayers + ", " + item.MaxPlayers + ", 0 , '" + today.ToShortDateString() + "', 7 , "  //7 to brak kategorii
                             + item.YearPublished + ", " + item.PlayingTime + ", " + item.MinPlayTime + ", " + item.MaxPlayTime + ", " + item.Age + ", '" + item.image_url + "')";
                         db.DatabaseDataChange(QueryGameBgg);
-
 
                     }
                 }

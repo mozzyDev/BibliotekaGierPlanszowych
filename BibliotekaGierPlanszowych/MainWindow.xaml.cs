@@ -8,18 +8,12 @@ namespace BibliotekaGierPlanszowych
 
     public partial class MainWindow : Window
     {
-        private DBConnectionCreateDB dbCreation = new DBConnectionCreateDB();
+       
 
         public MainWindow()
         {
 
             InitializeComponent();
-
-            //utworzenie nowej bazy danych przy starcie programu
-            if (!File.Exists("database.db"))
-            {
-                dbCreation.DatabaseCreate();
-            }
 
             MainGrid.Children.Add(new UserControlList());
             

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Data;
 using System.Globalization;
+using System.IO;
 
 namespace BibliotekaGierPlanszowych
 {
@@ -13,8 +14,16 @@ namespace BibliotekaGierPlanszowych
     /// </summary>
     public partial class SignUpWindow : Window
     {
+        private DBConnectionCreateDB dbCreation = new DBConnectionCreateDB();
         public SignUpWindow()
         {
+            
+            //utworzenie nowej bazy danych przy starcie programu
+            if (!File.Exists("database.db"))
+            {
+                dbCreation.DatabaseCreate();
+            }
+
             InitializeComponent();
 
             //Pobieranie ostatniego wybranego loginu
