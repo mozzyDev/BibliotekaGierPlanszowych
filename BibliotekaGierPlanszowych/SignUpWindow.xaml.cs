@@ -28,19 +28,24 @@ namespace BibliotekaGierPlanszowych
 
             //Pobieranie ostatniego wybranego loginu
             List<String> lastUser = new List<string>();
+            List<String> lastPass = new List<string>();
             String lastUserQuery = "SELECT login FROM users where lastUsed = 1 LIMIT 1";
+            String lastPasswordQuery = "SELECT password FROM users where lastUsed = 1 LIMIT 1";
             lastUser = db.DatabasQueryExecute(lastUserQuery);
+            lastPass = db.DatabasQueryExecute(lastPasswordQuery);
 
             if (lastUser.Count > 0)
             {
                 TextBox_Login.Text = lastUser[0];
+                TextBox_Pass.Password = lastPass[0];
+                TextBox_RepPass.Password = "";
             }
             else
             {
                 TextBox_Login.Text = "";
+                TextBox_Pass.Password = "";
+                TextBox_RepPass.Password = "";
             }
-            TextBox_Pass.Password = "";
-            TextBox_RepPass.Password = "";
         }
 
         private DBConnection db = new DBConnection();

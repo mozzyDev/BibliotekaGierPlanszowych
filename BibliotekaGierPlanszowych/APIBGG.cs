@@ -8,12 +8,14 @@ using System.Windows;
 using System.Collections;
 using RestSharp;
 using System.IO;
+using System.Xml.Linq;
 
 namespace BibliotekaGierPlanszowych
 {
     class APIBGG
     {
-        
+        private const string BGG_API_URL = "https://boardgamegeek.com/xmlapi/collection/";
+
         public List<BoardGame> SearchBoardGame(string gameName)
         {
             List<BoardGame> resultsList = new List<BoardGame>();
@@ -109,6 +111,62 @@ namespace BibliotekaGierPlanszowych
             return resultsGameListBox;
         }
 
+        private SearchCollectionResults DeserializeCollectionXml<SearchCollectionResults>(string xmlContent)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(SearchCollectionResults));
+            using (StringReader reader = new StringReader(xmlContent))
+            {
+                return (SearchCollectionResults)serializer.Deserialize(reader);
+            }
+        }
+
+        private List<Item> DisplayCollectionResults(Items items)
+        {
+            List<Item> resultCollectionListBox = new List<Item>();
+            resultCollectionListBox.Clear();
+            foreach (var game in items.ItemList)
+            {
+                resultCollectionListBox.Add(game);
+            }
+            return resultCollectionListBox;
+        }
+
+        public List<Item> GetBoardGamesForUser(string username)
+        {
+            List<Item> collection = new List<Item>();
+
+            var client = new RestClient("https://boardgamegeek.com/xmlapi/");
+            var request = new RestRequest($"collection/{username}", Method.Get);
+
+            try
+            {
+                var response = client.Execute(request);
+                if (response.IsSuccessful && response.Content != null)
+                {
+                    //Items searchCollectionResults = DeserializeXml<Items>(response.Content);
+                    //collection = DisplayCollectionResults(searchCollectionResults);
+                    var serializer = new XmlSerializer(typeof(Items));
+                    using (StringReader reader = new StringReader(response.Content))
+                    {
+                        
+                        Items items = (Items)serializer.Deserialize(reader);
+                        collection = items?.ItemList;
+                        
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"Błąd w zapytaniu: {response.StatusCode}", "Błąd");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Wystąpił błąd: {ex.Message}", "Błąd");
+            }
+
+            return collection;
+        }
+
     }
 
     // Klasa reprezentująca wyniki wyszukiwania
@@ -185,5 +243,94 @@ namespace BibliotekaGierPlanszowych
         public string Value { get; set; }
     }
 
+    //Kolekcja z BGG
+    [XmlRoot("items")]
+    public class Items
+    {
+        [XmlAttribute("totalitems")]
+        public int TotalItems { get; set; }
+
+        [XmlElement("item")]
+        public List<Item> ItemList { get; set; }
+    }
+
+    public class Item
+    {
+        [XmlAttribute("objecttype")]
+        public string ObjectType { get; set; }
+
+        [XmlAttribute("objectid")]
+        public int ObjectId { get; set; }
+
+        [XmlAttribute("subtype")]
+        public string Subtype { get; set; }
+
+        [XmlAttribute("collid")]
+        public long CollId { get; set; }
+
+        [XmlElement("name")]
+        public string Name { get; set; }
+
+        [XmlElement("yearpublished")]
+        public int YearPublished { get; set; }
+
+        [XmlElement("image")]
+        public string Image { get; set; }
+
+        [XmlElement("thumbnail")]
+        public string Thumbnail { get; set; }
+
+    }
+
+    public class Stats
+    {
+        [XmlAttribute("minplayers")]
+        public int MinPlayers { get; set; }
+
+        [XmlAttribute("maxplayers")]
+        public int MaxPlayers { get; set; }
+
+        [XmlAttribute("minplaytime")]
+        public int MinPlayTime { get; set; }
+
+        [XmlAttribute("maxplaytime")]
+        public int MaxPlayTime { get; set; }
+
+        [XmlAttribute("playingtime")]
+        public int PlayingTime { get; set; }
+
+        [XmlAttribute("numowned")]
+        public int NumOwned { get; set; }
+
+        [XmlElement("rating")]
+        public Rating Rating { get; set; }
+    }
+
+    public class Rating
+    {
+        [XmlAttribute("value")]
+        public double Value { get; set; }
+
+        [XmlElement("usersrated")]
+        public UsersRated UsersRated { get; set; }
+
+        [XmlElement("average")]
+        public double Average { get; set; }
+
+        [XmlElement("bayesaverage")]
+        public double BayesAverage { get; set; }
+
+        [XmlElement("stddev")]
+        public double StdDev { get; set; }
+
+        [XmlElement("median")]
+        public double Median { get; set; }
+    }
+
+    public class UsersRated
+    {
+        [XmlAttribute("value")]
+        public int Value { get; set; }
+    }    
 
 }
