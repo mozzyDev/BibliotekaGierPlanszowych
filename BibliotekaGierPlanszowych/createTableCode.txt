@@ -1,6 +1,6 @@
 CREATE TABLE [board_game] (
 	id_board_game integer PRIMARY KEY, 
-	title varchar,
+	title varchar UNIQUE,
 	min_players integer,
 	max_players integer,
 	rate integer,
@@ -34,7 +34,7 @@ CREATE TABLE [wishlist] (
 
 CREATE TABLE [users] (
 	id_users integer PRIMARY KEY, 
-	login varchar,
+	login varchar UNIQUE,
 	password varchar,
 	lastUsed integer
 );

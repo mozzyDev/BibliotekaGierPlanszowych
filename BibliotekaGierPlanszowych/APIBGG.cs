@@ -280,6 +280,9 @@ namespace BibliotekaGierPlanszowych
         [XmlElement("thumbnail")]
         public string Thumbnail { get; set; }
 
+        [XmlElement("stats")]
+        public Stats stats { get; set; }
+
     }
 
     public class Stats
@@ -289,18 +292,9 @@ namespace BibliotekaGierPlanszowych
 
         [XmlAttribute("maxplayers")]
         public int MaxPlayers { get; set; }
-
-        [XmlAttribute("minplaytime")]
-        public int MinPlayTime { get; set; }
-
-        [XmlAttribute("maxplaytime")]
-        public int MaxPlayTime { get; set; }
-
+     
         [XmlAttribute("playingtime")]
         public int PlayingTime { get; set; }
-
-        [XmlAttribute("numowned")]
-        public int NumOwned { get; set; }
 
         [XmlElement("rating")]
         public Rating Rating { get; set; }
@@ -309,22 +303,8 @@ namespace BibliotekaGierPlanszowych
     public class Rating
     {
         [XmlAttribute("value")]
-        public double Value { get; set; }
+        public string  Value { get; set; }
 
-        [XmlElement("usersrated")]
-        public UsersRated UsersRated { get; set; }
-
-        [XmlElement("average")]
-        public double Average { get; set; }
-
-        [XmlElement("bayesaverage")]
-        public double BayesAverage { get; set; }
-
-        [XmlElement("stddev")]
-        public double StdDev { get; set; }
-
-        [XmlElement("median")]
-        public double Median { get; set; }
     }
 
     public class UsersRated

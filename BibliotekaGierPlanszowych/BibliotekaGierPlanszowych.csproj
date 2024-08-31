@@ -178,6 +178,9 @@
     </Compile>
     <Compile Include="DBConnection.cs" />
     <Compile Include="DBConnectionCreateDB.cs" />
+    <Compile Include="GetCollection.xaml.cs">
+      <DependentUpon>GetCollection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IRestResponse.cs" />
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
@@ -206,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Categories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GetCollection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

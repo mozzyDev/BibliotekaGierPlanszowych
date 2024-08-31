@@ -150,19 +150,9 @@ namespace BibliotekaGierPlanszowych
 
         private void ButtonGetCollection_Click(object sender, RoutedEventArgs e)
         {
-            string userName = "mozzy_mozzy";
-            // Wywołaj metodę wyszukiwania
-            APIBGG bgg = new APIBGG();
-
-            List<Item> bggGameCollectionList = bgg.GetBoardGamesForUser(userName);
-            if (bggGameCollectionList.Count > 0)
-            {
-                MessageBox.Show(bggGameCollectionList.Count.ToString());
-            }
-            else
-            {
-                MessageBox.Show("Nic nie znaleziono", "Informacja");
-            }
+            GetCollection getCollection = new GetCollection();
+            getCollection.ShowDialog();
+            GridRefresh();
         }
     }
 }
