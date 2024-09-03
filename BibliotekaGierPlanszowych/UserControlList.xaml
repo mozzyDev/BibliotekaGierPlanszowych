@@ -16,7 +16,7 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 2 0 0">
-                    <Button  Background="#05b790" Foreground="#ffffff"  Width="140" Height="50" Margin="10 5 10 5" Click="ButtonAddBGG_Click" IsDefault="False">
+                    <Button  Background="#05b790" Foreground="#ffffff"  Width="140" Height="50" Margin="0 5 5 5" Click="ButtonAddBGG_Click" IsDefault="False">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                             <materialDesign:PackIcon  Kind="PlusBoxOutline" Margin="10" Height="20" Width="20"/>
@@ -24,7 +24,7 @@
                         </StackPanel>
 
                     </Button>
-                    <Button  Background="#05b790" Foreground="#ffffff"  Width="100" Height="50" Margin="10 5 10 5" Click="ButtonAdd_Click" IsDefault="True">
+                    <Button  Background="#05b790" Foreground="#ffffff"  Width="100" Height="50" Margin="0 5 5 5" Click="ButtonAdd_Click" IsDefault="True">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             
                             <materialDesign:PackIcon  Kind="PlusBox" Margin="10" Height="20" Width="20"/>
@@ -32,16 +32,16 @@
                         </StackPanel>
                        
                     </Button>
-                    <Button  Background="#05b790" Foreground="#ffffff"  Width="210" Height="50" Margin="10 5 10 5" Click="ButtonGetCollection_Click" IsDefault="True">
+                    <Button  Background="#05b790" Foreground="#ffffff"  Width="144" Height="50" Margin="0 5 5 5" Click="ButtonGetCollection_Click" IsDefault="True">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                             <materialDesign:PackIcon  Kind="LibraryBooks" Margin="10" Height="20" Width="20"/>
-                            <TextBlock Margin="0 10 0 0">Pobierz kolekcję z BGG</TextBlock>
+                            <TextBlock Margin="0 10 0 0">Kolekcja BGG</TextBlock>
                         </StackPanel>
 
                     </Button>
 
-                    <Button  Background="#05b790" Foreground="#ffffff" x:Name="ListEdit_btn" IsEnabled="False" Width="120" Height="50" Margin="10 5 10 5" Click="ListEdit_btn_Click">
+                    <Button  Background="#05b790" Foreground="#ffffff" x:Name="ListEdit_btn" IsEnabled="False" Width="120" Height="50" Margin="0 5 5 5" Click="ListEdit_btn_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                             <materialDesign:PackIcon  Kind="TableEdit" Margin="10" Height="20" Width="20"/>
@@ -49,7 +49,7 @@
                         </StackPanel>
 
                     </Button>
-                    <Button  Background="#05b790" Foreground="#ffffff"  x:Name="ListDelete_btn" IsEnabled="False" Width="100" Height="50" Margin="10 5 30 5" Click="DeleteButton_Click">
+                    <Button  Background="#05b790" Foreground="#ffffff"  x:Name="ListDelete_btn" IsEnabled="False" Width="100" Height="50" Margin="0 5 5 5" Click="DeleteButton_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
                             <materialDesign:PackIcon  Kind="Delete" Margin="10" Height="20" Width="20"/>
@@ -57,14 +57,24 @@
                         </StackPanel>
 
                     </Button>
+                    <Button  Background="#05b790" Foreground="#ffffff"  x:Name="ListDeleteAll_btn" IsEnabled="True" Width="160" Height="50" Margin="0 5 0 5" Click="DeleteAllButton_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="135">
+
+                            <materialDesign:PackIcon  Kind="Delete" Margin="10" Height="20" Width="20"/>
+                            <TextBlock Margin="0 10 0 0">Usuń wszystkie</TextBlock>
+                        </StackPanel>
+
+                    </Button>
 
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Margin="0 10 0 0 " >
-                        <DataGrid x:Name="List_DataGrid" Background="#FFEEEEEE"  FontSize="20" Cursor="Hand" Height="520" Width="960" Panel.ZIndex="-3" SelectionChanged="List_DataGrid_SelectionChanged_1" HorizontalAlignment="Stretch"  >
+                        <DataGrid x:Name="List_DataGrid" Background="#FFEEEEEE"  FontSize="16" Cursor="Hand" Height="520" Width="960" Panel.ZIndex="-3" SelectionChanged="List_DataGrid_SelectionChanged_1" HorizontalAlignment="Stretch"  >
                             <DataGrid.Effect>
                                 <DropShadowEffect BlurRadius="10"/>
-                            </DataGrid.Effect>                            
+                            </DataGrid.Effect>
+                        
+                       
                     </DataGrid>
                 </StackPanel>
             </Grid>

@@ -12,7 +12,7 @@ namespace BibliotekaGierPlanszowych
     public partial class UserControlList : UserControl
     {
         private DataColumn gameTitle = new DataColumn("gameTitle", typeof(string));
-        string PobranyTytul { get; set; }
+        string idGry { get; set; }
         private int user;
         private DBConnection db = new DBConnection();
         
@@ -21,6 +21,7 @@ namespace BibliotekaGierPlanszowych
             user = userID;
             InitializeComponent();
             GridRefresh();
+            
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -41,8 +42,10 @@ namespace BibliotekaGierPlanszowych
         private void GridRefresh()
         {
             string query = @"
-            SELECT SUBSTR(b.title, 1, 28)  AS 'Tytuł',
-                SUBSTR(c.title_category, 1, 18) AS 'Kategoria',
+            SELECT 
+                b.id_board_game as 'ID',
+                substr(b.title, 1, 26) AS 'Tytuł',
+                SUBSTR(c.title_category, 1, 15) AS 'Kategoria',
                 b.min_players AS 'Min_Graczy',
                 b.max_players AS 'Max_Graczy',
                 b.playingtime||' min.' AS 'CzasGry',
@@ -51,7 +54,7 @@ namespace BibliotekaGierPlanszowych
             FROM board_game b
                 JOIN category c ON c.id_category = b.id_category
             WHERE b.id_user = " + user + @"
-            ORDER BY b.title;
+            ORDER BY b.id_board_game desc;
             ";
 
             try
@@ -73,15 +76,14 @@ namespace BibliotekaGierPlanszowych
         {
             if (MessageBox.Show("Czy na pewno chcesz usunąć grę?", "Usuwanie", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
             {
-                //pobranie id gry
-                string id = db.DatabaseDataGetOne("SELECT id_board_game FROM board_game WHERE title = '" + PobranyTytul + "'" + " and id_user = " + user);
-
+               
                 //usunięcie z listy gier
-                string Query = "DELETE FROM board_game  WHERE id_board_game = " + id;
+                string Query = "DELETE FROM board_game  WHERE id_board_game = " + idGry;
+                
                 db.DatabasQueryExecute(Query);
                 
                 //usunięcie z pożyczonych
-                Query = "DELETE FROM pozyczone WHERE id_board_game = " +id ;
+                Query = "DELETE FROM pozyczone WHERE id_board_game = " + idGry;
                 db.DatabasQueryExecute(Query);
 
                 GridRefresh();
@@ -98,7 +100,7 @@ namespace BibliotekaGierPlanszowych
             DataRowView selectedItem = dg.SelectedItem as DataRowView;
             if (selectedItem != null)
             {
-                PobranyTytul = selectedItem[0].ToString();
+                idGry = selectedItem[0].ToString();
                 ListDelete_btn.IsEnabled = true;
                 ListEdit_btn.IsEnabled = true;
             }
@@ -111,19 +113,19 @@ namespace BibliotekaGierPlanszowych
             DBConnection db = new DBConnection();
             
             List<string> QueryList = new List<string>();
-            QueryList.Add(PobranyTytul);
-            QueryList.Add(db.DatabaseDataGetOne("SELECT category.title_category FROM board_game, category WHERE category.id_category = board_game.id_category AND board_game.title = '"
-                + PobranyTytul + "'"));
-            QueryList.Add(db.DatabaseDataGetOne("SELECT min_players FROM board_game WHERE title = '" + PobranyTytul + "'" + " and id_user = " + user));
-            QueryList.Add(db.DatabaseDataGetOne("SELECT max_players FROM board_game WHERE title = '" + PobranyTytul + "'" + " and id_user = " + user));
-            QueryList.Add(db.DatabaseDataGetOne("SELECT rate FROM board_game WHERE title = '" + PobranyTytul + "'" + " and id_user = " + user));
-            QueryList.Add(db.DatabaseDataGetOne("SELECT image_url FROM board_game WHERE title = '" + PobranyTytul + "'" + " and id_user = " + user));
-            QueryList.Add(db.DatabaseDataGetOne("SELECT id_board_game FROM board_game WHERE title = '" + PobranyTytul + "'" + " and id_user = " + user));
-            QueryList.Add(db.DatabaseDataGetOne("SELECT playingtime FROM board_game WHERE title = '" + PobranyTytul + "'" + " and id_user = " + user));
-            QueryList.Add(db.DatabaseDataGetOne("SELECT yearpublished FROM board_game WHERE title = '" + PobranyTytul + "'" + " and id_user = " + user));
-            QueryList.Add(db.DatabaseDataGetOne("SELECT age FROM board_game WHERE title = '" + PobranyTytul + "'" + " and id_user = " + user));
-            QueryList.Add(db.DatabaseDataGetOne("SELECT SUBSTR(add_date, 1, 10) FROM board_game WHERE title = '" + PobranyTytul + "'" + " and id_user = " + user));
-            QueryList.Add(db.DatabaseDataGetOne("SELECT SUBSTR(lastPlayed, 1, 10) FROM board_game WHERE title = '" + PobranyTytul + "'" + " and id_user = " + user));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT title FROM board_game WHERE id_board_game = " + idGry));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT category.title_category FROM board_game, category WHERE category.id_category = board_game.id_category AND board_game.id_board_game = '"
+                + idGry + "'"));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT min_players FROM board_game WHERE id_board_game = " + idGry));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT max_players FROM board_game WHERE id_board_game = " + idGry));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT rate FROM board_game WHERE id_board_game = " + idGry));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT image_url FROM board_game WHERE id_board_game = " + idGry));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT id_board_game FROM board_game WHERE id_board_game = " + idGry));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT playingtime FROM board_game WHERE id_board_game = " + idGry));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT yearpublished FROM board_game WHERE id_board_game = " + idGry));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT age FROM board_game WHERE id_board_game = " + idGry));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT SUBSTR(add_date, 1, 10) FROM board_game id_board_game = " + idGry));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT SUBSTR(lastPlayed, 1, 10) FROM board_game id_board_game = " + idGry));
 
             AddGame addGame = new AddGame(QueryList[5].ToString(), Convert.ToInt32(QueryList[6]), user); //tryb edycji z url zdjecia i ref gry
 
@@ -157,6 +159,24 @@ namespace BibliotekaGierPlanszowych
             GetCollection getCollection = new GetCollection(user);
             getCollection.ShowDialog();
             GridRefresh();
+        }
+
+        private void DeleteAllButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Czy na pewno chcesz WSZYSTKIE gry?", "Usuwanie", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
+            {
+
+                //usunięcie z listy gier
+                string Query = "DELETE FROM board_game  WHERE id_user = " +user;
+
+                db.DatabasQueryExecute(Query);
+
+                //usunięcie z pożyczonych
+                Query = "DELETE FROM pozyczone WHERE id_user = " + user;
+                db.DatabasQueryExecute(Query);
+
+                GridRefresh();
+            }
         }
     }
 }

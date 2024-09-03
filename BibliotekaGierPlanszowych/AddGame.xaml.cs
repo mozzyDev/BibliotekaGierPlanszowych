@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -88,7 +89,7 @@ namespace BibliotekaGierPlanszowych
             string imageUrl = "";
             try
             {
-                imageUrl = db.DatabaseDataGetOne("select image_url from board_game where id_board_game = " + gameId.ToString());
+                imageUrl = db.DatabaseDataGetOne("select image_url from board_game where id_board_game = " + gameId.ToString() +" and id_user = " + user);
             }
             catch (ArgumentException exa)
             {
@@ -160,7 +161,7 @@ namespace BibliotekaGierPlanszowych
             if (tryb == 0)
             {
                 List<String> listaTytulow = new List<string>();
-                String zapytanieTytuly = "SELECT title FROM board_game";
+                String zapytanieTytuly = "SELECT title FROM board_game where id_user = " +user;
                 DateTime today = DateTime.Today;
 
                 if (Title_txtbox.Text.Length > 1 && MaxLiczba_combo.SelectedValue != null && !String.IsNullOrEmpty(Age_txtbox.Text) &&
@@ -182,7 +183,7 @@ namespace BibliotekaGierPlanszowych
                     //jesli nowy tytul znajduje sie w bazie - usuwamy poprzedni rekord
                     if (niepoprawnyTytul)
                     {
-                        db.DatabasQueryExecute("DELETE FROM board_game WHERE title = '" + this.Title_txtbox.Text + "'");
+                        db.DatabasQueryExecute("DELETE FROM board_game WHERE title = '" + this.Title_txtbox.Text + "' and id_user = " +user);
                     }
                     //dodaje nowy rekord
 
@@ -205,23 +206,40 @@ namespace BibliotekaGierPlanszowych
             }
             else
             {
-                if (Title_txtbox.Text.Length > 1 && MaxLiczba_combo.SelectedValue != null && !String.IsNullOrEmpty(Age_txtbox.Text) &&
-                   !String.IsNullOrEmpty(Year_txtbox.Text) && !String.IsNullOrEmpty(Time_txtbox.Text))
+                if (Title_txtbox.Text.Length > 1 && MaxLiczba_combo.SelectedValue != null)
                 {
-                    String Query = "UPDATE board_game SET "
-                        + " title = '" + this.Title_txtbox.Text + "'"
-                        + ", min_players = " + MinLiczba_combo.SelectedValue.ToString()
-                        + ", max_players = " + MaxLiczba_combo.SelectedValue.ToString()
-                        + ", rate = " + Rate_slider.Value.ToString()
-                        + ", id_category = (SELECT DISTINCT id_category FROM category WHERE title_category = '" + Category_combobox.SelectedValue.ToString() + "')"
-                        + ", yearpublished = " + Convert.ToInt32(Year_txtbox.Text)
-                        + ", playingtime = " + Convert.ToInt32(Time_txtbox.Text)
-                        + ", age = " + Convert.ToInt32(Age_txtbox.Text)
-                        + " where id_board_game = " + getGameId.ToString();
+                    int year = 0;
+                    int time = 0;
+                    int age = 0;
+
+                    if(!String.IsNullOrEmpty(Year_txtbox.Text))
+                    {
+                        year = Convert.ToInt32(Year_txtbox.Text);
+                    }
+                    if (!String.IsNullOrEmpty(Time_txtbox.Text))
+                    {
+                        time = Convert.ToInt32(Time_txtbox.Text);
+                    }
+                    if (!String.IsNullOrEmpty(Age_txtbox.Text))
+                    {
+                        age = Convert.ToInt32(Age_txtbox.Text);
+                    }
+
+                    StringBuilder Query = new StringBuilder();
+                    Query.Append($"UPDATE board_game SET ");
+                    Query.Append($" title = '{this.Title_txtbox.Text}'");
+                    Query.Append($", min_players = {MinLiczba_combo.SelectedValue.ToString()}");
+                    Query.Append($", max_players = {MaxLiczba_combo.SelectedValue.ToString()}");
+                    Query.Append($", rate = {Rate_slider.Value.ToString()}");
+                    Query.Append($", id_category = (SELECT DISTINCT id_category FROM category WHERE title_category = '{Category_combobox.SelectedValue.ToString()}')");
+                    if(year != 0) Query.Append($", yearpublished = {year}");
+                    if (time != 0) Query.Append($", playingtime = {Convert.ToInt32(Time_txtbox.Text)}");
+                    if (age != 0) Query.Append($", age = {Convert.ToInt32(Age_txtbox.Text)}");
+                    Query.Append($" where id_board_game = {getGameId.ToString()} and id_user = {user}");
 
                     try
                     {
-                        db.DatabaseDataChange(Query);
+                        db.DatabaseDataChange(Query.ToString());
                     }
                     catch (Exception)
                     {
@@ -259,7 +277,7 @@ namespace BibliotekaGierPlanszowych
                 UPDATE board_game
                     set lastPlayed = '"
                 + today.ToShortDateString()
-                + "' where id_board_game = " + getGameId.ToString();
+                + "' where id_board_game = " + getGameId.ToString() + " and id_user = " + user;
 
             MessageBox.Show("Zaktualizowano datę ostatniej gry");
             try
