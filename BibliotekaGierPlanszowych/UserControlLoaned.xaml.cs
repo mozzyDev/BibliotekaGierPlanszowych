@@ -11,9 +11,11 @@ namespace BibliotekaGierPlanszowych
         private DataColumn gameTitle = new DataColumn("gameTitle", typeof(string));
         string PobranyTytul { get; set; }
         private DBConnection db = new DBConnection();
+        private int user;
 
-        public UserControlLoaned()
+        public UserControlLoaned(int userId)
         {
+            user = userId;
             InitializeComponent();
             GameComboBoxRefresh();
             GridRefresh();
@@ -23,17 +25,22 @@ namespace BibliotekaGierPlanszowych
         //odswieżanie danych w combobox
         private void GameComboBoxRefresh()
         {
-            String Query = "SELECT DISTINCT title FROM board_game EXCEPT SELECT title FROM board_Game WHERE id_board_game IN(SELECT id_board_game FROM pozyczone)";
-            GameComboBox.ItemsSource = db.DatabasQueryExecute(Query);
+            string query = "select distinct b.title from board_game b where b.id_user = " +user + " AND (b.loaned = 0 OR b.loaned IS NULL)";
+            
+            GameComboBox.ItemsSource = db.DatabasQueryExecute(query);
         }
 
         //dodawanie danych do bazy
         private void AddLoaned_btn_Click(object sender, RoutedEventArgs e)
-        {   
-            String Query = "INSERT OR REPLACE INTO pozyczone (person, id_board_game) VALUES ('"
-                + this.Loaned_txtbox.Text + "', (SELECT DISTINCT id_board_game FROM board_game WHERE title = '" + GameComboBox.SelectedValue.ToString() + "'))";
+        {
             
-            db.DatabaseDataChange(Query);
+            string queryLoanInsert = @"INSERT INTO loaned (person, id_board_game, id_user)
+                             VALUES ('" + Loaned_txtbox.Text + @"', (SELECT DISTINCT id_board_game FROM board_game WHERE id_user = " + user + " and title = '" + GameComboBox.SelectedValue.ToString() + "'), "+user+")";
+
+            string queryLoanUpdate = "update board_game  set loaned = 1 where id_user = " + user + " and title = '" + GameComboBox.SelectedValue.ToString() + "'";
+
+            db.DatabaseDataChange(queryLoanInsert);
+            db.DatabaseDataChange(queryLoanUpdate);
             Loaned_txtbox.Clear();
             GameComboBoxRefresh();
             GridRefresh();
@@ -50,7 +57,7 @@ namespace BibliotekaGierPlanszowych
         //uzupełnianie danych w GridData
         private void GridRefresh()
         {
-            string Query = "SELECT pozyczone.person AS 'Osoba', board_game.title AS 'Tytuł' FROM pozyczone, board_game WHERE pozyczone.id_board_game = board_game.id_board_game";
+            string Query = "SELECT distinct l.person AS 'Osoba', b.title AS 'Tytuł' FROM loaned l join board_game b on (l.id_board_game = b.id_board_game) where l.id_user = " + user;
             try
             {
                 db.DataGridRefresh(Query, "pozyczone", loaned_dataGrid);
@@ -86,14 +93,21 @@ namespace BibliotekaGierPlanszowych
         //tytuł jest przekazywany za pomocą Loaned_dataGrid_SelectionChanged()
         //następnie usuwany z bazy za pomocą kodu SQL
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            string Query = "DELETE FROM pozyczone WHERE pozyczone.id_loaned IN ("
-                + "SELECT pozyczone.id_loaned FROM pozyczone, board_game WHERE board_game.title = '" 
-                + PobranyTytul +"' AND pozyczone.id_board_game = board_game.id_board_game)";
-
-            db.DatabasQueryExecute(Query);
-            GameComboBoxRefresh();
-            GridRefresh();
+        {            
+            if (!String.IsNullOrEmpty(PobranyTytul))
+            {
+                string queryReturnDelete = @"delete from loaned where id_board_game = (select id_board_game from board_game b where b.id_user = " + user + @" and b.title = '" + PobranyTytul + "')";
+                string queryReturnUpdate = @"update board_game set loaned = 0 where id_user = " + user + " and title = '" + PobranyTytul + "'";
+               
+                db.DatabasQueryExecute(queryReturnDelete);
+                db.DatabasQueryExecute(queryReturnUpdate);
+                GameComboBoxRefresh();
+                GridRefresh();
+            }
+            else
+            {
+                MessageBox.Show("Wybierz grę do usunięcia");
+            }
         }
 
 

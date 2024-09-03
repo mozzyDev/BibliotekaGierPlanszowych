@@ -1,6 +1,7 @@
 CREATE TABLE [board_game] (
 	id_board_game integer PRIMARY KEY, 
-	title varchar UNIQUE,
+	title varchar,
+	id_user integer,
 	min_players integer,
 	max_players integer,
 	rate integer,
@@ -12,6 +13,7 @@ CREATE TABLE [board_game] (
 	maxplaytime integer,
 	age integer,
 	lastPlayed string,
+	loaned integer,
 	image_url string
 );
 
@@ -20,14 +22,16 @@ CREATE TABLE [category] (
 	title_category varchar
 );
 
-CREATE TABLE [pozyczone] (
+CREATE TABLE [loaned] (
 	id_loaned integer PRIMARY KEY, 
+	id_user integer,
 	person varchar,
 	id_board_game integer
 );
 
 CREATE TABLE [wishlist] (
 	id_wishlist integer PRIMARY KEY, 
+	id_user integer,
 	title_wishlist varchar,
 	price_wishlist integer
 );
@@ -38,7 +42,6 @@ CREATE TABLE [users] (
 	password varchar,
 	lastUsed integer
 );
-
 
 INSERT INTO category (title_category) VALUES ('Strategiczna');
 INSERT INTO category (title_category) VALUES ('Przygodowa');

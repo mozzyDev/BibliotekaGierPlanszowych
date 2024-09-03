@@ -12,9 +12,10 @@ namespace BibliotekaGierPlanszowych
         private DataColumn gameTitle = new DataColumn("gameTitle", typeof(string));
         private String PobranyTytul { get; set; }
         private DBConnection db = new DBConnection();
-
-        public UserControlWishlist()
+        private int user;
+        public UserControlWishlist(int userID)
         {
+            user = userID;
             InitializeComponent();
             GridRefresh();
         }
@@ -29,8 +30,8 @@ namespace BibliotekaGierPlanszowych
         //dodawanie danych do bazy
         private void WishAdd_btn_Click(object sender, RoutedEventArgs e)
         {
-            String Query = "INSERT OR REPLACE INTO wishlist (title_wishlist, price_wishlist) VALUES ('"+ this.WishTitle_txtbox.Text +"', '"
-                + this.WishPrice_txtbox.Text +"')";
+            String Query = "INSERT OR REPLACE INTO wishlist (title_wishlist, price_wishlist, id_user) VALUES ('"+ this.WishTitle_txtbox.Text +"', '"
+                + this.WishPrice_txtbox.Text +"', "+ user+")";
 
             db.DatabaseDataChange(Query);
             WishTitle_txtbox.Clear();
@@ -56,14 +57,14 @@ namespace BibliotekaGierPlanszowych
         //uzupełnianie danych w GridData
         private void GridRefresh()
         {
-            string Query = "SELECT wishlist.title_wishlist AS 'Gra', wishlist.price_wishlist || 'zł' AS 'Cena' FROM wishlist";
+            string Query = "SELECT wishlist.title_wishlist AS 'Gra', wishlist.price_wishlist || 'zł' AS 'Cena' FROM wishlist where id_user = " +user;
             db.DataGridRefresh(Query, "wishlist", Wishlist_DataGrid);
         }
 
         //usuwanie wartosci z DataGrid
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            string Query = "DELETE FROM wishlist WHERE title_wishlist = '" + PobranyTytul +"'";
+            string Query = "DELETE FROM wishlist WHERE title_wishlist = '" + PobranyTytul +"' and id_user = "+ user;
 
             db.DatabasQueryExecute(Query);
             GridRefresh();

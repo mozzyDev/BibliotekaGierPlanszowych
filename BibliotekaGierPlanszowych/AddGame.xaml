@@ -74,8 +74,8 @@
                         <TextBox x:Name="Time_txtbox"  FontSize="22" HorizontalAlignment="Center" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
                         <Label FontSize="22" Margin="0 20 0 0">min.</Label>
                     </StackPanel>
-                    <TextBox x:Name="Year_txtbox" Margin="5 10 5 20" FontSize="22"  HorizontalAlignment="Center" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
-                    <TextBox x:Name="Age_txtbox" Margin="5 10 5 20" FontSize="22" HorizontalAlignment="Center" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
+                    <TextBox x:Name="Year_txtbox" Margin="5 10 5 20" FontSize="22"  HorizontalAlignment="Center" PreviewTextInput="NumberTextBox_PreviewTextInput" MinWidth="30"/>
+                    <TextBox x:Name="Age_txtbox" Margin="5 10 5 20" FontSize="22" HorizontalAlignment="Center" PreviewTextInput="NumberTextBox_PreviewTextInput" MinWidth="30"/>
                     <Slider  Foreground="#05b790" x:Name="Rate_slider" Margin="5 10 0 0" HorizontalAlignment="Left" Width="300" IsSnapToTickEnabled="True" TickFrequency="1" TickPlacement="BottomRight" Minimum="1" Cursor="Hand"></Slider>    
                     <Label FontSize="15" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="1 0 0 0" Content="1      2      3      4      5      6      7     8      9     10"></Label>
                     

@@ -9,18 +9,20 @@ namespace BibliotekaGierPlanszowych
     public partial class MainWindow : Window
     {
        
+        private int user;
 
-        public MainWindow()
+
+        public MainWindow(int userID)
         {
-
+            user = userID;
             InitializeComponent();
 
-            MainGrid.Children.Add(new UserControlList());
-            
+            MainGrid.Children.Add(new UserControlList(user));
+
         }
 
         //wyjście z programu
-       private void ButtonExit_Click(object sender, RoutedEventArgs e)
+        private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
             if(MessageBox.Show("Czy na pewno chcesz opuścić program?", "Wyjście", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
             {
@@ -58,23 +60,23 @@ namespace BibliotekaGierPlanszowych
             {
                 case 0:
                     MainGrid.Children.Clear();
-                    MainGrid.Children.Add(new UserControlList());
+                    MainGrid.Children.Add(new UserControlList(user));
                     break;
                 case 1:
                     MainGrid.Children.Clear();
-                    MainGrid.Children.Add(new UserControlRandom());
+                    MainGrid.Children.Add(new UserControlRandom(user));
                     break;
                 case 2:
                     MainGrid.Children.Clear();
-                    MainGrid.Children.Add(new UserControlLoaned());
+                    MainGrid.Children.Add(new UserControlLoaned(user));
                     break;
                 case 3:
                     MainGrid.Children.Clear();
-                    MainGrid.Children.Add(new UserControlWishlist());
+                    MainGrid.Children.Add(new UserControlWishlist(user));
                     break;
                 case 4:
                     MainGrid.Children.Clear();
-                    MainGrid.Children.Add(new UserControlStats());
+                    MainGrid.Children.Add(new UserControlStats(user));
                     break;
                 default:
                     break;

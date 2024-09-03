@@ -19,8 +19,10 @@ namespace BibliotekaGierPlanszowych
     /// </summary>
     public partial class GetCollection : Window
     {
-        public GetCollection()
+        private int user;
+        public GetCollection(int userID)
         {
+            user = userID;
             InitializeComponent();
         }
 
@@ -54,12 +56,18 @@ namespace BibliotekaGierPlanszowych
                         }
                         byte[] bytes = System.Text.Encoding.Default.GetBytes(item.Name);
                         titleName = System.Text.Encoding.UTF8.GetString(bytes);
+                        int rate;
+                        if (Convert.ToInt32(rating) > 1)
+                            rate = Convert.ToInt32(rating);
+                        else
+                            rate = 1;
+
 
                         QueryCollectionBgg = "INSERT or ignore into board_game (title, min_players, max_players, rate, add_date, id_category, "
-                           + "yearpublished, playingtime, image_url) VALUES ('"
-                           + titleName + "', " + item.stats.MinPlayers + ", " + item.stats.MaxPlayers + ", " + Convert.ToInt32(rating) +", '" + today.ToShortDateString() + "', 7 , "  //7 to brak kategorii
-                            + item.YearPublished + ", " + item.stats.PlayingTime + ", '" + item.Image + "')";
-                        //MessageBox.Show(QueryCollectionBgg);
+                           + "yearpublished, playingtime, image_url, id_user) VALUES ('"
+                           + titleName + "', " + item.stats.MinPlayers + ", " + item.stats.MaxPlayers + ", " + rate + ", '" + today.ToShortDateString() + "', 7 , "  //7 to brak kategorii
+                            + item.YearPublished + ", " + item.stats.PlayingTime + ", '" + item.Image + "', "+user+")";
+
                         db.DatabaseDataChange(QueryCollectionBgg);
 
                         QueryCollectionBgg = "";

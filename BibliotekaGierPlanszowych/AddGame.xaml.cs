@@ -15,14 +15,17 @@ namespace BibliotekaGierPlanszowych
         List<int> liczbaGraczy = new List<int>();
         int tryb = 0; //0 - dodawanie nowej gry, 1- edycja gry
         int getGameId = 0;
-        public AddGame()
+        int user;
+
+        public AddGame(int userId)
         {
             InitializeComponent();
             CategoryComboboxRefresh();
             UstalenieWartosciMinMax();
+            user = userId;
         }
 
-        public AddGame(string imageUrl, int gameId) //w trybie edycji pobieram zdjecie
+        public AddGame(string imageUrl, int gameId, int userId) //w trybie edycji pobieram zdjecie
         {
             tryb = 1;
             getGameId = gameId;
@@ -38,6 +41,7 @@ namespace BibliotekaGierPlanszowych
                 bitmap.EndInit();
 
                 GameImage.Source = bitmap;
+                user = userId;
             }
         }
 
@@ -182,11 +186,11 @@ namespace BibliotekaGierPlanszowych
                     }
                     //dodaje nowy rekord
 
-                    String Query = "INSERT OR REPLACE INTO board_game (title, min_players, max_players, rate, id_category, add_date, yearpublished, playingtime, age) VALUES ('"
+                    String Query = "INSERT OR REPLACE INTO board_game (title, min_players, max_players, rate, id_category, add_date, yearpublished, playingtime, age, id_user) VALUES ('"
                         + this.Title_txtbox.Text + "', " + MinLiczba_combo.SelectedValue.ToString() + ", " + MaxLiczba_combo.SelectedValue.ToString() + ", "
                         + Rate_slider.Value.ToString() + ", " +
                         "(SELECT DISTINCT id_category FROM category WHERE title_category = '" + Category_combobox.SelectedValue.ToString() + "'), '" + today.ToShortDateString() +
-                        "', " + Convert.ToInt32(Year_txtbox.Text) + ", " + Convert.ToInt32(Time_txtbox.Text) + "," + Convert.ToInt32(Age_txtbox.Text) + ")";
+                        "', " + Convert.ToInt32(Year_txtbox.Text) + ", " + Convert.ToInt32(Time_txtbox.Text) + "," + Convert.ToInt32(Age_txtbox.Text) + ", " + user + ")";
 
                     db.DatabaseDataChange(Query);
 

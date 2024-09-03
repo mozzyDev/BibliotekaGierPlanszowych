@@ -9,11 +9,13 @@ namespace BibliotekaGierPlanszowych
     {
         private List<string> Query = new List<string>();
         private List<string> Stat = new List<string>();
+        private int user;
         
         private DBConnection db = new DBConnection();
 
-        public UserControlStats()
+        public UserControlStats(int userID)
         {
+            user = userID;
             InitializeComponent();
             StatRefresh();
         }
@@ -21,12 +23,12 @@ namespace BibliotekaGierPlanszowych
         //wypełnianie statystyk danymi z bazy danych
         private void StatRefresh()
         {
-            Query.Add("SELECT DISTINCT COUNT(title) FROM board_game");
-            Query.Add("SELECT DISTINCT COUNT(id_board_game) FROM pozyczone");
+            Query.Add("SELECT DISTINCT COUNT(title) FROM board_game where id_user = "+user);
+            Query.Add("SELECT DISTINCT COUNT(id_board_game) FROM loaned where id_user = " + user);
             Query.Add("SELECT DISTINCT COUNT(id_category) FROM category");
-            Query.Add("SELECT DISTINCT COUNT(id_wishlist) FROM wishlist");
-            Query.Add("SELECT DISTINCT ROUND(AVG(rate), 1) FROM board_game");
-            Query.Add("SELECT DISTINCT title FROM board_game ORDER BY id_board_game DESC LIMIT 1");
+            Query.Add("SELECT DISTINCT COUNT(id_wishlist) FROM wishlist where id_user = " + user);
+            Query.Add("SELECT DISTINCT ROUND(AVG(rate), 1) FROM board_game where id_user = " + user);
+            Query.Add("SELECT DISTINCT title FROM board_game where id_user = " + user + " ORDER BY id_board_game DESC LIMIT 1");
 
             try
             {

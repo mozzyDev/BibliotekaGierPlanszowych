@@ -105,7 +105,10 @@ namespace BibliotekaGierPlanszowych
         {
             //sprawdzamy czy hasło jest poprawne            
             String queryLogin = "SELECT password FROM users where login = " +"'"+this.TextBox_Login.Text+"'";
+            String queryUserId = "SELECT id_users FROM users where login = " + "'" + this.TextBox_Login.Text + "' limit 1";
             List<String> loginList = new List<string>();
+            List<String> users = new List<string>();
+            int userID;
             loginList = db.DatabasQueryExecute(queryLogin);
             bool logIn = true;
             bool wrongPass = true;
@@ -141,6 +144,13 @@ namespace BibliotekaGierPlanszowych
                     {
                         db.DatabaseDataChange(updateAllQuery);
                         db.DatabaseDataChange(updateQuery);
+
+                        //otwieramy okno główne
+                        users = db.DatabasQueryExecute(queryUserId);
+                        userID = Convert.ToInt32(users[0]);
+                        MainWindow main = new MainWindow(userID);
+                        main.Show();
+                        this.Close();
                     }
                 }
                 catch (Exception)
@@ -148,10 +158,6 @@ namespace BibliotekaGierPlanszowych
                     throw;
                 }
 
-                //otwieramy okno główne
-                MainWindow main = new MainWindow();
-                main.Show();
-                this.Close();
             }
 
 
