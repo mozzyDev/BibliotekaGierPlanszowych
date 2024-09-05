@@ -68,8 +68,8 @@
 
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" Margin="0 10 0 0 " >
-                        <DataGrid x:Name="List_DataGrid" Background="#FFEEEEEE"  FontSize="16" Cursor="Hand" Height="520" Width="960" Panel.ZIndex="-3" SelectionChanged="List_DataGrid_SelectionChanged_1" HorizontalAlignment="Stretch"  >
+                <StackPanel Grid.Row="1" Margin="0 10 0 0 ">                   
+                    <DataGrid x:Name="List_DataGrid" Background="#FFEEEEEE"  FontSize="16" Cursor="Hand" Height="520" Width="960" Panel.ZIndex="-3" SelectionChanged="List_DataGrid_SelectionChanged_1" HorizontalAlignment="Stretch"  >
                             <DataGrid.Effect>
                                 <DropShadowEffect BlurRadius="10"/>
                             </DataGrid.Effect>

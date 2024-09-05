@@ -25,7 +25,7 @@ namespace BibliotekaGierPlanszowych
         //wypelnianie combobox danymi
         private void WypelnienieDanymi()
         {
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i < 11; i++)
             {
                 liczbaGraczy.Add(i);
             }
@@ -55,7 +55,6 @@ namespace BibliotekaGierPlanszowych
 
 
             String Query = sbQuery.ToString();
-            MessageBox.Show(Query);
 
             try
             {

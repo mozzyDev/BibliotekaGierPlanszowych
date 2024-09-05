@@ -15,7 +15,7 @@ namespace BibliotekaGierPlanszowych
         string idGry { get; set; }
         private int user;
         private DBConnection db = new DBConnection();
-        
+
         public UserControlList(int userID)
         {
             user = userID;
@@ -56,7 +56,6 @@ namespace BibliotekaGierPlanszowych
             WHERE b.id_user = " + user + @"
             ORDER BY b.id_board_game desc;
             ";
-
             try
             {
                 db.DataGridRefresh(query, "board_game", List_DataGrid);
