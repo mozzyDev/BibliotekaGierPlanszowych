@@ -63,7 +63,11 @@ namespace BibliotekaGierPlanszowych
                 MessageBox.Show("Pola: Hasło i Powtórz hasło muszą być takie same", "Błąd", MessageBoxButton.OK, MessageBoxImage.Information);
                 LoginOk = false;
             }
-
+            if (String.IsNullOrEmpty(TextBox_Pass.Password) || String.IsNullOrEmpty(TextBox_RepPass.Password) || String.IsNullOrEmpty(TextBox_Login.Text))
+            {
+                MessageBox.Show("Wszystkie pola muszą być uzupełnione", "Błąd", MessageBoxButton.OK, MessageBoxImage.Information);
+                LoginOk = false;
+            }
             //sprawdzamy czy nie mamy juz takiego loginu
             List<String> usersList= new List<string>();
             String queryUsers = "SELECT login FROM users";

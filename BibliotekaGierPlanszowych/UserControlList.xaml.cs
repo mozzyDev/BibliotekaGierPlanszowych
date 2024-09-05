@@ -124,8 +124,8 @@ namespace BibliotekaGierPlanszowych
             QueryList.Add(db.DatabaseDataGetOne("SELECT playingtime FROM board_game WHERE id_board_game = " + idGry));
             QueryList.Add(db.DatabaseDataGetOne("SELECT yearpublished FROM board_game WHERE id_board_game = " + idGry));
             QueryList.Add(db.DatabaseDataGetOne("SELECT age FROM board_game WHERE id_board_game = " + idGry));
-            QueryList.Add(db.DatabaseDataGetOne("SELECT SUBSTR(add_date, 1, 10) FROM board_game id_board_game = " + idGry));
-            QueryList.Add(db.DatabaseDataGetOne("SELECT SUBSTR(lastPlayed, 1, 10) FROM board_game id_board_game = " + idGry));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT SUBSTR(add_date, 1, 10) FROM board_game WHERE id_board_game = " + idGry));
+            QueryList.Add(db.DatabaseDataGetOne("SELECT SUBSTR(lastPlayed, 1, 10) FROM board_game WHERE id_board_game = " + idGry));
 
             AddGame addGame = new AddGame(QueryList[5].ToString(), Convert.ToInt32(QueryList[6]), user); //tryb edycji z url zdjecia i ref gry
 

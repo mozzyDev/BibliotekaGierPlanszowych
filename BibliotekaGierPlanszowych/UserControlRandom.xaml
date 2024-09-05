@@ -11,20 +11,27 @@
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide">
             <Grid VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 
                 <StackPanel Orientation="Vertical" Grid.Column="0">
-                    <Label Content="Liczba graczy" FontSize="32"/>
-                    <Label Content="Kategoria" FontSize="32" />
-                    <Label Content="Minimalna ocena" FontSize="32"/>
+                    <CheckBox x:Name="Checkbox_liczbaGraczy" Margin="0 20 0 0 " IsChecked="True" Checked="Checkbox_liczbaGraczy_Checked" Unchecked="Checkbox_liczbaGraczy_Unchecked"/>
+                    <CheckBox x:Name="Checkbox_Kategoria" Margin="0 35 0 0 " IsChecked="True" Checked="Checkbox_kategoria_Checked" Unchecked="Checkbox_kategoria_Unchecked"/>
+                    <CheckBox x:Name="Checkbox_Ocena" Margin="0 35 0 0 " IsChecked="True" Checked="Checkbox_ocena_Checked" Unchecked="Checkbox_ocena_Unchecked"/>
+                </StackPanel>
+                
+                <StackPanel Orientation="Vertical" Grid.Column="1">
+                    <Label Name="Label_liczbaGraczy" Content="Liczba graczy" FontSize="32"/>
+                    <Label Name="Label_Kategoria" Content="Kategoria" FontSize="32" />
+                    <Label Name="Label_Ocena" Content="Minimalna ocena" FontSize="32"/>
                     <Button x:Name="Rnd_Button"  Background="#05b790" Foreground="#ffffff" Content="Losuj" Width="150" HorizontalAlignment="Center" Margin="0 60 0 0" IsDefault="True" Click="Rnd_Button_Click"></Button>
                     <Button Content="Wyczyść" Background="#05b790" Foreground="#ffffff"  Width="150" HorizontalAlignment="Center" Margin="0 5 0 0" IsCancel="True" Click="Button_Click"></Button>
                 </StackPanel>
 
-                <StackPanel   Orientation="Vertical" Grid.Column="1" Margin="20 0 0 0 ">
-                    <ComboBox  x:Name="RndPlayers_combo" SelectedIndex="0" Cursor="Hand" Width="40" Margin="10 0 0 0" FontSize="28"></ComboBox>
+                <StackPanel   Orientation="Vertical" Grid.Column="2" Margin="20 0 0 0 ">
+                    <ComboBox  x:Name="RndPlayers_combo" SelectedIndex="0" Cursor="Hand" Width="40" Margin="10 0 0 0" FontSize="28" ></ComboBox>
                     <ComboBox  x:Name="RndCategory_combo" SelectedIndex="0" Cursor="Hand" Width="200" Margin="10 0 0 0" FontSize="28"></ComboBox>
                     <ComboBox  x:Name="RndRate_combo" SelectedIndex="0" Cursor="Hand" Width="40" Margin="10 0 0 0" FontSize="28"></ComboBox>
                     <TextBox x:Name="Rnd_txtbox" Foreground="Black" Margin="10 50 0 0" Height="70" FontSize="36" FontWeight="DemiBold" TextAlignment="Center" IsEnabled="False"></TextBox>
