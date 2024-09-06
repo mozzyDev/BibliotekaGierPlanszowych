@@ -141,7 +141,6 @@ namespace BibliotekaGierPlanszowych
                 addGame.Age_txtbox.Text = QueryList[9];
                 addGame.AddingDate.Content = QueryList[10];
                 addGame.PlayedDate.Content = QueryList[11];
-
             }
             catch(ArgumentException ex)
             {

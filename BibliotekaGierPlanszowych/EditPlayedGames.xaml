@@ -1,0 +1,49 @@
+﻿<Window x:Class="BibliotekaGierPlanszowych.EditPlayedGames"
+      WindowStartupLocation="CenterScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BibliotekaGierPlanszowych"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+       
+        mc:Ignorable="d"
+        Title="EditPlayedGames" Height="380" Width="450" WindowStyle="None">
+    <Grid Background="#FFEEEEEE" MouseDown="Grid_MouseDown">
+        <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+            
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+                    <Label FontSize="18" Margin="10 20 0 0">Id rozgrywki</Label>
+                    <Label FontSize="18" Margin="10 20 0 0">Data</Label>
+                    <Label FontSize="18" Margin="10 20 0 0">Gracze</Label>
+                    <Label FontSize="18" Margin="10 20 0 0">Zwycięzca</Label>
+                    <Label FontSize="18" Margin="10 20 0 0">Notatki</Label>
+                    <Button Background="#05b790" Foreground="#ffffff" Width="90" Height="35" Margin="2 55 0 0" Click="Button_Click" IsCancel="True">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <materialDesign:PackIcon  Kind="Cancel" Margin="2 2" Height="12" Width="12"/>
+                            <TextBlock Margin="0 0 0 0" FontSize="12">Zamknij</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <TextBlock Name="label_Id" FontSize="18" Margin="10 28 0 0"></TextBlock>
+                    <TextBlock Name="label_Date" FontSize="18" Margin="10 28 0 0"></TextBlock>
+                    <TextBlock Name="label_Players" FontSize="18" Margin="10 31 0 0"></TextBlock>
+                    <TextBlock Name="label_Winner" FontSize="18" Margin="10 28 0 0"></TextBlock>
+                    <TextBlock Name="label_Notes" FontSize="18" Margin="10 32 0 0"></TextBlock>
+
+                </StackPanel>
+
+            </Grid>
+
+        </materialDesign:TransitioningContent>
+    </Grid>
+</Window>
+

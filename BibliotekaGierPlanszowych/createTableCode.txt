@@ -43,6 +43,18 @@ CREATE TABLE [users] (
 	lastUsed integer
 );
 
+CREATE TABLE [played_games] (
+	id_played_games integer PRIMARY KEY, 
+	id_user integer,
+	id_board_game integer,
+	date string,
+	players string,
+	winner string,
+	time integer,
+	rate integer,
+	note string
+);
+
 INSERT INTO category (title_category) VALUES ('Strategiczna');
 INSERT INTO category (title_category) VALUES ('Przygodowa');
 INSERT INTO category (title_category) VALUES ('Logiczna');

@@ -38,10 +38,10 @@
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="CategoryCancel_btn" Background="#05b790" Foreground="#ffffff" Width="110" Height="45" Margin="10 5 10 5" Click="Button_Cancel_Click" IsCancel="True">
+                    <Button x:Name="CategoryCancel_btn" Background="#05b790" Foreground="#ffffff" Width="120" Height="45" Margin="10 5 10 5" Click="Button_Cancel_Click" IsCancel="True">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <materialDesign:PackIcon  Kind="Cancel" Margin="10" Height="18" Width="18"/>
-                            <TextBlock Margin="0 7 0 0" FontSize="16">Anuluj</TextBlock>
+                            <TextBlock Margin="0 7 0 0" FontSize="16">Zamknij</TextBlock>
                         </StackPanel>
                     </Button>
                     

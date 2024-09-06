@@ -44,17 +44,17 @@
                             </StackPanel>
                         </Button>
 
-                        <Button x:Name="LastPlayed" Background="#05b790" Foreground="#ffffff" Width="100" Height="45" Margin="10 5 10 5" Click="LastPlayed_btn_Click" IsDefault="True">
+                        <Button x:Name="LastPlayed" Background="#05b790" Foreground="#ffffff" Width="120" Height="45" Margin="10 5 10 5" Click="LastPlayed_btn_Click" IsDefault="True">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <materialDesign:PackIcon  Kind="Play" Margin="10" Height="18" Width="18"/>
-                                <TextBlock Margin="0 9 0 0" FontSize="14">Zagraj</TextBlock>
+                                <TextBlock Margin="0 9 0 0" FontSize="14">Rozgrywki</TextBlock>
                             </StackPanel>
                         </Button>
 
-                        <Button Background="#05b790" Foreground="#ffffff" Width="110" Height="45" Margin="10 5 10 5" Click="Button_Click" IsCancel="True">
+                        <Button Background="#05b790" Foreground="#ffffff" Width="118" Height="45" Margin="10 5 10 5" Click="Button_Click" IsCancel="True">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <materialDesign:PackIcon  Kind="Cancel" Margin="10" Height="18" Width="18"/>
-                                <TextBlock Margin="0 7 0 0" FontSize="16">Anuluj</TextBlock>
+                                <TextBlock Margin="0 7 0 0" FontSize="16">Zamknij</TextBlock>
                             </StackPanel>
                         </Button>
                 </StackPanel>

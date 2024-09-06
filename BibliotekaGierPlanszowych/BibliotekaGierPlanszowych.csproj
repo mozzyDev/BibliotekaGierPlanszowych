@@ -178,10 +178,16 @@
     </Compile>
     <Compile Include="DBConnection.cs" />
     <Compile Include="DBConnectionCreateDB.cs" />
+    <Compile Include="EditPlayedGames.xaml.cs">
+      <DependentUpon>EditPlayedGames.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GetCollection.xaml.cs">
       <DependentUpon>GetCollection.xaml</DependentUpon>
     </Compile>
     <Compile Include="IRestResponse.cs" />
+    <Compile Include="PlayedGames.xaml.cs">
+      <DependentUpon>PlayedGames.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
@@ -212,6 +218,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditPlayedGames.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GetCollection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -228,6 +238,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PlayedGames.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SignUpWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

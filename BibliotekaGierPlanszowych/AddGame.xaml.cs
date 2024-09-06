@@ -33,6 +33,7 @@ namespace BibliotekaGierPlanszowych
             InitializeComponent();
             CategoryComboboxRefresh();
             UstalenieWartosciMinMax();
+            user = userId;
 
             if (!String.IsNullOrEmpty(imageUrl))
             {
@@ -40,9 +41,7 @@ namespace BibliotekaGierPlanszowych
                 bitmap.BeginInit();
                 bitmap.UriSource = new Uri(imageUrl, UriKind.Absolute);
                 bitmap.EndInit();
-
                 GameImage.Source = bitmap;
-                user = userId;
             }
         }
 
@@ -271,24 +270,10 @@ namespace BibliotekaGierPlanszowych
 
         private void LastPlayed_btn_Click(object sender, RoutedEventArgs e)
         {
-            DateTime today = DateTime.Today;
-
-            string queryLastPlayed = @"
-                UPDATE board_game
-                    set lastPlayed = '"
-                + today.ToShortDateString()
-                + "' where id_board_game = " + getGameId.ToString() + " and id_user = " + user;
-
-            MessageBox.Show("Zaktualizowano datę ostatniej gry");
-            try
-            {
-                db.DatabaseDataChange(queryLastPlayed);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            this.Close();
+            PlayedGames playedGames = new PlayedGames(user, getGameId, this.Title_txtbox.Text);
+           
+            playedGames.ShowDialog();
+                       
         }
     }
 }
