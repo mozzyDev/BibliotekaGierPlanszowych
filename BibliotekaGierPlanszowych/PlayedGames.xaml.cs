@@ -44,12 +44,14 @@ namespace BibliotekaGierPlanszowych
             }
             
         }
-
-
-        private void Grid_MouseDown(object sender, RoutedEventArgs e)
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -92,49 +94,56 @@ namespace BibliotekaGierPlanszowych
         }
         private void Save_btn_Click(object sender, RoutedEventArgs e)
         {
-            string playedQuery = "";
-            StringBuilder sb = new StringBuilder();
+            if (!String.IsNullOrEmpty(Txt_Players.Text))
+            {
+                string playedQuery = "";
+                StringBuilder sb = new StringBuilder();
 
-            sb.Append("INSERT INTO played_games(id_user, id_board_game, date, players, winner, note) VALUES (");
-            sb.Append(user);
-            sb.Append(", ");
-            sb.Append(board_game);
-            sb.Append(", '");
-            sb.Append(Txt_Date.SelectedDate.Value.ToShortDateString());
-            sb.Append("', '");
-            sb.Append(Txt_Players.Text);
-            sb.Append("', '");
-            sb.Append(Txt_Winner.Text);
-            sb.Append("', '");
-            sb.Append(Txt_Notes.Text);
-            sb.Append("');");
+                sb.Append("INSERT INTO played_games(id_user, id_board_game, date, players, winner, note) VALUES (");
+                sb.Append(user);
+                sb.Append(", ");
+                sb.Append(board_game);
+                sb.Append(", '");
+                sb.Append(Txt_Date.SelectedDate.Value.ToShortDateString());
+                sb.Append("', '");
+                sb.Append(Txt_Players.Text);
+                sb.Append("', '");
+                sb.Append(Txt_Winner.Text);
+                sb.Append("', '");
+                sb.Append(Txt_Notes.Text);
+                sb.Append("');");
 
-            playedQuery = sb.ToString();
+                playedQuery = sb.ToString();
 
-            string queryLastPlayed = @"
+                string queryLastPlayed = @"
               UPDATE board_game
                    set lastPlayed = '"
-              + Txt_Date.SelectedDate.Value.ToShortDateString()
-              + "' where id_board_game = " + board_game.ToString() + " and id_user = " + user;
+                  + Txt_Date.SelectedDate.Value.ToShortDateString()
+                  + "' where id_board_game = " + board_game.ToString() + " and id_user = " + user;
 
-            try
-            {
-              db.DatabaseDataChange(playedQuery);
-              db.DatabaseDataChange(queryLastPlayed);
+                try
+                {
+                    db.DatabaseDataChange(playedQuery);
+                    db.DatabaseDataChange(queryLastPlayed);
 
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+                MessageBox.Show("Dodano nową rozgrywkę dla gry: " + board_game_title);
+                GridRefresh();
+                Txt_Date.SelectedDate = null;
+                Txt_Players.Text = "";
+                Txt_Winner.Text = "";
+                Txt_Notes.Text = "";
             }
-            catch (Exception)
+            else
             {
-
-                throw;
+                MessageBox.Show("Należy uzupełnić dane");
             }
-
-            MessageBox.Show("Dodano nową rozgrywkę dla gry: " + board_game_title);
-            GridRefresh();
-            Txt_Date.SelectedDate = null;
-            Txt_Players.Text = "";
-            Txt_Winner.Text = "";
-            Txt_Notes.Text = "";
         }
 
         private void Edit_btn_Click(object sender, RoutedEventArgs e)

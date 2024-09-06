@@ -50,9 +50,12 @@ namespace BibliotekaGierPlanszowych
 
         private DBConnection db = new DBConnection();
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
         }
 
         private void Button_Register_Click(object sender, RoutedEventArgs e)

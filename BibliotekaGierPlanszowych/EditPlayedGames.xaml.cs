@@ -32,9 +32,13 @@ namespace BibliotekaGierPlanszowych
         {
             this.Close();
         }
-        private void Grid_MouseDown(object sender, RoutedEventArgs e)
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
         }
         private void RefreshLabels()
         {

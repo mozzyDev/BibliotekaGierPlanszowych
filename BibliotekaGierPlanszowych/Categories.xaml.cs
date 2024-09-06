@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace BibliotekaGierPlanszowych
 {
@@ -14,9 +15,12 @@ namespace BibliotekaGierPlanszowych
             CategoryListRefresh();
         }
 
-        private void Grid_MouseDown(object sender, RoutedEventArgs e)
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
         }
 
         private void Button_Cancel_Click(object sender, RoutedEventArgs e)

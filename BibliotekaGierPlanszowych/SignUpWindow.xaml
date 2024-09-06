@@ -135,7 +135,7 @@
         <Border Grid.Column="1"
                         Background="#ffffff"
                         CornerRadius="0 10 10 0"
-                        MouseDown="Border_MouseDown">
+                        MouseDown="Grid_MouseDown">
             <Grid>
                 <Button x:Name="ButtonExit" Width="40" Height="40" Padding="0" Margin="370
                         -550 10 0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Gray" Click="ButtonExit_Click" >

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-
+using System.Windows.Input;
 
 namespace BibliotekaGierPlanszowych
 {
@@ -45,9 +45,12 @@ namespace BibliotekaGierPlanszowych
         }
 
         //przesuwanie okna aplikacji za pomoca kliknięcia w dowolnym miejscu okna
-        private void Grid_MouseDown(object sender, RoutedEventArgs e)
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
         }
 
         //wybór paneli z menu bocznego

@@ -28,10 +28,12 @@ namespace BibliotekaGierPlanszowych
             InitializeComponent();
             AddBgg_btn.IsEnabled = false;
         }
-
-        private void Grid_MouseDown(object sender, RoutedEventArgs e)
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)

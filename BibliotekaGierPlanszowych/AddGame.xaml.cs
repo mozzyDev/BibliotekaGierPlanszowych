@@ -47,9 +47,12 @@ namespace BibliotekaGierPlanszowych
 
 
         //przesuwanie menu
-        private void Grid_MouseDown(object sender, RoutedEventArgs e)
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

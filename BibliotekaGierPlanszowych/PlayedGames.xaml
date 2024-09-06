@@ -18,11 +18,11 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Orientation="Vertical">
-                    <Label FontSize="20" Margin="10 40 0 0">Tytuł gry</Label>
+                    <Label FontSize="20" Margin="10 45 0 0">Tytuł gry</Label>
                     <Label FontSize="20" Margin="10 10 0 0">Kto grał?</Label>
-                    <Label FontSize="20" Margin="10 10 0 0">Kto wygrał?</Label>
-                    <Label FontSize="20" Margin="10 10 0 0">Data</Label>
-                    <Label FontSize="20" Margin="10 10 0 100">Notatki</Label>
+                    <Label FontSize="20" Margin="10 17 0 0">Kto wygrał?</Label>
+                    <Label FontSize="20" Margin="10 17 0 0">Data</Label>
+                    <Label FontSize="20" Margin="10 15 0 100">Notatki</Label>
                     <StackPanel Orientation="Horizontal" Margin="0 60 0 0">
                     <Button x:Name="Save_btn" Background="#05b790" Foreground="#ffffff" Width="80" Height="35" Margin="20 0 5 0" Click="Save_btn_Click" IsDefault="True">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -39,11 +39,11 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Vertical">
-                    <Label Name="Txt_Title" MinWidth="150" FontSize="18" Height="30" Margin="0 45 0 0"></Label>
-                    <TextBox Name="Txt_Players" MinWidth="150" FontSize="18" Height="30" Margin="0 15 0 0"></TextBox>
-                    <TextBox Name="Txt_Winner" MinWidth="150" FontSize="18" Height="30" Margin="0 18 0 0"></TextBox>
-                    <DatePicker Name="Txt_Date" MinWidth="150" FontSize="18" Height="30" Margin="0 18 0 0"></DatePicker>
-                    <TextBox Name="Txt_Notes" MinWidth="150" FontSize="18" Height="30" Margin="0 18 0 0"></TextBox>
+                    <Label Name="Txt_Title" MinWidth="150" FontSize="18" Height="35" Margin="0 45 0 0"></Label>
+                    <TextBox Name="Txt_Players" MinWidth="150" FontSize="18" Height="35" Margin="0 15 0 0"></TextBox>
+                    <TextBox Name="Txt_Winner" MinWidth="150" FontSize="18" Height="35" Margin="0 18 0 0"></TextBox>
+                    <DatePicker Name="Txt_Date" MinWidth="150" FontSize="18" Height="35" Margin="0 18 0 0"></DatePicker>
+                    <TextBox Name="Txt_Notes" MinWidth="150" FontSize="18" Height="35" Margin="0 18 0 0"></TextBox>
                 </StackPanel>
                 <StackPanel Grid.Column="2">
                     <DataGrid x:Name="List_PlayedGrid" Background="#FFEEEEEE"  FontSize="16" Cursor="Hand" Height="400" Width="280" Panel.ZIndex="-3" SelectionChanged="List_PlayedGrid_SelectionChanged_1" HorizontalAlignment="Stretch" Margin="10 10 0 0"  >
