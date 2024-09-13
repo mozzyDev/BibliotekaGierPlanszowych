@@ -34,7 +34,6 @@ namespace BibliotekaGierPlanszowych
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
             if (e.ChangedButton == MouseButton.Left)
             {
                 DragMove();
