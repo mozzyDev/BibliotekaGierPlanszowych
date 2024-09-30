@@ -15,25 +15,34 @@ namespace BibliotekaGierPlanszowych
     public partial class SignUpWindow : Window
     {
         private DBConnectionCreateDB dbCreation = new DBConnectionCreateDB();
+        private DBConnection db = new DBConnection();
         public SignUpWindow()
         {
-            
+            InitializeComponent();
             //utworzenie nowej bazy danych przy starcie programu
             if (!File.Exists("database.db"))
             {
                 dbCreation.DatabaseCreate();
+                MessageBox.Show("Utworzono nową bazę danych");
             }
-
-            InitializeComponent();
 
             //Pobieranie ostatniego wybranego loginu
             List<String> lastUser = new List<string>();
             List<String> lastPass = new List<string>();
             String lastUserQuery = "SELECT login FROM users where lastUsed = 1 LIMIT 1";
             String lastPasswordQuery = "SELECT password FROM users where lastUsed = 1 LIMIT 1";
-            lastUser = db.DatabasQueryExecute(lastUserQuery);
-            lastPass = db.DatabasQueryExecute(lastPasswordQuery);
 
+            try
+            {
+                lastUser = db.DatabasQueryExecute(lastUserQuery);
+                lastPass = db.DatabasQueryExecute(lastPasswordQuery);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
             if (lastUser.Count > 0)
             {
                 TextBox_Login.Text = lastUser[0];
@@ -46,9 +55,10 @@ namespace BibliotekaGierPlanszowych
                 TextBox_Pass.Password = "";
                 TextBox_RepPass.Password = "";
             }
+            
         }
 
-        private DBConnection db = new DBConnection();
+        
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {

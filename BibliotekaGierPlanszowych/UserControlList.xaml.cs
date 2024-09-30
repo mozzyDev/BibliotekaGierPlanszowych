@@ -50,11 +50,12 @@ namespace BibliotekaGierPlanszowych
                 b.max_players AS 'Max_Graczy',
                 b.playingtime||' min.' AS 'CzasGry',
                 b.add_date as DataDodania,
-                b.lastPlayed as OstatnioGrana
+                b.lastPlayed as OstatnioGrana,
+                b.played_cnt as Rozgrywki
             FROM board_game b
                 JOIN category c ON c.id_category = b.id_category
             WHERE b.id_user = " + user + @"
-            ORDER BY b.id_board_game desc;
+            ORDER BY b.title;
             ";
             try
             {

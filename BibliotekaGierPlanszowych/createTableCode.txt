@@ -14,7 +14,8 @@ CREATE TABLE [board_game] (
 	age integer,
 	lastPlayed string,
 	loaned integer,
-	image_url string
+	image_url string,
+	played_cnt integer
 );
 
 CREATE TABLE [category] (

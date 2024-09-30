@@ -94,10 +94,10 @@ namespace BibliotekaGierPlanszowych
         }
         private void Save_btn_Click(object sender, RoutedEventArgs e)
         {
-            if (!String.IsNullOrEmpty(Txt_Players.Text))
+            if (!String.IsNullOrEmpty(Txt_Players.Text) && Txt_Date.SelectedDate != null && !String.IsNullOrEmpty(Txt_Winner.Text))
             {
                 string playedQuery = "";
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new StringBuilder();               
 
                 sb.Append("INSERT INTO played_games(id_user, id_board_game, date, players, winner, note) VALUES (");
                 sb.Append(user);
@@ -116,7 +116,7 @@ namespace BibliotekaGierPlanszowych
                 playedQuery = sb.ToString();
 
                 string queryLastPlayed = @"
-              UPDATE board_game
+                  UPDATE board_game
                    set lastPlayed = '"
                   + Txt_Date.SelectedDate.Value.ToShortDateString()
                   + "' where id_board_game = " + board_game.ToString() + " and id_user = " + user;
@@ -132,6 +132,8 @@ namespace BibliotekaGierPlanszowych
 
                     throw;
                 }
+
+                UpdatePlayedCnt(board_game, 1);
 
                 MessageBox.Show("Dodano nową rozgrywkę dla gry: " + board_game_title);
                 GridRefresh();
@@ -161,7 +163,48 @@ namespace BibliotekaGierPlanszowych
                 string Query = "DELETE FROM played_games  WHERE id_played_games = " + idRozgrywki;
 
                 db.DatabasQueryExecute(Query);
+
+                UpdatePlayedCnt(board_game, 0);
+
                 GridRefresh();
+            }
+        }
+
+        private void UpdatePlayedCnt(int? boardGameId, int mode) //mode - 1 dodawanie, 0 - usuwanie
+        {
+            //aktualizacja ilosci rozegranych gier
+            string playedCnt = "0";
+            int playedCntInt = 0;
+            string updatePlayedQuery = "";
+            string getPlayedQuery = "select played_cnt from board_game where id_board_game = " + board_game;
+            try
+            {
+                playedCnt = db.DatabaseDataGetOne(getPlayedQuery);
+                if (String.IsNullOrEmpty(playedCnt)) playedCnt = "0";
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            if (!String.IsNullOrEmpty(playedCnt))
+            {
+                playedCntInt = Convert.ToInt32(playedCnt);
+                if (mode == 1) playedCntInt++;
+                if (mode == 0) playedCntInt--;
+
+                if (playedCntInt < 0) playedCntInt = 0;
+
+                playedCnt = playedCntInt.ToString();
+                updatePlayedQuery = $"update board_game set played_cnt = {playedCnt} where id_board_game = {board_game}";
+            }
+
+            try
+            {
+                db.DatabaseDataChange(updatePlayedQuery);
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }
