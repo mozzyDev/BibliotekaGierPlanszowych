@@ -9,6 +9,7 @@ namespace BibliotekaGierPlanszowych
     {
         private List<string> Query = new List<string>();
         private List<string> Stat = new List<string>();
+        string top1_concat, top2_concat, top3_concat = "";
         private int user;
         
         private DBConnection db = new DBConnection();
@@ -29,11 +30,17 @@ namespace BibliotekaGierPlanszowych
             Query.Add("SELECT DISTINCT COUNT(id_wishlist) FROM wishlist where id_user = " + user);
             Query.Add("SELECT DISTINCT ROUND(AVG(rate), 1) FROM board_game where id_user = " + user);
             Query.Add("SELECT DISTINCT title FROM board_game where id_user = " + user + " ORDER BY id_board_game DESC LIMIT 1");
-
+            Query.Add("select winner, count(winner) as occurrences from played_games group by winner order by occurrences desc limit 1 ; ");
+            Query.Add("select winner, count(winner) as occurrences from played_games group by winner order by occurrences desc limit 1 offset 1; ");
+            Query.Add("select winner, count(winner) as occurrences from played_games group by winner order by occurrences desc limit 1 offset 2; ");
+            Query.Add("select count(winner) as occurrences from played_games group by winner order by occurrences desc limit 1 ; ");
+            Query.Add("select count(winner) as occurrences from played_games group by winner order by occurrences desc limit 1 offset 1; ");
+            Query.Add("select count(winner) as occurrences from played_games group by winner order by occurrences desc limit 1 offset 2; ");
             try
             {
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 12; i++)
                 {
+                    
                     Stat.Add(db.DatabaseDataGetOne(Query[i]));
                 }
 
@@ -41,7 +48,15 @@ namespace BibliotekaGierPlanszowych
                 Pozyczonych_label.Content = Stat[1];
                 Kategorii_label.Content = Stat[2];
                 Zyczen_label.Content = Stat[3];
-                Srednia_label.Content = Stat[4];
+
+                if (!String.IsNullOrEmpty(Stat[6]) && !String.IsNullOrEmpty(Stat[9])) top1_concat = Stat[6] + ": " +Stat[9];
+                if (!String.IsNullOrEmpty(Stat[7]) && !String.IsNullOrEmpty(Stat[10])) top2_concat = Stat[7] + ": " + Stat[10];
+                if (!String.IsNullOrEmpty(Stat[8]) && !String.IsNullOrEmpty(Stat[11])) top3_concat = Stat[8] + ": " + Stat[11];
+                top1.Content = top1_concat;
+                top2.Content = top2_concat;
+                top3.Content = top3_concat;
+
+
                 Ostatnia_label.Content = Stat[5];
             }
             catch(IndexOutOfRangeException exi)
