@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Finisar.SQLite;
 using System.Data;
 using System.Windows.Controls;
+using System.Globalization;
 
 namespace BibliotekaGierPlanszowych
 {
@@ -123,7 +124,54 @@ namespace BibliotekaGierPlanszowych
             }
             return item;
         }
+        // Pomocnicza metoda do konwersji kolumn dat na DateTime
+        private void ConvertDateColumnsToDateTime(DataTable dt)
+        {
+            string[] dateColumnNames = { "DataDodania", "OstatnioGrana" };
+            string[] dateFormats = { "dd.MM.yyyy", "d.M.yyyy", "dd/MM/yyyy", "d/M/yyyy", "yyyy-MM-dd" };
 
+            foreach (string columnName in dateColumnNames)
+            {
+                if (dt.Columns.Contains(columnName))
+                {
+                    DataColumn oldColumn = dt.Columns[columnName];
+
+                    // Tworzenie nowej kolumny typu DateTime
+                    DataColumn newColumn = new DataColumn(columnName + "_temp", typeof(DateTime));
+                    newColumn.AllowDBNull = true;
+                    dt.Columns.Add(newColumn);
+
+                    // Konwersja wartości z string na DateTime
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        if (row[columnName] != DBNull.Value && row[columnName] != null)
+                        {
+                            string dateString = row[columnName].ToString();
+                            if (!string.IsNullOrWhiteSpace(dateString))
+                            {
+                                DateTime parsedDate;
+                                if (DateTime.TryParseExact(dateString, dateFormats, CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedDate))
+                                {
+                                    row[newColumn] = parsedDate;
+                                }
+                                else if (DateTime.TryParse(dateString, CultureInfo.GetCultureInfo("pl-PL"), DateTimeStyles.None, out parsedDate))
+                                {
+                                    row[newColumn] = parsedDate;
+                                }
+                                // Jeśli nie uda się sparsować, pozostawiamy DBNull
+                            }
+                        }
+                    }
+
+                    // Usunięcie starej kolumny i zmiana nazwy nowej
+                    int columnIndex = oldColumn.Ordinal;
+                    dt.Columns.Remove(oldColumn);
+                    newColumn.ColumnName = columnName;
+                    newColumn.SetOrdinal(columnIndex);
+                }
+            }
+        }
+        //uzupełnianie danych w DataGrid
         //uzupełnianie danych w DataGrid
         public void DataGridRefresh(String Query, String TableName, DataGrid NameOfDataGrid)
         {
@@ -136,8 +184,12 @@ namespace BibliotekaGierPlanszowych
 
                 DataTable dt = new DataTable(TableName);
                 adp.Fill(dt);
+
+                // Konwersja kolumn dat z string na DateTime dla poprawnego sortowania
+                ConvertDateColumnsToDateTime(dt);
+
                 NameOfDataGrid.ItemsSource = dt.DefaultView;
-                adp.Update(dt);
+                // Usunięto adp.Update(dt); - nie jest potrzebne przy odczycie danych
             }
             catch (SQLiteException exs)
             {

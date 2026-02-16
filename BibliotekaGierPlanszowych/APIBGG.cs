@@ -14,12 +14,16 @@ namespace BibliotekaGierPlanszowych
 {
     class APIBGG
     {
-        private const string BGG_API_URL = "https://boardgamegeek.com/xmlapi/collection/";
+        private const string BGG_API_URL = "https://boardgamegeek.com/xmlapi2/collection/";
 
         public List<BoardGame> SearchBoardGame(string gameName)
         {
             List<BoardGame> resultsList = new List<BoardGame>();
-            var client = new RestClient("https://boardgamegeek.com/xmlapi/");
+            var options = new RestClientOptions("https://boardgamegeek.com/xmlapi2/")
+            {
+                UserAgent = "BibliotekaGierPlanszowych/1.0 (https://github.com/yourusername/yourrepo)"
+            };
+            var client = new RestClient(options);
             var request = new RestRequest("search", Method.Get);
             request.AddParameter("search", gameName);
 
@@ -45,9 +49,14 @@ namespace BibliotekaGierPlanszowych
 
         public List<BoardGameBgg> AddBoardGame(int bggId)
         {
+
             List<BoardGameBgg> boardGameBgg = new List<BoardGameBgg>();
-                        
-            var client = new RestClient("https://boardgamegeek.com/xmlapi/");
+
+            var options = new RestClientOptions("https://boardgamegeek.com/xmlapi2/")
+            {
+                UserAgent = "BibliotekaGierPlanszowych/1.0 (https://github.com/yourusername/yourrepo)"
+            };
+            var client = new RestClient(options);
             var request = new RestRequest($"boardgame/{bggId}", Method.Get);
 
             try
@@ -135,7 +144,11 @@ namespace BibliotekaGierPlanszowych
         {
             List<Item> collection = new List<Item>();
 
-            var client = new RestClient("https://boardgamegeek.com/xmlapi/");
+            var options = new RestClientOptions("https://boardgamegeek.com/xmlapi2/")
+            {
+                UserAgent = "BibliotekaGierPlanszowych/1.0 (https://github.com/yourusername/yourrepo)"
+            };
+            var client = new RestClient(options);
             var request = new RestRequest($"collection/{username}", Method.Get);
 
             try

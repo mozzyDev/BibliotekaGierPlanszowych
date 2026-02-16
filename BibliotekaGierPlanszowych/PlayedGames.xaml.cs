@@ -96,21 +96,29 @@ namespace BibliotekaGierPlanszowych
         {
             if (!String.IsNullOrEmpty(Txt_Players.Text) && Txt_Date.SelectedDate != null && !String.IsNullOrEmpty(Txt_Winner.Text))
             {
+                // Escapowanie apostrofów w tekście
+                string escapedPlayers = Txt_Players.Text.Replace("'", "''");
+                string escapedWinner = Txt_Winner.Text.Replace("'", "''");
+                string escapedNotes = Txt_Notes.Text.Replace("'", "''");
+
+                // Format daty ISO (yyyy-MM-dd)
+                string dateISO = Txt_Date.SelectedDate.Value.ToString("yyyy-MM-dd");
+
                 string playedQuery = "";
-                StringBuilder sb = new StringBuilder();               
+                StringBuilder sb = new StringBuilder();
 
                 sb.Append("INSERT INTO played_games(id_user, id_board_game, date, players, winner, note) VALUES (");
                 sb.Append(user);
                 sb.Append(", ");
                 sb.Append(board_game);
                 sb.Append(", '");
-                sb.Append(Txt_Date.SelectedDate.Value.ToShortDateString());
+                sb.Append(dateISO);
                 sb.Append("', '");
-                sb.Append(Txt_Players.Text);
+                sb.Append(escapedPlayers);
                 sb.Append("', '");
-                sb.Append(Txt_Winner.Text);
+                sb.Append(escapedWinner);
                 sb.Append("', '");
-                sb.Append(Txt_Notes.Text);
+                sb.Append(escapedNotes);
                 sb.Append("');");
 
                 playedQuery = sb.ToString();
@@ -118,7 +126,7 @@ namespace BibliotekaGierPlanszowych
                 string queryLastPlayed = @"
                   UPDATE board_game
                    set lastPlayed = '"
-                  + Txt_Date.SelectedDate.Value.ToShortDateString()
+                  + dateISO
                   + "' where id_board_game = " + board_game.ToString() + " and id_user = " + user;
 
                 try

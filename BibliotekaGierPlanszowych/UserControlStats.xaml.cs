@@ -30,12 +30,12 @@ namespace BibliotekaGierPlanszowych
             Query.Add("SELECT DISTINCT COUNT(id_wishlist) FROM wishlist where id_user = " + user);
             Query.Add("SELECT DISTINCT ROUND(AVG(rate), 1) FROM board_game where id_user = " + user);
             Query.Add("SELECT DISTINCT title FROM board_game where id_user = " + user + " ORDER BY id_board_game DESC LIMIT 1");
-            Query.Add("select winner, count(winner) as occurrences from played_games group by winner order by occurrences desc limit 1 ; ");
-            Query.Add("select winner, count(winner) as occurrences from played_games group by winner order by occurrences desc limit 1 offset 1; ");
-            Query.Add("select winner, count(winner) as occurrences from played_games group by winner order by occurrences desc limit 1 offset 2; ");
-            Query.Add("select count(winner) as occurrences from played_games group by winner order by occurrences desc limit 1 ; ");
-            Query.Add("select count(winner) as occurrences from played_games group by winner order by occurrences desc limit 1 offset 1; ");
-            Query.Add("select count(winner) as occurrences from played_games group by winner order by occurrences desc limit 1 offset 2; ");
+            Query.Add("select winner, count(winner) as occurrences from played_games where id_user = " + user + " group by winner order by occurrences desc limit 1 ; ");
+            Query.Add("select winner, count(winner) as occurrences from played_games where id_user = " + user + " group by winner order by occurrences desc limit 1 offset 1; ");
+            Query.Add("select winner, count(winner) as occurrences from played_games where id_user = " + user + " group by winner order by occurrences desc limit 1 offset 2; ");
+            Query.Add("select count(winner) as occurrences from played_games where id_user = " + user + " group by winner order by occurrences desc limit 1 ; ");
+            Query.Add("select count(winner) as occurrences from played_games where id_user = " + user + " group by winner order by occurrences desc limit 1 offset 1; ");
+            Query.Add("select count(winner) as occurrences from played_games where id_user = " + user + " group by winner order by occurrences desc limit 1 offset 2; ");
             try
             {
                 for (int i = 0; i < 12; i++)

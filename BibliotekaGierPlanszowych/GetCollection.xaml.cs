@@ -65,7 +65,7 @@ namespace BibliotekaGierPlanszowych
 
                         QueryCollectionBgg = "INSERT or ignore into board_game (title, min_players, max_players, rate, add_date, id_category, "
                            + "yearpublished, playingtime, image_url, id_user) VALUES ('"
-                           + titleName + "', " + item.stats.MinPlayers + ", " + item.stats.MaxPlayers + ", " + rate + ", '" + today.ToShortDateString() + "', 7 , "  //7 to brak kategorii
+                           + titleName + "', " + item.stats.MinPlayers + ", " + item.stats.MaxPlayers + ", " + rate + ", '" + today.ToString("yyyy-MM-dd") + "', 7 , "  //7 to brak kategorii
                             + item.YearPublished + ", " + item.stats.PlayingTime + ", '" + item.Image + "', "+user+")";
 
                         db.DatabaseDataChange(QueryCollectionBgg);

@@ -192,7 +192,7 @@ namespace BibliotekaGierPlanszowych
                     String Query = "INSERT OR REPLACE INTO board_game (title, min_players, max_players, rate, id_category, add_date, yearpublished, playingtime, age, id_user) VALUES ('"
                         + this.Title_txtbox.Text + "', " + MinLiczba_combo.SelectedValue.ToString() + ", " + MaxLiczba_combo.SelectedValue.ToString() + ", "
                         + Rate_slider.Value.ToString() + ", " +
-                        "(SELECT DISTINCT id_category FROM category WHERE title_category = '" + Category_combobox.SelectedValue.ToString() + "'), '" + today.ToShortDateString() +
+                        "(SELECT DISTINCT id_category FROM category WHERE title_category = '" + Category_combobox.SelectedValue.ToString() + "'), '" + today.ToString("yyyy-MM-dd") +
                         "', " + Convert.ToInt32(Year_txtbox.Text) + ", " + Convert.ToInt32(Time_txtbox.Text) + "," + Convert.ToInt32(Age_txtbox.Text) + ", " + user + ")";
 
                     db.DatabaseDataChange(Query);
